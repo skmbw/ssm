@@ -10,6 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户列表</title>
 <script type="text/javascript" src="${ctx}/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="${ctx}/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${ctx}/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript">
 	function deleteUser(id) {
 		var del = confirm('你确定要删除该用户？');
@@ -28,13 +30,23 @@
 	        });
 		}
 	}
+	$(document).ready(function(){
+		$('#add_user').click(function(){
+			window.location.href="${ctx}/user/add.htm";
+		});
+	});
 </script>
 </head>
 <body>
-<table>
-	<tr><td><a href="${ctx}/user/add.htm">新增用户</a></td><td></td><td></td></tr>
-</table>
-<table style="border:1px #e8e8e8 solid" border="1" cellspacing="1" cellpadding="1">
+<div class="container">
+<div class="row">
+	<button type="button" id="add_user" class="btn btn-primary">新增用户</button>
+<!-- <table> -->
+<%-- 	<tr><td><a href="${ctx}/user/add.htm">新增用户</a></td><td></td><td></td></tr> --%>
+<!-- </table> -->
+</div>
+<div class="row">
+<table class="table table-bordered table-hover table-condensed" >
 <tr>
 <td>用户ID</td>
 <td>用户名</td>
@@ -57,5 +69,9 @@
 
 </c:forEach>
 </table>
+</div>
+
+</div>
+
 </body>
 </html>
