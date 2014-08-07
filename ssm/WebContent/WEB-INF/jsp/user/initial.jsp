@@ -41,9 +41,6 @@
 <div class="container">
 <div class="row" style="margin-top:20px; margin-bottom:20px;">
 	<button type="button" id="add_user" class="btn btn-primary">新增用户</button>
-<!-- <table> -->
-<%-- 	<tr><td><a href="${ctx}/user/add.htm">新增用户</a></td><td></td><td></td></tr> --%>
-<!-- </table> -->
 </div>
 <div class="row">
 <table class="table table-bordered table-hover table-condensed" >
@@ -81,7 +78,7 @@
         <h4 class="modal-title" id="myModalLabel">温馨提醒您：</h4>
       </div>
       <div class="modal-body">
-        你确定要删除该用户？
+        	你确定要删除该用户？
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -103,7 +100,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="closeDelModal" data-dismiss="modal">Close</button>
-<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
