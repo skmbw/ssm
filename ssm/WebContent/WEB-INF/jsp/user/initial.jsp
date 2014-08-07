@@ -22,8 +22,7 @@
 	            dataType:"text",
 	            url: '${ctx}/user/delete.htm?id=' + id,
 	            success: function(msg){
-	                //$('#modalAlter').modal('show');
-	                window.location.reload();
+	            	$('#myModal').modal('show');
 	            },
 	            error: function (msg) {
 	                alert(msg.responseText);
@@ -74,19 +73,40 @@
 
 </div>
 
-<div id="modalAlter" class="modal hide fade in" style="display: none; ">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
-		<h3>温馨提示您：</h3>
-	</div>
-	<div class="modal-body">
-		<h4>Text in a modal</h4>
-		<p>You can add some text here.</p>		        
-	</div>
-	<div class="modal-footer">
-		<a href="#" class="btn btn-success">Call to action</a>
-		<a href="#" class="btn" data-dismiss="modal">Close</a>
-	</div>
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">温馨提醒您：</h4>
+      </div>
+      <div class="modal-body">
+        你确定要删除该用户？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" id="confirmDel" class="btn btn-primary">确认删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">温馨提醒您：</h4>
+      </div>
+      <div class="modal-body">
+        	删除用户成功。
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="closeDelModal" data-dismiss="modal">Close</button>
+<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
