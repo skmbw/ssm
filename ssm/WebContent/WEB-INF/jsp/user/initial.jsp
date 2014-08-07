@@ -11,6 +11,7 @@
 <title>用户列表</title>
 <script type="text/javascript" src="${ctx}/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${ctx}/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${ctx}/bootstrap/js/modal.js"></script>
 <link rel="stylesheet" href="${ctx}/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript">
 	function deleteUser(id) {
@@ -21,7 +22,7 @@
 	            dataType:"text",
 	            url: '${ctx}/user/delete.htm?id=' + id,
 	            success: function(msg){
-	                alert("删除成功");
+	                //$('#modalAlter').modal('show');
 	                window.location.reload();
 	            },
 	            error: function (msg) {
@@ -39,7 +40,7 @@
 </head>
 <body>
 <div class="container">
-<div class="row">
+<div class="row" style="margin-top:20px; margin-bottom:20px;">
 	<button type="button" id="add_user" class="btn btn-primary">新增用户</button>
 <!-- <table> -->
 <%-- 	<tr><td><a href="${ctx}/user/add.htm">新增用户</a></td><td></td><td></td></tr> --%>
@@ -73,5 +74,19 @@
 
 </div>
 
+<div id="modalAlter" class="modal hide fade in" style="display: none; ">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>温馨提示您：</h3>
+	</div>
+	<div class="modal-body">
+		<h4>Text in a modal</h4>
+		<p>You can add some text here.</p>		        
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-success">Call to action</a>
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+	</div>
+</div>
 </body>
 </html>
