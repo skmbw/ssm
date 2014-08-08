@@ -14,6 +14,7 @@
 <script type="text/javascript" src="${ctx}/bootstrap/js/modal.js"></script>
 <link rel="stylesheet" href="${ctx}/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript">
+
 	function deleteUser(id) {
 		var del = confirm('你确定要删除该用户？');
 		if (del) {
@@ -22,7 +23,8 @@
 	            dataType:"text",
 	            url: '${ctx}/user/delete.htm?id=' + id,
 	            success: function(msg){
-	            	$('#myModal').modal('show');
+	            	//$('#myModal').modal('show');
+	            	window.location.reload();
 	            },
 	            error: function (msg) {
 	                alert(msg.responseText);
