@@ -3,7 +3,7 @@
 <!-- 插件地址 http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/eclipse/UpdateSite/ -->
 <generatorConfiguration>
 	<!-- jdbc驱动的jar文件位置，要修改成自己本地的驱动文件所在的位置，绝对路径 -->
-	<classPathEntry location="E:\workspace\ssm\WebContent\WEB-INF\lib\mysql-connector-java-5.1.25.jar" />
+	<classPathEntry location="D:\Documents\GitHub\ssm\ssm\WebContent\WEB-INF\lib\mysql-connector-java-5.1.25.jar" />
 	<context id="context1">
 		<property name="javaFileEncoding" value="UTF-8"/>
 		<!-- jdbc连接配置 -->

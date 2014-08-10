@@ -6,70 +6,70 @@ public class User {
     /**
      * 对应数据库表字段 user.id
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
-    private Long id;
+    private String id;
 
     /**
      * 对应数据库表字段 user.user_name
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     private String userName;
 
     /**
      * 对应数据库表字段 user.user_account
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     private String userAccount;
 
     /**
      * 对应数据库表字段 user.company
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     private String company;
 
     /**
      * 对应数据库表字段 user.password
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     private String password;
 
     /**
      * 对应数据库表字段 user.state
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     private Integer state;
 
     /**
      * 对应数据库表字段 user.mobile_phone
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     private String mobilePhone;
 
     /**
      * 对应数据库表字段 user.telephone
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     private String telephone;
 
     /**
      * 对应数据库表字段 user.super_admin
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     private String superAdmin;
 
     /**
      * 对应数据库表字段 user.create_date
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     private Date createDate;
 
@@ -78,9 +78,9 @@ public class User {
      *
      * @return the value of user.id
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -89,9 +89,9 @@ public class User {
      *
      * @param id the value for user.id
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -100,7 +100,7 @@ public class User {
      *
      * @return the value of user.user_name
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public String getUserName() {
         return userName;
@@ -111,7 +111,7 @@ public class User {
      *
      * @param userName the value for user.user_name
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public void setUserName(String userName) {
         this.userName = userName;
@@ -122,7 +122,7 @@ public class User {
      *
      * @return the value of user.user_account
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public String getUserAccount() {
         return userAccount;
@@ -133,7 +133,7 @@ public class User {
      *
      * @param userAccount the value for user.user_account
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public void setUserAccount(String userAccount) {
         this.userAccount = userAccount;
@@ -144,7 +144,7 @@ public class User {
      *
      * @return the value of user.company
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public String getCompany() {
         return company;
@@ -155,7 +155,7 @@ public class User {
      *
      * @param company the value for user.company
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public void setCompany(String company) {
         this.company = company;
@@ -166,7 +166,7 @@ public class User {
      *
      * @return the value of user.password
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public String getPassword() {
         return password;
@@ -177,7 +177,7 @@ public class User {
      *
      * @param password the value for user.password
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public void setPassword(String password) {
         this.password = password;
@@ -188,7 +188,7 @@ public class User {
      *
      * @return the value of user.state
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public Integer getState() {
         return state;
@@ -199,7 +199,7 @@ public class User {
      *
      * @param state the value for user.state
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public void setState(Integer state) {
         this.state = state;
@@ -210,7 +210,7 @@ public class User {
      *
      * @return the value of user.mobile_phone
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public String getMobilePhone() {
         return mobilePhone;
@@ -221,7 +221,7 @@ public class User {
      *
      * @param mobilePhone the value for user.mobile_phone
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public void setMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
@@ -232,7 +232,7 @@ public class User {
      *
      * @return the value of user.telephone
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public String getTelephone() {
         return telephone;
@@ -243,7 +243,7 @@ public class User {
      *
      * @param telephone the value for user.telephone
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public void setTelephone(String telephone) {
         this.telephone = telephone;
@@ -254,7 +254,7 @@ public class User {
      *
      * @return the value of user.super_admin
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public String getSuperAdmin() {
         return superAdmin;
@@ -265,7 +265,7 @@ public class User {
      *
      * @param superAdmin the value for user.super_admin
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public void setSuperAdmin(String superAdmin) {
         this.superAdmin = superAdmin;
@@ -276,7 +276,7 @@ public class User {
      *
      * @return the value of user.create_date
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public Date getCreateDate() {
         return createDate;
@@ -287,7 +287,7 @@ public class User {
      *
      * @param createDate the value for user.create_date
      *
-     * @date 2014-02-28 17:55:06
+     * @date 2014-08-10 22:49:09
      */
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
