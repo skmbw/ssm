@@ -33,7 +33,7 @@ public interface UserService {
 	 * @param id 主键id
      * @date 2014-02-27 17:59:34
 	 */
-	public int deleteById(Long id);
+	public int deleteById(String id);
     
     /**
      * 插入记录，所有字段都不能为空。
@@ -61,7 +61,7 @@ public interface UserService {
      * @param id 主键
      * @date 2014-02-27 17:59:34
      */
-    User queryById(Long id);
+    User queryById(String id);
 
     /**
      * 根据Criteria所携带条件更新指定字段。

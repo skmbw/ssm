@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int deleteById(Long id) {
+	public int deleteById(String id) {
 		return userDao.deleteByPrimaryKey(id);
 	}
 
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User queryById(Long id) {
+	public User queryById(String id) {
 		return userDao.selectByPrimaryKey(id);
 	}
 

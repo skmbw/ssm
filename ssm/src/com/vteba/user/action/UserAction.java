@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.vteba.sequence.SequenceGenerator;
 import com.vteba.user.model.User;
 import com.vteba.user.service.UserService;
 import com.vteba.web.action.BaseAction;
@@ -24,6 +25,9 @@ public class UserAction extends BaseAction {
 	
 	@Autowired//将UserService的实现注入进来，也可使用setter方法注入
 	private UserService userServiceImpl;
+	
+	@Autowired
+	private SequenceGenerator sequenceGenerator;
 	
 	/**
 	 * 初始化页面信息
@@ -58,6 +62,7 @@ public class UserAction extends BaseAction {
 	@RequestMapping("/doAdd")
 	public String doAdd(User model) {
 		model.setCreateDate(new Date());
+		model.setId(sequenceGenerator.nextGUID());
 		userServiceImpl.save(model);
 		return "user/add";
 	}
