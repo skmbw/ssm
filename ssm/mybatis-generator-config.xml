@@ -3,20 +3,24 @@
 <!-- 插件地址 http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/eclipse/UpdateSite/ -->
 <generatorConfiguration>
 	<!-- jdbc驱动的jar文件位置，要修改成自己本地的驱动文件所在的位置，绝对路径 -->
+<<<<<<< HEAD
+	<classPathEntry location="C:\Users\Administrator\git\ssm\ssm\WebContent\WEB-INF\lib\mysql-connector-java-5.1.25.jar" />
+=======
 	<classPathEntry location="D:\Documents\GitHub\ssm\ssm\WebContent\WEB-INF\lib\mysql-connector-java-5.1.25.jar" />
+>>>>>>> branch 'master' of https://github.com/skmbw/ssm.git
 	<context id="context1">
 		<property name="javaFileEncoding" value="UTF-8"/>
 		<!-- jdbc连接配置 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/warehouse" userId="root" password="3416763" />
 		
 		<!-- 实体文件的位置 -->
-		<javaModelGenerator targetPackage="com.vteba.user.model" targetProject="ssm" /><!-- targetProject之处代码产生在哪个项目中 -->
+		<javaModelGenerator targetPackage="com.vteba.user2.model" targetProject="ssm" /><!-- targetProject之处代码产生在哪个项目中 -->
 		
 		<!-- Mapper.xml文件的位置，sql映射文件的位置 -->
-		<sqlMapGenerator targetPackage="com.vteba.user.mapper" targetProject="ssm" />
+		<sqlMapGenerator targetPackage="com.vteba.user2.mapper" targetProject="ssm" />
 		
 		<!-- Mapper.java文件的位置，也就是DAO接口文件位置 -->
-		<javaClientGenerator targetPackage="com.vteba.user.dao" targetProject="ssm" type="XMLMAPPER" />
+		<javaClientGenerator targetPackage="com.vteba.user2.dao" targetProject="ssm" type="XMLMAPPER" />
 		
 		<!-- 要映射的表，schema可以不指定 -->
 		<table schema="" tableName="user">
