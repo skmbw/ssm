@@ -42,7 +42,7 @@ public class UpdateByExampleSelectiveMethodGenerator extends
                 .getUpdateByExampleSelectiveStatementId());
         method.addJavaDocLine("根据Criteria所携带条件更新指定字段。");
         method.addJavaDocLine("@param record 要更新的数据");
-        method.addJavaDocLine("@param example update的where条件");
+        method.addJavaDocLine("@param params update的where条件");
         FullyQualifiedJavaType parameterType =
             introspectedTable.getRules().calculateAllFieldsClass();
         method.addParameter(new Parameter(parameterType,
@@ -52,7 +52,7 @@ public class UpdateByExampleSelectiveMethodGenerator extends
         FullyQualifiedJavaType exampleType = new FullyQualifiedJavaType(
                 introspectedTable.getExampleType());
         method.addParameter(new Parameter(exampleType,
-                "example", "@Param(\"example\")")); //$NON-NLS-1$ //$NON-NLS-2$
+                "params", "@Param(\"params\")")); //$NON-NLS-1$ //$NON-NLS-2$
         importedTypes.add(exampleType);
 
         importedTypes.add(new FullyQualifiedJavaType(

@@ -51,6 +51,8 @@ public class TableConfiguration extends PropertyHolder {
     private boolean countByExampleStatementEnabled;
 
     private boolean updateByExampleStatementEnabled;
+    
+    private boolean pageQueryListStatementEnabled;
 
     private List<ColumnOverride> columnOverrides;
 
@@ -91,6 +93,9 @@ public class TableConfiguration extends PropertyHolder {
         deleteByExampleStatementEnabled = true;
         countByExampleStatementEnabled = true;
         updateByExampleStatementEnabled = true;
+        
+        // 分页查询
+        pageQueryListStatementEnabled = true;
     }
 
     public boolean isDeleteByPrimaryKeyStatementEnabled() {
@@ -102,7 +107,16 @@ public class TableConfiguration extends PropertyHolder {
         this.deleteByPrimaryKeyStatementEnabled = deleteByPrimaryKeyStatementEnabled;
     }
 
-    public boolean isInsertStatementEnabled() {
+    public boolean isPageQueryListStatementEnabled() {
+		return pageQueryListStatementEnabled;
+	}
+
+	public void setPageQueryListStatementEnabled(
+			boolean pageQueryListStatementEnabled) {
+		this.pageQueryListStatementEnabled = pageQueryListStatementEnabled;
+	}
+
+	public boolean isInsertStatementEnabled() {
         return insertStatementEnabled;
     }
 
@@ -192,6 +206,8 @@ public class TableConfiguration extends PropertyHolder {
         this.selectByExampleStatementEnabled = selectByExampleStatementEnabled;
     }
 
+    
+    
     /**
      * May return null if the column has not been overridden
      * 

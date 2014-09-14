@@ -192,6 +192,12 @@ public interface Rules {
      * @return true if the element and method should be generated
      */
     boolean generateSelectByExampleWithBLOBs();
+    
+    /**
+     * 产生分页查询语句
+     * @return
+     */
+    boolean generatePagedQueryList();
 
     /**
      * Implements the rule for generating an example class. The class should be

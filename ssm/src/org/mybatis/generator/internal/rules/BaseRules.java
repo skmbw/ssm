@@ -338,6 +338,16 @@ public abstract class BaseRules implements Rules {
 
         return rc;
     }
+    
+    public boolean generatePagedQueryList() {
+        if (isModelOnly) {
+            return false;
+        }
+        
+        boolean rc = tableConfiguration.isPageQueryListStatementEnabled();
+
+        return rc;
+    }
 
     /**
      * Implements the rule for generating an example class. The class should be

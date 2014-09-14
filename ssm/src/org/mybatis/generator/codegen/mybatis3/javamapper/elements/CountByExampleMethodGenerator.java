@@ -48,9 +48,9 @@ public class CountByExampleMethodGenerator extends
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable.getCountByExampleStatementId());
-        method.addParameter(new Parameter(fqjt, "example")); //$NON-NLS-1$
+        method.addParameter(new Parameter(fqjt, "params")); //$NON-NLS-1$
         method.addJavaDocLine("根据Criteria所携带条件进行count计数。");
-        method.addJavaDocLine("@param example 查询条件");
+        method.addJavaDocLine("@param params 查询条件");
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);
 

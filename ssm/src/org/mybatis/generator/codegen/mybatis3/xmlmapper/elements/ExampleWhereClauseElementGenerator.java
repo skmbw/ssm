@@ -58,7 +58,7 @@ public class ExampleWhereClauseElementGenerator extends
         XmlElement outerForEachElement = new XmlElement("foreach"); //$NON-NLS-1$
         if (isForUpdateByExample) {
             outerForEachElement.addAttribute(new Attribute(
-                    "collection", "example.oredCriteria")); //$NON-NLS-1$ //$NON-NLS-2$
+                    "collection", "params.oredCriteria")); //$NON-NLS-1$ //$NON-NLS-2$
         } else {
             outerForEachElement.addAttribute(new Attribute(
                     "collection", "oredCriteria")); //$NON-NLS-1$ //$NON-NLS-2$

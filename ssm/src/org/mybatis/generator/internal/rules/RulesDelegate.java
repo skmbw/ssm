@@ -121,6 +121,10 @@ public class RulesDelegate implements Rules {
         return rules.generateSelectByExampleWithoutBLOBs();
     }
 
+    public boolean generatePagedQueryList() {
+        return rules.generatePagedQueryList();
+    }
+    
     public boolean generateSelectByPrimaryKey() {
         return rules.generateSelectByPrimaryKey();
     }

@@ -92,7 +92,9 @@ public abstract class IntrospectedTable {
         ATTR_BASE_COLUMN_LIST_ID,
         ATTR_BLOB_COLUMN_LIST_ID,
         ATTR_MYBATIS3_UPDATE_BY_EXAMPLE_WHERE_CLAUSE_ID,
-        ATTR_MYBATIS3_SQL_PROVIDER_TYPE
+        ATTR_MYBATIS3_SQL_PROVIDER_TYPE,
+        
+        ATTR_PAGED_QUERY_LIST_STATEMENT_ID
     }
 
     protected TableConfiguration tableConfiguration;
@@ -515,20 +517,21 @@ public abstract class IntrospectedTable {
         setSqlMapFullyQualifiedRuntimeTableName(calculateSqlMapFullyQualifiedRuntimeTableName());
         setSqlMapAliasedFullyQualifiedRuntimeTableName(calculateSqlMapAliasedFullyQualifiedRuntimeTableName());
 
-        setCountByExampleStatementId("countByExample"); //$NON-NLS-1$
-        setDeleteByExampleStatementId("deleteByExample"); //$NON-NLS-1$
-        setDeleteByPrimaryKeyStatementId("deleteByPrimaryKey"); //$NON-NLS-1$
+        setCountByExampleStatementId("count"); //$NON-NLS-1$，尹雷
+        setDeleteByExampleStatementId("deleteBatch"); //$NON-NLS-1$，尹雷
+        setDeleteByPrimaryKeyStatementId("deleteById"); //$NON-NLS-1$，尹雷
         setInsertStatementId("insert"); //$NON-NLS-1$
-        setInsertSelectiveStatementId("insertSelective"); //$NON-NLS-1$
+        setInsertSelectiveStatementId("save"); //$NON-NLS-1$，尹雷
         setSelectAllStatementId("selectAll"); //$NON-NLS-1$
-        setSelectByExampleStatementId("selectByExample"); //$NON-NLS-1$
+        setSelectByExampleStatementId("queryList"); //$NON-NLS-1$，尹雷
+        setPagedQueryListStatementId("pagedQueryList"); //$NON-NLS-1$，尹雷
         setSelectByExampleWithBLOBsStatementId("selectByExampleWithBLOBs"); //$NON-NLS-1$
-        setSelectByPrimaryKeyStatementId("selectByPrimaryKey"); //$NON-NLS-1$
-        setUpdateByExampleStatementId("updateByExample"); //$NON-NLS-1$
-        setUpdateByExampleSelectiveStatementId("updateByExampleSelective"); //$NON-NLS-1$
+        setSelectByPrimaryKeyStatementId("get"); //$NON-NLS-1$
+        setUpdateByExampleStatementId("updateAllBatch"); //$NON-NLS-1$,yinlei
+        setUpdateByExampleSelectiveStatementId("updateBatch"); //$NON-NLS-1$，尹雷
         setUpdateByExampleWithBLOBsStatementId("updateByExampleWithBLOBs"); //$NON-NLS-1$
-        setUpdateByPrimaryKeyStatementId("updateByPrimaryKey"); //$NON-NLS-1$
-        setUpdateByPrimaryKeySelectiveStatementId("updateByPrimaryKeySelective"); //$NON-NLS-1$
+        setUpdateByPrimaryKeyStatementId("updateAllById"); //$NON-NLS-1$,yinlei
+        setUpdateByPrimaryKeySelectiveStatementId("updateById"); //$NON-NLS-1$，尹雷
         setUpdateByPrimaryKeyWithBLOBsStatementId("updateByPrimaryKeyWithBLOBs"); //$NON-NLS-1$
         setBaseResultMapId("BaseResultMap"); //$NON-NLS-1$
         setResultMapWithBLOBsId("ResultMapWithBLOBs"); //$NON-NLS-1$
@@ -625,6 +628,11 @@ public abstract class IntrospectedTable {
     public void setSelectByExampleStatementId(String s) {
         internalAttributes.put(
                 InternalAttribute.ATTR_SELECT_BY_EXAMPLE_STATEMENT_ID, s);
+    }
+    
+    public void setPagedQueryListStatementId(String s) {
+    	internalAttributes.put(
+    			InternalAttribute.ATTR_PAGED_QUERY_LIST_STATEMENT_ID, s);
     }
 
     public void setInsertSelectiveStatementId(String s) {
@@ -726,11 +734,16 @@ public abstract class IntrospectedTable {
                 .get(InternalAttribute.ATTR_SELECT_ALL_STATEMENT_ID);
     }
 
+    public String getPagedQueryListStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_PAGED_QUERY_LIST_STATEMENT_ID);
+    }
+
     public String getSelectByExampleStatementId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_SELECT_BY_EXAMPLE_STATEMENT_ID);
     }
-
+    
     public String getInsertSelectiveStatementId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_INSERT_SELECTIVE_STATEMENT_ID);

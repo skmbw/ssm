@@ -47,9 +47,9 @@ public class DeleteByExampleMethodGenerator extends
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable.getDeleteByExampleStatementId());
-        method.addParameter(new Parameter(type, "example")); //$NON-NLS-1$
+        method.addParameter(new Parameter(type, "params")); //$NON-NLS-1$
         method.addJavaDocLine("根据Criteria所携带条件删除记录。");
-        method.addJavaDocLine("@param example 查询条件");
+        method.addJavaDocLine("@param params 查询条件");
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);
 
