@@ -206,4 +206,9 @@ public class RulesDelegate implements Rules {
     public boolean generateUpdateModelWhereClause() {
         return rules.generateUpdateModelWhereClause();
     }
+
+    @Override
+    public boolean generateCountBy() {
+        return rules.generateCountBy();
+    }
 }

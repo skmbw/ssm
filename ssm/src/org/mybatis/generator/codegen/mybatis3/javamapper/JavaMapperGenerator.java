@@ -30,6 +30,7 @@ import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.codegen.AbstractJavaClientGenerator;
 import org.mybatis.generator.codegen.AbstractXmlGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMapperMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelCountMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelDeleteBatchMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelPagedQueryListMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelQueryListMethodGenerator;
@@ -96,6 +97,8 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         }
         
         addCountByExampleMethod(interfaze);
+        addCountByMethod(interfaze);
+        
         addDeleteByExampleMethod(interfaze);
         addDeleteBatchMethod(interfaze);// 根据model批量删除
         addDeleteByPrimaryKeyMethod(interfaze);
@@ -136,6 +139,13 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
     protected void addCountByExampleMethod(Interface interfaze) {
         if (introspectedTable.getRules().generateCountByExample()) {
             AbstractJavaMapperMethodGenerator methodGenerator = new CountByExampleMethodGenerator();
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
+    
+    protected void addCountByMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generateCountBy()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new ByModelCountMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }

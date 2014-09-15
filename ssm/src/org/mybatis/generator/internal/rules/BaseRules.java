@@ -433,6 +433,16 @@ public abstract class BaseRules implements Rules {
         return rc;
     }
 
+    public boolean generateCountBy() {
+        if (isModelOnly) {
+            return false;
+        }
+        
+        boolean rc = tableConfiguration.isCountByStatementEnabled();
+
+        return rc;
+    }
+    
     public boolean generateUpdateByExampleSelective() {
         if (isModelOnly) {
             return false;

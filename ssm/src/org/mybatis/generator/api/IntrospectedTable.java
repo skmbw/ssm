@@ -72,6 +72,7 @@ public abstract class IntrospectedTable {
         ATTR_FULLY_QUALIFIED_TABLE_NAME_AT_RUNTIME,
         ATTR_ALIASED_FULLY_QUALIFIED_TABLE_NAME_AT_RUNTIME,
         ATTR_COUNT_BY_EXAMPLE_STATEMENT_ID,
+        ATTR_COUNT_BY_STATEMENT_ID,
         ATTR_DELETE_BY_EXAMPLE_STATEMENT_ID,
         ATTR_DELETE_BY_PRIMARY_KEY_STATEMENT_ID,
         ATTR_INSERT_STATEMENT_ID,
@@ -523,7 +524,9 @@ public abstract class IntrospectedTable {
         setSqlMapFullyQualifiedRuntimeTableName(calculateSqlMapFullyQualifiedRuntimeTableName());
         setSqlMapAliasedFullyQualifiedRuntimeTableName(calculateSqlMapAliasedFullyQualifiedRuntimeTableName());
 
-        setCountByExampleStatementId("count"); //尹雷
+        setCountByExampleStatementId("count"); //根据criteria计数
+        setCountByStatementId("countBy"); //根据model计数
+        
         setDeleteByExampleStatementId("deleteBatch"); //尹雷
         setDeleteBatchId("deleteBulks");
         setDeleteByPrimaryKeyStatementId("deleteById"); //$NON-NLS-1$，尹雷
@@ -707,6 +710,11 @@ public abstract class IntrospectedTable {
                 InternalAttribute.ATTR_COUNT_BY_EXAMPLE_STATEMENT_ID, s);
     }
 
+    public void setCountByStatementId(String s) {
+        internalAttributes.put(
+                InternalAttribute.ATTR_COUNT_BY_STATEMENT_ID, s);
+    }
+    
     public String getBlobColumnListId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_BLOB_COLUMN_LIST_ID);
@@ -845,6 +853,11 @@ public abstract class IntrospectedTable {
     public String getCountByExampleStatementId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_COUNT_BY_EXAMPLE_STATEMENT_ID);
+    }
+    
+    public String getCountByStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_COUNT_BY_STATEMENT_ID);
     }
 
     protected String calculateJavaClientImplementationPackage() {

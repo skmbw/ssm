@@ -26,6 +26,7 @@ import org.mybatis.generator.codegen.XmlConstants;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.BaseColumnListElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.BlobColumnListElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelCountElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelDeleteBatchElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelPagedQueryListElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelQueryListElementGenerator;
@@ -95,6 +96,8 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         //addInsertElement(answer);
         addInsertSelectiveElement(answer);
         addCountByExampleElement(answer);
+        addCountByElement(answer);
+        
         addUpdateByExampleSelectiveElement(answer);
         addUpdateBatchElement(answer);
         //addUpdateByExampleWithBLOBsElement(answer);
@@ -270,6 +273,13 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     protected void addCountByExampleElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateCountByExample()) {
             AbstractXmlElementGenerator elementGenerator = new CountByExampleElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+    
+    protected void addCountByElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateCountBy()) {
+            AbstractXmlElementGenerator elementGenerator = new ByModelCountElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }

@@ -221,6 +221,8 @@ public interface Rules {
     boolean generateExampleClass();
 
     boolean generateCountByExample();
+    
+    boolean generateCountBy();
 
     boolean generateUpdateByExampleSelective();
 

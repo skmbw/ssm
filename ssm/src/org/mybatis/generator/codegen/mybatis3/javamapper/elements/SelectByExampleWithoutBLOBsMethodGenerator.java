@@ -48,7 +48,7 @@ public class SelectByExampleWithoutBLOBsMethodGenerator extends
 
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addJavaDocLine("根据params所携带条件查询数据，不含BLOB字段。");
+        method.addJavaDocLine("根据params所携带条件查询数据，适用于复杂查询。");
         method.addJavaDocLine("@param params 查询条件");
         FullyQualifiedJavaType returnType = FullyQualifiedJavaType
                 .getNewListInstance();

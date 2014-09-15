@@ -49,6 +49,8 @@ public class TableConfiguration extends PropertyHolder {
     private boolean deleteByExampleStatementEnabled;
 
     private boolean countByExampleStatementEnabled;
+    
+    private boolean countByStatementEnabled;
 
     private boolean updateByExampleStatementEnabled;
     
@@ -116,8 +118,18 @@ public class TableConfiguration extends PropertyHolder {
         deleteBatchStatementEnabled = true;
         
         updateModelWhereClauseStatementEnabled = true;
+        
+        countByStatementEnabled = true;
     }
     
+    public boolean isCountByStatementEnabled() {
+        return countByStatementEnabled;
+    }
+    
+    public void setCountByStatementEnabled(boolean countByStatementEnabled) {
+        this.countByStatementEnabled = countByStatementEnabled;
+    }
+
     public boolean isUpdateModelWhereClauseStatementEnabled() {
         return updateModelWhereClauseStatementEnabled;
     }

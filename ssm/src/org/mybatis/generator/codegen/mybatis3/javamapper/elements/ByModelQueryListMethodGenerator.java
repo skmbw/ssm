@@ -48,7 +48,7 @@ public class ByModelQueryListMethodGenerator extends
 
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addJavaDocLine("根据params所携带条件查询数据，条件都是等于，并且是and关系。");
+        method.addJavaDocLine("根据params所携带条件查询数据，条件是等于，且是and关系。");
         method.addJavaDocLine("@param params 查询条件");
         FullyQualifiedJavaType returnType = FullyQualifiedJavaType
                 .getNewListInstance();
