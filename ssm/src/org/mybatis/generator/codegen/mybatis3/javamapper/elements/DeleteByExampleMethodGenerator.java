@@ -48,7 +48,7 @@ public class DeleteByExampleMethodGenerator extends
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable.getDeleteByExampleStatementId());
         method.addParameter(new Parameter(type, "params")); //$NON-NLS-1$
-        method.addJavaDocLine("根据params所携带条件删除记录。");
+        method.addJavaDocLine("根据params所携带条件删除记录，适用于复杂条件。");
         method.addJavaDocLine("@param params 查询条件");
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);

@@ -40,7 +40,7 @@ public class UpdateByExampleSelectiveMethodGenerator extends
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable
                 .getUpdateByExampleSelectiveStatementId());
-        method.addJavaDocLine("根据params所携带条件更新指定字段。");
+        method.addJavaDocLine("根据params所携带条件更新指定字段，适用于复杂条件。");
         method.addJavaDocLine("@param record 要更新的数据");
         method.addJavaDocLine("@param params update的where条件");
         FullyQualifiedJavaType parameterType =

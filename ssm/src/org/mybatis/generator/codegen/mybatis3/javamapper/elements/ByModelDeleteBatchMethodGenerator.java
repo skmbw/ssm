@@ -15,8 +15,6 @@
  */
 package org.mybatis.generator.codegen.mybatis3.javamapper.elements;
 
-import static org.mybatis.generator.internal.util.messages.Messages.getString;
-
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -50,22 +48,8 @@ public class ByModelDeleteBatchMethodGenerator extends
         method.setVisibility(JavaVisibility.PUBLIC);
         method.addJavaDocLine("根据params所携带条件删除数据，条件都是等于，并且是and关系。");
         method.addJavaDocLine("@param params 删除条件");
-        FullyQualifiedJavaType returnType = FullyQualifiedJavaType
-                .getNewListInstance();
-        FullyQualifiedJavaType listType;
-        if (introspectedTable.getRules().generateBaseRecordClass()) {
-            listType = new FullyQualifiedJavaType(introspectedTable
-                    .getBaseRecordType());
-        } else if (introspectedTable.getRules().generatePrimaryKeyClass()) {
-            listType = new FullyQualifiedJavaType(introspectedTable
-                    .getPrimaryKeyType());
-        } else {
-            throw new RuntimeException(getString("RuntimeError.12")); //$NON-NLS-1$
-        }
-
-        importedTypes.add(listType);
-        returnType.addTypeArgument(listType);
-        method.setReturnType(returnType);
+        
+        method.setReturnType(FullyQualifiedJavaType.getIntInstance());
 
         method.setName(introspectedTable.getDeleteBatchStatementId());
         method.addParameter(new Parameter(type, "params")); //$NON-NLS-1$
