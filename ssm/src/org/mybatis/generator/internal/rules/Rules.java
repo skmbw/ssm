@@ -149,6 +149,8 @@ public interface Rules {
     
     boolean generateMyBatis3ModelWhereClause();
     
+    boolean generateUpdateModelWhereClause();
+    
     boolean generateQueryPagedList();
     
     boolean generateQueryList();

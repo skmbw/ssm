@@ -389,6 +389,14 @@ public abstract class BaseRules implements Rules {
         return rc;
     }
     
+    public boolean generateUpdateModelWhereClause() {
+        if (isModelOnly) {
+            return false;
+        }
+        boolean rc = tableConfiguration.isUpdateModelWhereClauseStatementEnabled();
+        return rc;
+    }
+    
     /**
      * Implements the rule for generating an example class. The class should be
      * generated if the selectByExample or deleteByExample or countByExample

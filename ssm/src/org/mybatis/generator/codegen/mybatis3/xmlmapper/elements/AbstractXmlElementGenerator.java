@@ -75,7 +75,7 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
 
         XmlElement includeElement = new XmlElement("include"); //$NON-NLS-1$
         includeElement.addAttribute(new Attribute("refid", //$NON-NLS-1$
-                introspectedTable.getMyBatis3ModelWhereClauseId()));
+                introspectedTable.getModelWhereClauseId()));
         ifElement.addElement(includeElement);
 
         return ifElement;

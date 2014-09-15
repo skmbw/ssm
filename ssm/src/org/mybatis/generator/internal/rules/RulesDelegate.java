@@ -201,4 +201,9 @@ public class RulesDelegate implements Rules {
     public boolean generateDeleteBatch() {
         return generateDeleteBatch();
     }
+
+    @Override
+    public boolean generateUpdateModelWhereClause() {
+        return rules.generateUpdateModelWhereClause();
+    }
 }

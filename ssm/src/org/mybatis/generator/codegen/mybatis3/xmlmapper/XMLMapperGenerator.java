@@ -49,6 +49,7 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByExample
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByPrimaryKeySelectiveElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByPrimaryKeyWithBLOBsElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByPrimaryKeyWithoutBLOBsElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateModelWhereClauseElementGenerator;
 
 /**
  * 
@@ -76,6 +77,7 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addResultMapWithBLOBsElement(answer);
         addExampleWhereClauseElement(answer);
         addModelWhereClauseElement(answer);
+        addUpdateModelWhereClauseElement(answer);
         addMyBatis3UpdateByExampleWhereClauseElement(answer);
         addBaseColumnListElement(answer);
         addBlobColumnListElement(answer);
@@ -176,6 +178,17 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     protected void addModelWhereClauseElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateMyBatis3ModelWhereClause()) {
             AbstractXmlElementGenerator elementGenerator = new ModelWhereClauseElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+    
+    /**
+     * 根据model参数更新的where条件
+     * @param parentElement
+     */
+    protected void addUpdateModelWhereClauseElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateUpdateModelWhereClause()) {
+            AbstractXmlElementGenerator elementGenerator = new UpdateModelWhereClauseElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }

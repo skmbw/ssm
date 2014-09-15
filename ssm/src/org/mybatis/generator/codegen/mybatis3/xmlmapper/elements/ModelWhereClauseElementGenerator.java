@@ -37,7 +37,7 @@ public class ModelWhereClauseElementGenerator extends
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("sql"); //$NON-NLS-1$
 
-        answer.addAttribute(new Attribute("id", introspectedTable.getUpdateModelWhereClauseId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("id", introspectedTable.getModelWhereClauseId())); //$NON-NLS-1$
         
 //        String parameterType;
 //        if (introspectedTable.getRules().generateRecordWithBLOBsClass()) {
@@ -64,7 +64,7 @@ public class ModelWhereClauseElementGenerator extends
                 .getNonPrimaryKeyColumns()) {
             XmlElement isNotNullElement = new XmlElement("if"); //$NON-NLS-1$
             sb.setLength(0);
-            sb.append(introspectedColumn.getJavaProperty("params."));
+            sb.append(introspectedColumn.getJavaProperty());
             sb.append(" != null"); //$NON-NLS-1$
             isNotNullElement.addAttribute(new Attribute("test", sb.toString())); //$NON-NLS-1$
             trimElement.addElement(isNotNullElement);

@@ -63,6 +63,8 @@ public class TableConfiguration extends PropertyHolder {
     private boolean deleteBatchStatementEnabled;
     
     private boolean modelWhereClauseStatementEnabled;
+    
+    private boolean updateModelWhereClauseStatementEnabled;
 
     private List<ColumnOverride> columnOverrides;
 
@@ -112,9 +114,18 @@ public class TableConfiguration extends PropertyHolder {
         queryListStatementEnabled = true;
         updateBatchStatementEnabled = true;
         deleteBatchStatementEnabled = true;
+        
+        updateModelWhereClauseStatementEnabled = true;
+    }
+    
+    public boolean isUpdateModelWhereClauseStatementEnabled() {
+        return updateModelWhereClauseStatementEnabled;
+    }
+    
+    public void setUpdateModelWhereClauseStatementEnabled(boolean updateModelWhereClauseStatementEnabled) {
+        this.updateModelWhereClauseStatementEnabled = updateModelWhereClauseStatementEnabled;
     }
 
-    
     public boolean isQueryListStatementEnabled() {
         return queryListStatementEnabled;
     }
