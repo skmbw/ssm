@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> queryUserList(UserBean userBean) {
+	public List<User> queryForList(UserBean userBean) {
 	    User user = new User();
 	    user.setUserName("尹雷");
 	    user.setUserAccount("tong@126.com");
@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int updateByExample(User record, UserBean userBean) {
+	public int updateBatch(User record, UserBean userBean) {
 		return userDao.updateBatch(record, userBean);
 	}
 
@@ -102,5 +102,35 @@ public class UserServiceImpl implements UserService {
 	public int updateById(User record) {
 		return userDao.updateById(record);
 	}
+
+    @Override
+    public int countBy(User params) {
+        return userDao.countBy(params);
+    }
+
+    @Override
+    public int deleteBulks(User params) {
+        return userDao.deleteBulks(params);
+    }
+
+    @Override
+    public List<User> queryList(User params) {
+        return userDao.queryList(params);
+    }
+
+    @Override
+    public List<User> pagedForList(UserBean params) {
+        return userDao.pagedForList(params);
+    }
+
+    @Override
+    public List<User> pagedList(User params) {
+        return userDao.pagedList(params);
+    }
+
+    @Override
+    public int updateBulks(User record, User params) {
+        return userDao.updateBulks(record, params);
+    }
 
 }
