@@ -9,15 +9,31 @@ public class UserBean {
      * order by 排序语句
      * 对应数据库表字段 user
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     protected String orderByClause;
+
+    /**
+     * 分页开始记录
+     * 对应数据库表字段 user
+     *
+     * @date 2014-09-15 17:11:13
+     */
+    protected int start;
+
+    /**
+     * 分页大小
+     * 对应数据库表字段 user
+     *
+     * @date 2014-09-15 17:11:13
+     */
+    protected int pageSize = 10;
 
     /**
      * 是否指定 distinct 去除重复
      * 对应数据库表字段 user
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     protected boolean distinct;
 
@@ -25,13 +41,13 @@ public class UserBean {
      * 逻辑or语句
      * 对应数据库表字段 user
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     protected List<Criteria> oredCriteria;
 
     /**
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public UserBean() {
         oredCriteria = new ArrayList<Criteria>();
@@ -40,7 +56,7 @@ public class UserBean {
     /**
      * 设置 order by 排序语句
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
@@ -49,16 +65,52 @@ public class UserBean {
     /**
      * 获得 order by 排序语句
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public String getOrderByClause() {
         return orderByClause;
     }
 
     /**
+     * 设置 start，分页开始记录
+     *
+     * @date 2014-09-15 17:11:13
+     */
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    /**
+     * 获得 start，分页开始记录
+     *
+     * @date 2014-09-15 17:11:13
+     */
+    public int getStart() {
+        return start;
+    }
+
+    /**
+     * 设置 pageSize，分页大小
+     *
+     * @date 2014-09-15 17:11:13
+     */
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    /**
+     * 获得 pageSize，分页大小
+     *
+     * @date 2014-09-15 17:11:13
+     */
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    /**
      * 设置是否指定 distinct 去除重复
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
@@ -67,7 +119,7 @@ public class UserBean {
     /**
      * 是否设置了distinct语句，true是，false否。
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public boolean isDistinct() {
         return distinct;
@@ -76,7 +128,7 @@ public class UserBean {
     /**
      * 获得逻辑or语句
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public List<Criteria> getOredCriteria() {
         return oredCriteria;
@@ -85,7 +137,7 @@ public class UserBean {
     /**
      * 添加逻辑or语句
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public void or(Criteria criteria) {
         oredCriteria.add(criteria);
@@ -94,7 +146,7 @@ public class UserBean {
     /**
      * 新建逻辑或or语句
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public Criteria or() {
         Criteria criteria = createCriteriaInternal();
@@ -105,7 +157,7 @@ public class UserBean {
     /**
      * 创建查询条件，如果逻辑或为空，同时将查询条件放入。
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public Criteria createCriteria() {
         Criteria criteria = createCriteriaInternal();
@@ -118,7 +170,7 @@ public class UserBean {
     /**
      * 创建新查询条件。
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     protected Criteria createCriteriaInternal() {
         Criteria criteria = new Criteria();
@@ -128,7 +180,7 @@ public class UserBean {
     /**
      * 清楚逻辑或or语句，并且distinct为false，不去重。
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public void clear() {
         oredCriteria.clear();
@@ -139,7 +191,7 @@ public class UserBean {
     /**
      * 该类对应数据库表 user
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -192,62 +244,52 @@ public class UserBean {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(String value) {
+        public Criteria andIdEqualTo(Long value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(String value) {
+        public Criteria andIdNotEqualTo(Long value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(String value) {
+        public Criteria andIdGreaterThan(Long value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(String value) {
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(String value) {
+        public Criteria andIdLessThan(Long value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(String value) {
+        public Criteria andIdLessThanOrEqualTo(Long value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLike(String value) {
-            addCriterion("id like", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotLike(String value) {
-            addCriterion("id not like", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIn(List<String> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<String> values) {
+        public Criteria andIdNotIn(List<Long> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(String value1, String value2) {
+        public Criteria andIdBetween(Long value1, Long value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(String value1, String value2) {
+        public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
@@ -392,6 +434,216 @@ public class UserBean {
             return (Criteria) this;
         }
 
+        public Criteria andSuperAdminIsNull() {
+            addCriterion("super_admin is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminIsNotNull() {
+            addCriterion("super_admin is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminEqualTo(String value) {
+            addCriterion("super_admin =", value, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminNotEqualTo(String value) {
+            addCriterion("super_admin <>", value, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminGreaterThan(String value) {
+            addCriterion("super_admin >", value, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminGreaterThanOrEqualTo(String value) {
+            addCriterion("super_admin >=", value, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminLessThan(String value) {
+            addCriterion("super_admin <", value, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminLessThanOrEqualTo(String value) {
+            addCriterion("super_admin <=", value, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminLike(String value) {
+            addCriterion("super_admin like", value, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminNotLike(String value) {
+            addCriterion("super_admin not like", value, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminIn(List<String> values) {
+            addCriterion("super_admin in", values, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminNotIn(List<String> values) {
+            addCriterion("super_admin not in", values, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminBetween(String value1, String value2) {
+            addCriterion("super_admin between", value1, value2, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andSuperAdminNotBetween(String value1, String value2) {
+            addCriterion("super_admin not between", value1, value2, "superAdmin");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneIsNull() {
+            addCriterion("telephone is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneIsNotNull() {
+            addCriterion("telephone is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneEqualTo(String value) {
+            addCriterion("telephone =", value, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneNotEqualTo(String value) {
+            addCriterion("telephone <>", value, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneGreaterThan(String value) {
+            addCriterion("telephone >", value, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneGreaterThanOrEqualTo(String value) {
+            addCriterion("telephone >=", value, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneLessThan(String value) {
+            addCriterion("telephone <", value, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneLessThanOrEqualTo(String value) {
+            addCriterion("telephone <=", value, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneLike(String value) {
+            addCriterion("telephone like", value, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneNotLike(String value) {
+            addCriterion("telephone not like", value, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneIn(List<String> values) {
+            addCriterion("telephone in", values, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneNotIn(List<String> values) {
+            addCriterion("telephone not in", values, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneBetween(String value1, String value2) {
+            addCriterion("telephone between", value1, value2, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andTelephoneNotBetween(String value1, String value2) {
+            addCriterion("telephone not between", value1, value2, "telephone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneIsNull() {
+            addCriterion("mobile_phone is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneIsNotNull() {
+            addCriterion("mobile_phone is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneEqualTo(String value) {
+            addCriterion("mobile_phone =", value, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneNotEqualTo(String value) {
+            addCriterion("mobile_phone <>", value, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneGreaterThan(String value) {
+            addCriterion("mobile_phone >", value, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("mobile_phone >=", value, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneLessThan(String value) {
+            addCriterion("mobile_phone <", value, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneLessThanOrEqualTo(String value) {
+            addCriterion("mobile_phone <=", value, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneLike(String value) {
+            addCriterion("mobile_phone like", value, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneNotLike(String value) {
+            addCriterion("mobile_phone not like", value, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneIn(List<String> values) {
+            addCriterion("mobile_phone in", values, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneNotIn(List<String> values) {
+            addCriterion("mobile_phone not in", values, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneBetween(String value1, String value2) {
+            addCriterion("mobile_phone between", value1, value2, "mobilePhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andMobilePhoneNotBetween(String value1, String value2) {
+            addCriterion("mobile_phone not between", value1, value2, "mobilePhone");
+            return (Criteria) this;
+        }
+
         public Criteria andCompanyIsNull() {
             addCriterion("company is null");
             return (Criteria) this;
@@ -532,276 +784,6 @@ public class UserBean {
             return (Criteria) this;
         }
 
-        public Criteria andStateIsNull() {
-            addCriterion("state is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIsNotNull() {
-            addCriterion("state is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateEqualTo(Integer value) {
-            addCriterion("state =", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotEqualTo(Integer value) {
-            addCriterion("state <>", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateGreaterThan(Integer value) {
-            addCriterion("state >", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateGreaterThanOrEqualTo(Integer value) {
-            addCriterion("state >=", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLessThan(Integer value) {
-            addCriterion("state <", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLessThanOrEqualTo(Integer value) {
-            addCriterion("state <=", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIn(List<Integer> values) {
-            addCriterion("state in", values, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotIn(List<Integer> values) {
-            addCriterion("state not in", values, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateBetween(Integer value1, Integer value2) {
-            addCriterion("state between", value1, value2, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotBetween(Integer value1, Integer value2) {
-            addCriterion("state not between", value1, value2, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneIsNull() {
-            addCriterion("mobile_phone is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneIsNotNull() {
-            addCriterion("mobile_phone is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneEqualTo(String value) {
-            addCriterion("mobile_phone =", value, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneNotEqualTo(String value) {
-            addCriterion("mobile_phone <>", value, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneGreaterThan(String value) {
-            addCriterion("mobile_phone >", value, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneGreaterThanOrEqualTo(String value) {
-            addCriterion("mobile_phone >=", value, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneLessThan(String value) {
-            addCriterion("mobile_phone <", value, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneLessThanOrEqualTo(String value) {
-            addCriterion("mobile_phone <=", value, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneLike(String value) {
-            addCriterion("mobile_phone like", value, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneNotLike(String value) {
-            addCriterion("mobile_phone not like", value, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneIn(List<String> values) {
-            addCriterion("mobile_phone in", values, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneNotIn(List<String> values) {
-            addCriterion("mobile_phone not in", values, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneBetween(String value1, String value2) {
-            addCriterion("mobile_phone between", value1, value2, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andMobilePhoneNotBetween(String value1, String value2) {
-            addCriterion("mobile_phone not between", value1, value2, "mobilePhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneIsNull() {
-            addCriterion("telephone is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneIsNotNull() {
-            addCriterion("telephone is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneEqualTo(String value) {
-            addCriterion("telephone =", value, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneNotEqualTo(String value) {
-            addCriterion("telephone <>", value, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneGreaterThan(String value) {
-            addCriterion("telephone >", value, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneGreaterThanOrEqualTo(String value) {
-            addCriterion("telephone >=", value, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneLessThan(String value) {
-            addCriterion("telephone <", value, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneLessThanOrEqualTo(String value) {
-            addCriterion("telephone <=", value, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneLike(String value) {
-            addCriterion("telephone like", value, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneNotLike(String value) {
-            addCriterion("telephone not like", value, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneIn(List<String> values) {
-            addCriterion("telephone in", values, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneNotIn(List<String> values) {
-            addCriterion("telephone not in", values, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneBetween(String value1, String value2) {
-            addCriterion("telephone between", value1, value2, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelephoneNotBetween(String value1, String value2) {
-            addCriterion("telephone not between", value1, value2, "telephone");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminIsNull() {
-            addCriterion("super_admin is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminIsNotNull() {
-            addCriterion("super_admin is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminEqualTo(String value) {
-            addCriterion("super_admin =", value, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminNotEqualTo(String value) {
-            addCriterion("super_admin <>", value, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminGreaterThan(String value) {
-            addCriterion("super_admin >", value, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminGreaterThanOrEqualTo(String value) {
-            addCriterion("super_admin >=", value, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminLessThan(String value) {
-            addCriterion("super_admin <", value, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminLessThanOrEqualTo(String value) {
-            addCriterion("super_admin <=", value, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminLike(String value) {
-            addCriterion("super_admin like", value, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminNotLike(String value) {
-            addCriterion("super_admin not like", value, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminIn(List<String> values) {
-            addCriterion("super_admin in", values, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminNotIn(List<String> values) {
-            addCriterion("super_admin not in", values, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminBetween(String value1, String value2) {
-            addCriterion("super_admin between", value1, value2, "superAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andSuperAdminNotBetween(String value1, String value2) {
-            addCriterion("super_admin not between", value1, value2, "superAdmin");
-            return (Criteria) this;
-        }
-
         public Criteria andCreateDateIsNull() {
             addCriterion("create_date is null");
             return (Criteria) this;
@@ -861,12 +843,72 @@ public class UserBean {
             addCriterion("create_date not between", value1, value2, "createDate");
             return (Criteria) this;
         }
+
+        public Criteria andStateIsNull() {
+            addCriterion("state is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateIsNotNull() {
+            addCriterion("state is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateEqualTo(Boolean value) {
+            addCriterion("state =", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateNotEqualTo(Boolean value) {
+            addCriterion("state <>", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateGreaterThan(Boolean value) {
+            addCriterion("state >", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("state >=", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateLessThan(Boolean value) {
+            addCriterion("state <", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateLessThanOrEqualTo(Boolean value) {
+            addCriterion("state <=", value, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateIn(List<Boolean> values) {
+            addCriterion("state in", values, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateNotIn(List<Boolean> values) {
+            addCriterion("state not in", values, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateBetween(Boolean value1, Boolean value2) {
+            addCriterion("state between", value1, value2, "state");
+            return (Criteria) this;
+        }
+
+        public Criteria andStateNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("state not between", value1, value2, "state");
+            return (Criteria) this;
+        }
     }
 
     /**
      * 该类对应数据库表 user
      *
-     * @date do_not_delete_during_merge 2014-08-10 22:49:09
+     * @date do_not_delete_during_merge 2014-09-15 17:11:13
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -878,7 +920,7 @@ public class UserBean {
     /**
      * 该类对应数据库表 user
      *
-     * @date 2014-08-10 22:49:09
+     * @date 2014-09-15 17:11:13
      */
     public static class Criterion {
         private String condition;

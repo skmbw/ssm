@@ -1,5 +1,6 @@
 package com.vteba.user.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,58 +23,84 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Override
-	public int countByExample(UserBean userBean) {
-		return userDao.countByExample(userBean);
+	public int count(UserBean userBean) {
+		return userDao.count(userBean);
 	}
 
 	@Override
-	public int deleteByExample(UserBean userBean) {
-		return userDao.deleteByExample(userBean);
+	public int deleteBatch(UserBean userBean) {
+		return userDao.deleteBatch(userBean);
 	}
 
 	@Override
-	public int deleteById(String id) {
-		return userDao.deleteByPrimaryKey(id);
-	}
-
-	@Override
-	public int saveAll(User record) {
-		return userDao.insert(record);
+	public int deleteById(Long id) {
+		return userDao.deleteById(id);
 	}
 
 	@Override
 	public int save(User record) {
-		return userDao.insertSelective(record);
+	    User user = new User();
+	    user.setId(33L);
+	    Date date = new Date();
+	    user.setCreateDate(date);
+	    user.setUserName("尹雷2");
+	    userDao.updateById(user);
+	    
+	    User params = new User();
+	    params.setUserName("尹雷2");
+	    //params.setCreateDate(date);
+	    params.setState(true);
+	    user.setId(null);
+	    userDao.updateBulks(user, params);
+	    
+	    UserBean userBean = new UserBean();
+	    userBean.createCriteria().andUserAccountEqualTo("yinlei@126.com");
+	    userDao.updateBatch(user, userBean);
+	    
+	    userDao.deleteBatch(userBean);
+	    userDao.deleteBulks(params);
+	    
+		return userDao.save(record);
 	}
 
 	@Override
 	public List<User> queryUserList(UserBean userBean) {
-		return userDao.selectByExample(userBean);
+	    User user = new User();
+	    user.setUserName("尹雷");
+	    user.setUserAccount("tong@126.com");
+	    userDao.queryList(user);
+	    
+	    userDao.countBy(user);
+	    
+	    userDao.get(33L);
+	    
+	    User params = new User();
+	    params.setUserName("好好2");
+	    params.setStart(0);
+	    userDao.pagedList(params);
+	    
+	    userBean = new UserBean();
+	    userBean.createCriteria().andUserAccountEqualTo("tong@126.com");
+	    
+	    userDao.count(userBean);
+	    userDao.pagedForList(userBean);
+	    
+		return userDao.queryForList(userBean);
 	}
 
 	@Override
-	public User queryById(String id) {
-		return userDao.selectByPrimaryKey(id);
+	public User get(Long id) {
+		return userDao.get(id);
 	}
 
 	@Override
 	public int updateByExample(User record, UserBean userBean) {
-		return userDao.updateByExampleSelective(record, userBean);
-	}
-
-	@Override
-	public int updateAllByExample(User record, UserBean userBean) {
-		return userDao.updateByExample(record, userBean);
+		return userDao.updateBatch(record, userBean);
 	}
 
 	@Override
 	public int updateById(User record) {
-		return userDao.updateByPrimaryKeySelective(record);
-	}
-
-	@Override
-	public int updateAllById(User record) {
-		return userDao.updateByPrimaryKey(record);
+		return userDao.updateById(record);
 	}
 
 }

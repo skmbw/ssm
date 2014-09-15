@@ -62,7 +62,7 @@ public class UserAction extends BaseAction {
 	@RequestMapping("/doAdd")
 	public String doAdd(User model) {
 		model.setCreateDate(new Date());
-		model.setId(sequenceGenerator.nextGUID());
+		model.setId(sequenceGenerator.nextSeqLong());
 		userServiceImpl.save(model);
 		return "user/add";
 	}
@@ -74,7 +74,7 @@ public class UserAction extends BaseAction {
 	 */
 	@RequestMapping("/detail")
 	public String detail(User model, Map<String, Object> maps) {
-		model = userServiceImpl.queryById(model.getId());
+		model = userServiceImpl.get(model.getId());
 		maps.put("model", model);//将model放入视图中，供页面视图使用
 		return "user/detail";
 	}
@@ -86,7 +86,7 @@ public class UserAction extends BaseAction {
 	 */
 	@RequestMapping("/edit")
 	public String edit(User model, Map<String, Object> maps) {
-		model = userServiceImpl.queryById(model.getId());
+		model = userServiceImpl.get(model.getId());
 		maps.put("model", model);//将model放入视图中，供页面视图使用
 		return "user/edit";
 	}
@@ -98,7 +98,7 @@ public class UserAction extends BaseAction {
 	 */
 	@RequestMapping("/update")
 	public String update(User model, Map<String, Object> maps) {
-		userServiceImpl.updateAllById(model);
+		userServiceImpl.updateById(model);
 		maps.put("model", model);//将model放入视图中，供页面视图使用
 		return "user/detail";
 	}
