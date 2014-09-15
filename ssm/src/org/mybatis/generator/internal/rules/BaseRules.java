@@ -349,6 +349,46 @@ public abstract class BaseRules implements Rules {
         return rc;
     }
 
+    public boolean generateQueryPagedList() {
+        if (isModelOnly) {
+            return false;
+        }
+        boolean rc = tableConfiguration.isQueryPagedListStatementEnabled();
+        return rc;
+    }
+    
+    public boolean generateQueryList() {
+        if (isModelOnly) {
+            return false;
+        }
+        boolean rc = tableConfiguration.isQueryListStatementEnabled();
+        return rc;
+    }
+    
+    public boolean generateUpdateBatch() {
+        if (isModelOnly) {
+            return false;
+        }
+        boolean rc = tableConfiguration.isUpdateBatchStatementEnabled();
+        return rc;
+    }
+    
+    public boolean generateDeleteBatch() {
+        if (isModelOnly) {
+            return false;
+        }
+        boolean rc = tableConfiguration.isDeleteBatchStatementEnabled();
+        return rc;
+    }
+    
+    public boolean generateMyBatis3ModelWhereClause() {
+        if (isModelOnly) {
+            return false;
+        }
+        boolean rc = tableConfiguration.isModelWhereClauseStatementEnabled();
+        return rc;
+    }
+    
     /**
      * Implements the rule for generating an example class. The class should be
      * generated if the selectByExample or deleteByExample or countByExample

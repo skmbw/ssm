@@ -15,6 +15,8 @@
  */
 package org.mybatis.generator.codegen.mybatis3.javamapper.elements;
 
+import static org.mybatis.generator.internal.util.messages.Messages.getString;
+
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -25,14 +27,14 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 /**
- * 
- * @author Jeff Butler
- * 
+ * 根据model的分页查询方法产生器
+ * @author yinlei
+ * @since 2013-12-15 9:45
  */
-public class DeleteByExampleMethodGenerator extends
+public class ByModelPagedQueryListMethodGenerator extends
         AbstractJavaMapperMethodGenerator {
 
-    public DeleteByExampleMethodGenerator() {
+    public ByModelPagedQueryListMethodGenerator() {
         super();
     }
 
@@ -40,23 +42,42 @@ public class DeleteByExampleMethodGenerator extends
     public void addInterfaceElements(Interface interfaze) {
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
         FullyQualifiedJavaType type = new FullyQualifiedJavaType(
-                introspectedTable.getExampleType());
+                introspectedTable.getBaseRecordType());
         importedTypes.add(type);
+        importedTypes.add(FullyQualifiedJavaType.getNewListInstance());
 
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.setReturnType(FullyQualifiedJavaType.getIntInstance());
-        method.setName(introspectedTable.getDeleteByExampleStatementId());
-        method.addParameter(new Parameter(type, "params")); //$NON-NLS-1$
-        method.addJavaDocLine("根据params所携带条件删除记录。");
+        method.addJavaDocLine("根据params所携带条件分页查询数据，简单查询，条件都是等于，并且是and关系。");
         method.addJavaDocLine("@param params 查询条件");
+        FullyQualifiedJavaType returnType = FullyQualifiedJavaType
+                .getNewListInstance();
+        FullyQualifiedJavaType listType;
+        if (introspectedTable.getRules().generateBaseRecordClass()) {
+            listType = new FullyQualifiedJavaType(introspectedTable
+                    .getBaseRecordType());
+        } else if (introspectedTable.getRules().generatePrimaryKeyClass()) {
+            listType = new FullyQualifiedJavaType(introspectedTable
+                    .getPrimaryKeyType());
+        } else {
+            throw new RuntimeException(getString("RuntimeError.12")); //$NON-NLS-1$
+        }
+
+        importedTypes.add(listType);
+        returnType.addTypeArgument(listType);
+        method.setReturnType(returnType);
+
+        method.setName(introspectedTable.getQueryPagedListStatementId());
+        method.addParameter(new Parameter(type, "params")); //$NON-NLS-1$
+
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);
 
         addMapperAnnotations(interfaze, method);
         
-        if (context.getPlugins().clientDeleteByExampleMethodGenerated(
-                method, interfaze, introspectedTable)) {
+        if (context.getPlugins()
+                .clientSelectByExampleWithoutBLOBsMethodGenerated(method,
+                        interfaze, introspectedTable)) {
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);
         }

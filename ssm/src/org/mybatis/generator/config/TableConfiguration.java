@@ -53,6 +53,16 @@ public class TableConfiguration extends PropertyHolder {
     private boolean updateByExampleStatementEnabled;
     
     private boolean pageQueryListStatementEnabled;
+    
+    private boolean queryPagedListStatementEnabled;
+    
+    private boolean queryListStatementEnabled;
+    
+    private boolean updateBatchStatementEnabled;
+    
+    private boolean deleteBatchStatementEnabled;
+    
+    private boolean modelWhereClauseStatementEnabled;
 
     private List<ColumnOverride> columnOverrides;
 
@@ -96,6 +106,37 @@ public class TableConfiguration extends PropertyHolder {
         
         // 分页查询
         pageQueryListStatementEnabled = true;
+        modelWhereClauseStatementEnabled = true;
+        queryPagedListStatementEnabled = true;
+        
+        queryListStatementEnabled = true;
+        updateBatchStatementEnabled = true;
+        deleteBatchStatementEnabled = true;
+    }
+
+    
+    public boolean isQueryListStatementEnabled() {
+        return queryListStatementEnabled;
+    }
+    
+    public void setQueryListStatementEnabled(boolean queryListStatementEnabled) {
+        this.queryListStatementEnabled = queryListStatementEnabled;
+    }
+    
+    public boolean isUpdateBatchStatementEnabled() {
+        return updateBatchStatementEnabled;
+    }
+    
+    public void setUpdateBatchStatementEnabled(boolean updateBatchStatementEnabled) {
+        this.updateBatchStatementEnabled = updateBatchStatementEnabled;
+    }
+    
+    public boolean isDeleteBatchStatementEnabled() {
+        return deleteBatchStatementEnabled;
+    }
+    
+    public void setDeleteBatchStatementEnabled(boolean deleteBatchStatementEnabled) {
+        this.deleteBatchStatementEnabled = deleteBatchStatementEnabled;
     }
 
     public boolean isDeleteByPrimaryKeyStatementEnabled() {
@@ -106,6 +147,14 @@ public class TableConfiguration extends PropertyHolder {
             boolean deleteByPrimaryKeyStatementEnabled) {
         this.deleteByPrimaryKeyStatementEnabled = deleteByPrimaryKeyStatementEnabled;
     }
+    
+    public boolean isQueryPagedListStatementEnabled() {
+        return queryPagedListStatementEnabled;
+    }
+    
+    public void setQueryPagedListStatementEnabled(boolean queryPagedListStatementEnabled) {
+        this.queryPagedListStatementEnabled = queryPagedListStatementEnabled;
+    }
 
     public boolean isPageQueryListStatementEnabled() {
 		return pageQueryListStatementEnabled;
@@ -115,8 +164,16 @@ public class TableConfiguration extends PropertyHolder {
 			boolean pageQueryListStatementEnabled) {
 		this.pageQueryListStatementEnabled = pageQueryListStatementEnabled;
 	}
+	
+    public boolean isModelWhereClauseStatementEnabled() {
+        return modelWhereClauseStatementEnabled;
+    }
+    
+    public void setModelWhereClauseStatementEnabled(boolean modelWhereClauseStatementEnabled) {
+        this.modelWhereClauseStatementEnabled = modelWhereClauseStatementEnabled;
+    }
 
-	public boolean isInsertStatementEnabled() {
+    public boolean isInsertStatementEnabled() {
         return insertStatementEnabled;
     }
 

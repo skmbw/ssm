@@ -15,6 +15,8 @@
  */
 package org.mybatis.generator.codegen.mybatis3.javamapper.elements;
 
+import static org.mybatis.generator.internal.util.messages.Messages.getString;
+
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -25,38 +27,48 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 /**
- * 
- * @author Jeff Butler
- * 
+ * 分页查询方法产生器
+ * @author yinlei
+ * @since 2013-12-15 9:45
  */
-public class UpdateByExampleSelectiveMethodGenerator extends
+public class PagedQueryListMethodGenerator extends
         AbstractJavaMapperMethodGenerator {
+
+    public PagedQueryListMethodGenerator() {
+        super();
+    }
 
     @Override
     public void addInterfaceElements(Interface interfaze) {
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType(
+                introspectedTable.getExampleType());
+        importedTypes.add(type);
+        importedTypes.add(FullyQualifiedJavaType.getNewListInstance());
+
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.setReturnType(FullyQualifiedJavaType.getIntInstance());
-        method.setName(introspectedTable
-                .getUpdateByExampleSelectiveStatementId());
-        method.addJavaDocLine("根据params所携带条件更新指定字段。");
-        method.addJavaDocLine("@param record 要更新的数据");
-        method.addJavaDocLine("@param params update的where条件");
-        FullyQualifiedJavaType parameterType =
-            introspectedTable.getRules().calculateAllFieldsClass();
-        method.addParameter(new Parameter(parameterType,
-                "record", "@Param(\"record\")")); //$NON-NLS-1$ //$NON-NLS-2$
-        importedTypes.add(parameterType);
+        method.addJavaDocLine("根据params所携带条件分页查询数据，适用于复杂查询。");
+        method.addJavaDocLine("@param params 查询条件");
+        FullyQualifiedJavaType returnType = FullyQualifiedJavaType
+                .getNewListInstance();
+        FullyQualifiedJavaType listType;
+        if (introspectedTable.getRules().generateBaseRecordClass()) {
+            listType = new FullyQualifiedJavaType(introspectedTable
+                    .getBaseRecordType());
+        } else if (introspectedTable.getRules().generatePrimaryKeyClass()) {
+            listType = new FullyQualifiedJavaType(introspectedTable
+                    .getPrimaryKeyType());
+        } else {
+            throw new RuntimeException(getString("RuntimeError.12")); //$NON-NLS-1$
+        }
 
-        FullyQualifiedJavaType exampleType = new FullyQualifiedJavaType(
-                introspectedTable.getExampleType());
-        method.addParameter(new Parameter(exampleType,
-                "params", "@Param(\"params\")")); //$NON-NLS-1$ //$NON-NLS-2$
-        importedTypes.add(exampleType);
+        importedTypes.add(listType);
+        returnType.addTypeArgument(listType);
+        method.setReturnType(returnType);
 
-        importedTypes.add(new FullyQualifiedJavaType(
-                "org.apache.ibatis.annotations.Param")); //$NON-NLS-1$
+        method.setName(introspectedTable.getPagedQueryListStatementId());
+        method.addParameter(new Parameter(type, "params")); //$NON-NLS-1$
 
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);
@@ -64,8 +76,8 @@ public class UpdateByExampleSelectiveMethodGenerator extends
         addMapperAnnotations(interfaze, method);
         
         if (context.getPlugins()
-                .clientUpdateByExampleSelectiveMethodGenerated(method, interfaze,
-                        introspectedTable)) {
+                .clientSelectByExampleWithoutBLOBsMethodGenerated(method,
+                        interfaze, introspectedTable)) {
             interfaze.addImportedTypes(importedTypes);
             interfaze.addMethod(method);
         }

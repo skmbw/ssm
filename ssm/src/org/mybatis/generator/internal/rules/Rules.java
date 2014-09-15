@@ -146,6 +146,16 @@ public interface Rules {
      * @return true if the SQL where clause element should be generated
      */
     boolean generateMyBatis3UpdateByExampleWhereClause();
+    
+    boolean generateMyBatis3ModelWhereClause();
+    
+    boolean generateQueryPagedList();
+    
+    boolean generateQueryList();
+    
+    boolean generateUpdateBatch();
+    
+    boolean generateDeleteBatch();
 
     /**
      * Implements the rule for generating the SQL base column list element.

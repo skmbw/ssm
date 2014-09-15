@@ -46,8 +46,8 @@ public class SelectByExampleWithBLOBsMethodGenerator extends
 
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addJavaDocLine("根据Criteria所携带条件查询数据，含有BLOB字段。");
-        method.addJavaDocLine("@param example 查询条件");
+        method.addJavaDocLine("根据params所携带条件查询数据，含有BLOB字段。");
+        method.addJavaDocLine("@param params 查询条件");
         FullyQualifiedJavaType returnType = FullyQualifiedJavaType
                 .getNewListInstance();
         FullyQualifiedJavaType listType;
@@ -65,7 +65,7 @@ public class SelectByExampleWithBLOBsMethodGenerator extends
         method.setReturnType(returnType);
         method.setName(introspectedTable
                 .getSelectByExampleWithBLOBsStatementId());
-        method.addParameter(new Parameter(type, "example")); //$NON-NLS-1$
+        method.addParameter(new Parameter(type, "params")); //$NON-NLS-1$
 
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);

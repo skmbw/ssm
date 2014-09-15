@@ -36,7 +36,7 @@ import org.mybatis.generator.codegen.RootClassInfo;
 
 /**
  * 
- * @author Jeff Butler
+ * @author Jeff Butler，尹雷
  * 
  */
 public class BaseRecordGenerator extends AbstractJavaGenerator {
@@ -59,6 +59,121 @@ public class BaseRecordGenerator extends AbstractJavaGenerator {
         topLevelClass.setVisibility(JavaVisibility.PUBLIC);
         commentGenerator.addJavaFileComment(topLevelClass);
 
+        
+        //排序语句
+        Field field = new Field();
+        field.setVisibility(JavaVisibility.PROTECTED);
+        field.setType(FullyQualifiedJavaType.getStringInstance());
+        field.setName("orderBy"); //$NON-NLS-1$
+        field.addJavaDocLine("order by 排序语句");
+        commentGenerator.addFieldComment(field, introspectedTable);
+        topLevelClass.addField(field);
+
+        Method method = new Method();
+        method.addJavaDocLine("设置 order by 排序语句");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setName("setOrderBy"); //$NON-NLS-1$
+        method.addParameter(new Parameter(FullyQualifiedJavaType
+                .getStringInstance(), "orderBy")); //$NON-NLS-1$
+        method.addBodyLine("this.orderBy = orderBy;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+
+        method = new Method();
+        method.addJavaDocLine("获得 order by 排序语句");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setReturnType(FullyQualifiedJavaType.getStringInstance());
+        method.setName("getOrderBy"); //$NON-NLS-1$
+        method.addBodyLine("return orderBy;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+        
+        // 分页语句
+        // 分页起始记录
+        field = new Field();
+        field.setVisibility(JavaVisibility.PROTECTED);
+        field.setType(FullyQualifiedJavaType.getIntInstance());
+        field.setName("start"); //$NON-NLS-1$
+        field.addJavaDocLine("分页开始记录");
+        commentGenerator.addFieldComment(field, introspectedTable);
+        topLevelClass.addField(field);
+
+        method = new Method();
+        method.addJavaDocLine("设置 start，分页开始记录");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setName("setStart"); //$NON-NLS-1$
+        method.addParameter(new Parameter(FullyQualifiedJavaType
+                .getIntInstance(), "start")); //$NON-NLS-1$
+        method.addBodyLine("this.start = start;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+
+        method = new Method();
+        method.addJavaDocLine("获得 start，分页开始记录");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setReturnType(FullyQualifiedJavaType.getIntInstance());
+        method.setName("getStart"); //$NON-NLS-1$
+        method.addBodyLine("return start;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+        
+        // pageSize 分页大小
+        field = new Field();
+        field.setVisibility(JavaVisibility.PROTECTED);
+        field.setType(FullyQualifiedJavaType.getIntInstance());
+        field.setName("pageSize = 10"); //$NON-NLS-1$
+        field.addJavaDocLine("分页大小");
+        commentGenerator.addFieldComment(field, introspectedTable);
+        topLevelClass.addField(field);
+
+        method = new Method();
+        method.addJavaDocLine("设置 pageSize，分页大小");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setName("setPageSize"); //$NON-NLS-1$
+        method.addParameter(new Parameter(FullyQualifiedJavaType
+                .getIntInstance(), "pageSize")); //$NON-NLS-1$
+        method.addBodyLine("this.pageSize = pageSize;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+
+        method = new Method();
+        method.addJavaDocLine("获得 pageSize，分页大小");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setReturnType(FullyQualifiedJavaType.getIntInstance());
+        method.setName("getPageSize"); //$NON-NLS-1$
+        method.addBodyLine("return pageSize;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+        
+        // 是否去重，distinct
+        field = new Field();
+        field.setVisibility(JavaVisibility.PROTECTED);
+        field.setType(FullyQualifiedJavaType.getBooleanPrimitiveInstance());
+        field.setName("distinct"); //$NON-NLS-1$
+        field.addJavaDocLine("是否去重");
+        commentGenerator.addFieldComment(field, introspectedTable);
+        topLevelClass.addField(field);
+
+        method = new Method();
+        method.addJavaDocLine("设置 distinct，是否去重");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setName("setDistinct");
+        method.addParameter(new Parameter(FullyQualifiedJavaType
+                .getBooleanPrimitiveInstance(), "distinct"));
+        method.addBodyLine("this.distinct = distinct;");
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+
+        method = new Method();
+        method.addJavaDocLine("获得 distinct，是否去重");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setReturnType(FullyQualifiedJavaType.getBooleanPrimitiveInstance());
+        method.setName("isDistinct"); //$NON-NLS-1$
+        method.addBodyLine("return distinct;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+        // 分页语句结束
+        
         FullyQualifiedJavaType superClass = getSuperClass();
         if (superClass != null) {
             topLevelClass.setSuperClass(superClass);
@@ -82,27 +197,27 @@ public class BaseRecordGenerator extends AbstractJavaGenerator {
                 continue;
             }
 
-            Field field = getJavaBeansField(introspectedColumn);
-            if (plugins.modelFieldGenerated(field, topLevelClass,
+            Field field2 = getJavaBeansField(introspectedColumn);
+            if (plugins.modelFieldGenerated(field2, topLevelClass,
                     introspectedColumn, introspectedTable,
                     Plugin.ModelClassType.BASE_RECORD)) {
-                topLevelClass.addField(field);
-                topLevelClass.addImportedType(field.getType());
+                topLevelClass.addField(field2);
+                topLevelClass.addImportedType(field2.getType());
             }
 
-            Method method = getJavaBeansGetter(introspectedColumn);
-            if (plugins.modelGetterMethodGenerated(method, topLevelClass,
+            Method method2 = getJavaBeansGetter(introspectedColumn);
+            if (plugins.modelGetterMethodGenerated(method2, topLevelClass,
                     introspectedColumn, introspectedTable,
                     Plugin.ModelClassType.BASE_RECORD)) {
-                topLevelClass.addMethod(method);
+                topLevelClass.addMethod(method2);
             }
 
             if (!introspectedTable.isImmutable()) {
-                method = getJavaBeansSetter(introspectedColumn);
-                if (plugins.modelSetterMethodGenerated(method, topLevelClass,
+                method2 = getJavaBeansSetter(introspectedColumn);
+                if (plugins.modelSetterMethodGenerated(method2, topLevelClass,
                         introspectedColumn, introspectedTable,
                         Plugin.ModelClassType.BASE_RECORD)) {
-                    topLevelClass.addMethod(method);
+                    topLevelClass.addMethod(method2);
                 }
             }
         }

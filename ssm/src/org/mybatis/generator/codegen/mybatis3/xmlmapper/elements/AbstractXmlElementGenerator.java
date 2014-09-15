@@ -69,6 +69,30 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
         return answer;
     }
 
+    protected XmlElement getModelWhereClauseElement() {
+        XmlElement ifElement = new XmlElement("if"); //$NON-NLS-1$
+        ifElement.addAttribute(new Attribute("test", "_parameter != null")); //$NON-NLS-1$ //$NON-NLS-2$
+
+        XmlElement includeElement = new XmlElement("include"); //$NON-NLS-1$
+        includeElement.addAttribute(new Attribute("refid", //$NON-NLS-1$
+                introspectedTable.getMyBatis3ModelWhereClauseId()));
+        ifElement.addElement(includeElement);
+
+        return ifElement;
+    }
+    
+    protected XmlElement getUpdateModelWhereClauseElement() {
+        XmlElement ifElement = new XmlElement("if"); //$NON-NLS-1$
+        ifElement.addAttribute(new Attribute("test", "_parameter != null")); //$NON-NLS-1$ //$NON-NLS-2$
+
+        XmlElement includeElement = new XmlElement("include"); //$NON-NLS-1$
+        includeElement.addAttribute(new Attribute("refid", //$NON-NLS-1$
+                introspectedTable.getUpdateModelWhereClauseId()));
+        ifElement.addElement(includeElement);
+
+        return ifElement;
+    }
+    
     protected XmlElement getBlobColumnListElement() {
         XmlElement answer = new XmlElement("include"); //$NON-NLS-1$
         answer.addAttribute(new Attribute("refid", //$NON-NLS-1$

@@ -176,4 +176,29 @@ public class RulesDelegate implements Rules {
     public boolean generateJavaClient() {
         return rules.generateJavaClient();
     }
+
+    @Override
+    public boolean generateMyBatis3ModelWhereClause() {
+        return rules.generateMyBatis3ModelWhereClause();
+    }
+
+    @Override
+    public boolean generateQueryPagedList() {
+        return rules.generateQueryPagedList();
+    }
+
+    @Override
+    public boolean generateQueryList() {
+        return rules.generateQueryList();
+    }
+
+    @Override
+    public boolean generateUpdateBatch() {
+        return generateUpdateBatch();
+    }
+
+    @Override
+    public boolean generateDeleteBatch() {
+        return generateDeleteBatch();
+    }
 }

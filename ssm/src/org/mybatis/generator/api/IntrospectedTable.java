@@ -94,7 +94,13 @@ public abstract class IntrospectedTable {
         ATTR_MYBATIS3_UPDATE_BY_EXAMPLE_WHERE_CLAUSE_ID,
         ATTR_MYBATIS3_SQL_PROVIDER_TYPE,
         
-        ATTR_PAGED_QUERY_LIST_STATEMENT_ID
+        ATTR_PAGED_QUERY_LIST_STATEMENT_ID,
+        ATTR_QUERY_PAGED_LIST_STATEMENT_ID,
+        ATTR_MYBATIS3_MODEL_WHERE_CLAUSE_ID,
+        ATTR_QUERY_LIST_STATEMENT_ID,
+        ATTR_UPDATE_BATCH_STATEMENT_ID,
+        ATTR_DELETE_BATCH_STATEMENT_ID,
+        ATTR_UPDATE_MODEL_WHERE_CLAUSE_ID
     }
 
     protected TableConfiguration tableConfiguration;
@@ -517,21 +523,33 @@ public abstract class IntrospectedTable {
         setSqlMapFullyQualifiedRuntimeTableName(calculateSqlMapFullyQualifiedRuntimeTableName());
         setSqlMapAliasedFullyQualifiedRuntimeTableName(calculateSqlMapAliasedFullyQualifiedRuntimeTableName());
 
-        setCountByExampleStatementId("count"); //$NON-NLS-1$，尹雷
-        setDeleteByExampleStatementId("deleteBatch"); //$NON-NLS-1$，尹雷
+        setCountByExampleStatementId("count"); //尹雷
+        setDeleteByExampleStatementId("deleteBatch"); //尹雷
+        setDeleteBatchId("deleteBulks");
         setDeleteByPrimaryKeyStatementId("deleteById"); //$NON-NLS-1$，尹雷
         setInsertStatementId("insert"); //$NON-NLS-1$
         setInsertSelectiveStatementId("save"); //$NON-NLS-1$，尹雷
         setSelectAllStatementId("selectAll"); //$NON-NLS-1$
-        setSelectByExampleStatementId("queryList"); //$NON-NLS-1$，尹雷
-        setPagedQueryListStatementId("pagedQueryList"); //$NON-NLS-1$，尹雷
+        setSelectByExampleStatementId("queryForList"); //根据Criteria查询
+        setQueryListId("queryList");//根据model的查询
+        
+        setPagedQueryListStatementId("pagedForList"); //根据Criteria分页查询
+        setQueryPagedListStatementId("pagedList");// 根据model的分页查询
+        
         setSelectByExampleWithBLOBsStatementId("selectByExampleWithBLOBs"); //$NON-NLS-1$
-        setSelectByPrimaryKeyStatementId("get"); //$NON-NLS-1$
+        
+        setSelectByPrimaryKeyStatementId("get"); //根据id查询实体
+        
         setUpdateByExampleStatementId("updateAllBatch"); //$NON-NLS-1$,yinlei
-        setUpdateByExampleSelectiveStatementId("updateBatch"); //$NON-NLS-1$，尹雷
+        
+        setUpdateByExampleSelectiveStatementId("updateBatch"); //根据Criteria更新
+        setUpdateBatchId("updateBulks");// 根据model更细
+        
         setUpdateByExampleWithBLOBsStatementId("updateByExampleWithBLOBs"); //$NON-NLS-1$
         setUpdateByPrimaryKeyStatementId("updateAllById"); //$NON-NLS-1$,yinlei
-        setUpdateByPrimaryKeySelectiveStatementId("updateById"); //$NON-NLS-1$，尹雷
+        
+        setUpdateByPrimaryKeySelectiveStatementId("updateById"); //根据id更新
+        
         setUpdateByPrimaryKeyWithBLOBsStatementId("updateByPrimaryKeyWithBLOBs"); //$NON-NLS-1$
         setBaseResultMapId("BaseResultMap"); //$NON-NLS-1$
         setResultMapWithBLOBsId("ResultMapWithBLOBs"); //$NON-NLS-1$
@@ -539,8 +557,23 @@ public abstract class IntrospectedTable {
         setBaseColumnListId("Base_Column_List"); //$NON-NLS-1$
         setBlobColumnListId("Blob_Column_List"); //$NON-NLS-1$
         setMyBatis3UpdateByExampleWhereClauseId("Update_By_Example_Where_Clause"); //$NON-NLS-1$
+        setMyBatis3ModelWhereClauseId("model_where_clause");// 根据模型查询的where语句
+        setUpdateModelWhereClauseId("update_model_where_clause");// 根据模型更新的where语句
+        
     }
 
+    public void setQueryListId(String s) {
+        internalAttributes.put(InternalAttribute.ATTR_QUERY_LIST_STATEMENT_ID, s);
+    }
+    
+    public void setUpdateBatchId(String s) {
+        internalAttributes.put(InternalAttribute.ATTR_UPDATE_BATCH_STATEMENT_ID, s);
+    }
+    
+    public void setDeleteBatchId(String s) {
+        internalAttributes.put(InternalAttribute.ATTR_DELETE_BATCH_STATEMENT_ID, s);
+    }
+    
     public void setBlobColumnListId(String s) {
         internalAttributes.put(InternalAttribute.ATTR_BLOB_COLUMN_LIST_ID, s);
     }
@@ -561,6 +594,16 @@ public abstract class IntrospectedTable {
                         s);
     }
 
+    public void setMyBatis3ModelWhereClauseId(String s) {
+        internalAttributes
+                .put(InternalAttribute.ATTR_MYBATIS3_MODEL_WHERE_CLAUSE_ID, s);
+    }
+    
+    public void setUpdateModelWhereClauseId(String s) {
+        internalAttributes
+                .put(InternalAttribute.ATTR_UPDATE_MODEL_WHERE_CLAUSE_ID, s);
+    }
+    
     public void setResultMapWithBLOBsId(String s) {
         internalAttributes.put(InternalAttribute.ATTR_RESULT_MAP_WITH_BLOBS_ID,
                 s);
@@ -635,6 +678,11 @@ public abstract class IntrospectedTable {
     			InternalAttribute.ATTR_PAGED_QUERY_LIST_STATEMENT_ID, s);
     }
 
+    public void setQueryPagedListStatementId(String s) {
+        internalAttributes.put(
+                InternalAttribute.ATTR_QUERY_PAGED_LIST_STATEMENT_ID, s);
+    }
+    
     public void setInsertSelectiveStatementId(String s) {
         internalAttributes.put(
                 InternalAttribute.ATTR_INSERT_SELECTIVE_STATEMENT_ID, s);
@@ -679,6 +727,16 @@ public abstract class IntrospectedTable {
                 .get(InternalAttribute.ATTR_MYBATIS3_UPDATE_BY_EXAMPLE_WHERE_CLAUSE_ID);
     }
 
+    public String getMyBatis3ModelWhereClauseId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_MYBATIS3_MODEL_WHERE_CLAUSE_ID);
+    }
+    
+    public String getUpdateModelWhereClauseId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_UPDATE_MODEL_WHERE_CLAUSE_ID);
+    }
+    
     public String getResultMapWithBLOBsId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_RESULT_MAP_WITH_BLOBS_ID);
@@ -738,7 +796,27 @@ public abstract class IntrospectedTable {
         return internalAttributes
                 .get(InternalAttribute.ATTR_PAGED_QUERY_LIST_STATEMENT_ID);
     }
+    
+    public String getQueryPagedListStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_QUERY_PAGED_LIST_STATEMENT_ID);
+    }
 
+    public String getQueryListStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_QUERY_LIST_STATEMENT_ID);
+    }
+    
+    public String getUpdateBatchStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_UPDATE_BATCH_STATEMENT_ID);
+    }
+    
+    public String getDeleteBatchStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_DELETE_BATCH_STATEMENT_ID);
+    }
+    
     public String getSelectByExampleStatementId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_SELECT_BY_EXAMPLE_STATEMENT_ID);

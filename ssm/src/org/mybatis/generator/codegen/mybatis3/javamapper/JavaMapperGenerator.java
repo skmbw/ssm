@@ -30,11 +30,16 @@ import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.codegen.AbstractJavaClientGenerator;
 import org.mybatis.generator.codegen.AbstractXmlGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMapperMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelDeleteBatchMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelPagedQueryListMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelQueryListMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelUpdateBatchMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.CountByExampleMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.DeleteByExampleMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.DeleteByPrimaryKeyMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.InsertSelectiveMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.PagedQueryListMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithBLOBsMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByExampleWithoutBLOBsMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectByPrimaryKeyMethodGenerator;
@@ -92,19 +97,28 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         
         addCountByExampleMethod(interfaze);
         addDeleteByExampleMethod(interfaze);
+        addDeleteBatchMethod(interfaze);// 根据model批量删除
         addDeleteByPrimaryKeyMethod(interfaze);
-        addInsertMethod(interfaze);
+        //addInsertMethod(interfaze);
         addInsertSelectiveMethod(interfaze);
         addSelectByExampleWithBLOBsMethod(interfaze);
         addSelectByExampleWithoutBLOBsMethod(interfaze);
+        addQueryListMethod(interfaze);
+        
+        addPagedQueryListMethod(interfaze);// 分页查询，复杂查询
+        addQueryPageListMethod(interfaze);// 根据model的分页查询
+        
         addSelectByPrimaryKeyMethod(interfaze);
+        
         addUpdateByExampleSelectiveMethod(interfaze);
-        addUpdateByExampleWithBLOBsMethod(interfaze);
-        addUpdateByExampleWithoutBLOBsMethod(interfaze);
+        addUpdateBatchMethod(interfaze);// 根据model批量更新
+        
+        //addUpdateByExampleWithBLOBsMethod(interfaze);
+        //addUpdateByExampleWithoutBLOBsMethod(interfaze);
         addUpdateByPrimaryKeySelectiveMethod(interfaze);
-        addUpdateByPrimaryKeyWithBLOBsMethod(interfaze);
-        addUpdateByPrimaryKeyWithoutBLOBsMethod(interfaze);
-
+        //addUpdateByPrimaryKeyWithBLOBsMethod(interfaze);
+        //addUpdateByPrimaryKeyWithoutBLOBsMethod(interfaze);
+        
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
         if (context.getPlugins().clientGenerated(interfaze, null,
                 introspectedTable)) {
@@ -168,6 +182,41 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         }
     }
 
+    protected void addPagedQueryListMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generatePagedQueryList()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new PagedQueryListMethodGenerator();
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
+    
+    protected void addQueryPageListMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generateQueryPagedList()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new ByModelPagedQueryListMethodGenerator();
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
+    
+    protected void addQueryListMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generateQueryPagedList()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new ByModelQueryListMethodGenerator();
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
+    
+    protected void addUpdateBatchMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generateQueryPagedList()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new ByModelUpdateBatchMethodGenerator();
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
+    
+    protected void addDeleteBatchMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generateQueryPagedList()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new ByModelDeleteBatchMethodGenerator();
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
+    
     protected void addSelectByPrimaryKeyMethod(Interface interfaze) {
         if (introspectedTable.getRules().generateSelectByPrimaryKey()) {
             AbstractJavaMapperMethodGenerator methodGenerator = new SelectByPrimaryKeyMethodGenerator(false);

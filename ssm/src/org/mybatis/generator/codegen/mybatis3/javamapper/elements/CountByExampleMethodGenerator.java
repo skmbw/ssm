@@ -49,7 +49,7 @@ public class CountByExampleMethodGenerator extends
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable.getCountByExampleStatementId());
         method.addParameter(new Parameter(fqjt, "params")); //$NON-NLS-1$
-        method.addJavaDocLine("根据Criteria所携带条件进行count计数。");
+        method.addJavaDocLine("根据params所携带条件进行count计数。");
         method.addJavaDocLine("@param params 查询条件");
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);

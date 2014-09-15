@@ -26,12 +26,17 @@ import org.mybatis.generator.codegen.XmlConstants;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.BaseColumnListElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.BlobColumnListElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelDeleteBatchElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelPagedQueryListElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelQueryListElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelUpdateBatchElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.CountByExampleElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.DeleteByExampleElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.DeleteByPrimaryKeyElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ExampleWhereClauseElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.InsertElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.InsertSelectiveElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ModelWhereClauseElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.PagedQueryListElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ResultMapWithBLOBsElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ResultMapWithoutBLOBsElementGenerator;
@@ -70,25 +75,32 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addResultMapWithoutBLOBsElement(answer);
         addResultMapWithBLOBsElement(answer);
         addExampleWhereClauseElement(answer);
+        addModelWhereClauseElement(answer);
         addMyBatis3UpdateByExampleWhereClauseElement(answer);
         addBaseColumnListElement(answer);
         addBlobColumnListElement(answer);
         addSelectByExampleWithBLOBsElement(answer);
         addSelectByExampleWithoutBLOBsElement(answer);
+        addQueryListElement(answer);
+        
         addPagedQueryListElement(answer);// 分页查询
+        addQueryPagedListElement(answer);
+        
         addSelectByPrimaryKeyElement(answer);
         addDeleteByPrimaryKeyElement(answer);
         addDeleteByExampleElement(answer);
-        addInsertElement(answer);
+        addDeleteBatchElement(answer);
+        //addInsertElement(answer);
         addInsertSelectiveElement(answer);
         addCountByExampleElement(answer);
         addUpdateByExampleSelectiveElement(answer);
-        addUpdateByExampleWithBLOBsElement(answer);
-        addUpdateByExampleWithoutBLOBsElement(answer);
+        addUpdateBatchElement(answer);
+        //addUpdateByExampleWithBLOBsElement(answer);
+        //addUpdateByExampleWithoutBLOBsElement(answer);
         addUpdateByPrimaryKeySelectiveElement(answer);
-        addUpdateByPrimaryKeyWithBLOBsElement(answer);
-        addUpdateByPrimaryKeyWithoutBLOBsElement(answer);
-
+        //addUpdateByPrimaryKeyWithBLOBsElement(answer);
+        //addUpdateByPrimaryKeyWithoutBLOBsElement(answer);
+        
         return answer;
     }
 
@@ -153,6 +165,49 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     protected void addPagedQueryListElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generatePagedQueryList()) {
             AbstractXmlElementGenerator elementGenerator = new PagedQueryListElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+    
+    /**
+     * 根据model参数的where条件
+     * @param parentElement
+     */
+    protected void addModelWhereClauseElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateMyBatis3ModelWhereClause()) {
+            AbstractXmlElementGenerator elementGenerator = new ModelWhereClauseElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+    
+    /**
+     * 根据model参数分页查询
+     * @param parentElement
+     */
+    protected void addQueryPagedListElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateQueryPagedList()) {
+            AbstractXmlElementGenerator elementGenerator = new ByModelPagedQueryListElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+    
+    protected void addQueryListElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateQueryList()) {
+            AbstractXmlElementGenerator elementGenerator = new ByModelQueryListElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+    
+    protected void addUpdateBatchElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateUpdateBatch()) {
+            AbstractXmlElementGenerator elementGenerator = new ByModelUpdateBatchElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+    
+    protected void addDeleteBatchElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateDeleteBatch()) {
+            AbstractXmlElementGenerator elementGenerator = new ByModelDeleteBatchElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }

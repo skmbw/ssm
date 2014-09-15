@@ -25,12 +25,16 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 /**
- * 
- * @author Jeff Butler
- * 
+ * 根据model的分页查询方法产生器
+ * @author yinlei
+ * @since 2013-12-15 9:45
  */
-public class UpdateByExampleSelectiveMethodGenerator extends
+public class ByModelUpdateBatchMethodGenerator extends
         AbstractJavaMapperMethodGenerator {
+
+    public ByModelUpdateBatchMethodGenerator() {
+        super();
+    }
 
     @Override
     public void addInterfaceElements(Interface interfaze) {
@@ -39,7 +43,7 @@ public class UpdateByExampleSelectiveMethodGenerator extends
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable
-                .getUpdateByExampleSelectiveStatementId());
+                .getUpdateBatchStatementId());
         method.addJavaDocLine("根据params所携带条件更新指定字段。");
         method.addJavaDocLine("@param record 要更新的数据");
         method.addJavaDocLine("@param params update的where条件");
@@ -50,10 +54,10 @@ public class UpdateByExampleSelectiveMethodGenerator extends
         importedTypes.add(parameterType);
 
         FullyQualifiedJavaType exampleType = new FullyQualifiedJavaType(
-                introspectedTable.getExampleType());
+                introspectedTable.getBaseRecordType());
         method.addParameter(new Parameter(exampleType,
                 "params", "@Param(\"params\")")); //$NON-NLS-1$ //$NON-NLS-2$
-        importedTypes.add(exampleType);
+        //importedTypes.add(exampleType);
 
         importedTypes.add(new FullyQualifiedJavaType(
                 "org.apache.ibatis.annotations.Param")); //$NON-NLS-1$

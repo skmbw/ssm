@@ -99,6 +99,64 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         method.addBodyLine("return orderByClause;"); //$NON-NLS-1$
         commentGenerator.addGeneralMethodComment(method, introspectedTable);
         topLevelClass.addMethod(method);
+        
+        // 分页语句
+        // 分页起始记录
+        field = new Field();
+        field.setVisibility(JavaVisibility.PROTECTED);
+        field.setType(FullyQualifiedJavaType.getIntInstance());
+        field.setName("start"); //$NON-NLS-1$
+        field.addJavaDocLine("分页开始记录");
+        commentGenerator.addFieldComment(field, introspectedTable);
+        topLevelClass.addField(field);
+
+        method = new Method();
+        method.addJavaDocLine("设置 start，分页开始记录");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setName("setStart"); //$NON-NLS-1$
+        method.addParameter(new Parameter(FullyQualifiedJavaType
+                .getIntInstance(), "start")); //$NON-NLS-1$
+        method.addBodyLine("this.start = start;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+
+        method = new Method();
+        method.addJavaDocLine("获得 start，分页开始记录");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setReturnType(FullyQualifiedJavaType.getIntInstance());
+        method.setName("getStart"); //$NON-NLS-1$
+        method.addBodyLine("return start;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+        
+        // pageSize 分页大小
+        field = new Field();
+        field.setVisibility(JavaVisibility.PROTECTED);
+        field.setType(FullyQualifiedJavaType.getIntInstance());
+        field.setName("pageSize = 10"); //$NON-NLS-1$
+        field.addJavaDocLine("分页大小");
+        commentGenerator.addFieldComment(field, introspectedTable);
+        topLevelClass.addField(field);
+
+        method = new Method();
+        method.addJavaDocLine("设置 pageSize，分页大小");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setName("setPageSize"); //$NON-NLS-1$
+        method.addParameter(new Parameter(FullyQualifiedJavaType
+                .getIntInstance(), "pageSize")); //$NON-NLS-1$
+        method.addBodyLine("this.pageSize = pageSize;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+
+        method = new Method();
+        method.addJavaDocLine("获得 pageSize，分页大小");
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setReturnType(FullyQualifiedJavaType.getIntInstance());
+        method.setName("getPageSize"); //$NON-NLS-1$
+        method.addBodyLine("return pageSize;"); //$NON-NLS-1$
+        commentGenerator.addGeneralMethodComment(method, introspectedTable);
+        topLevelClass.addMethod(method);
+        // 分页语句结束
 
         // add field, getter, setter for distinct
         field = new Field();
