@@ -39,24 +39,16 @@ public class UpdateModelWhereClauseElementGenerator extends
 
         answer.addAttribute(new Attribute("id", introspectedTable.getUpdateModelWhereClauseId())); //$NON-NLS-1$
         
-//        String parameterType;
-//        if (introspectedTable.getRules().generateRecordWithBLOBsClass()) {
-//            parameterType = introspectedTable.getRecordWithBLOBsType();
-//        } else {
-//            parameterType = introspectedTable.getBaseRecordType();
-//        }
-//        answer.addAttribute(new Attribute("parameterType", parameterType));
-        
         answer.setComments("根据model条件，更新的where语句。");
         context.getCommentGenerator().addComment(answer);
 
-        XmlElement whereElement = new XmlElement("where"); //$NON-NLS-1$
+        XmlElement whereElement = new XmlElement("where");
         answer.addElement(whereElement);
 
-        XmlElement trimElement = new XmlElement("trim"); //$NON-NLS-1$
-        trimElement.addAttribute(new Attribute("prefix", "(")); //$NON-NLS-1$ //$NON-NLS-2$
-        trimElement.addAttribute(new Attribute("suffix", ")")); //$NON-NLS-1$ //$NON-NLS-2$
-        trimElement.addAttribute(new Attribute("prefixOverrides", "and")); //$NON-NLS-1$ //$NON-NLS-2$
+        XmlElement trimElement = new XmlElement("trim");
+//        trimElement.addAttribute(new Attribute("prefix", "("));
+//        trimElement.addAttribute(new Attribute("suffix", ")"));
+        trimElement.addAttribute(new Attribute("prefixOverrides", "and"));
         whereElement.addElement(trimElement);
         
         StringBuilder sb = new StringBuilder();
@@ -70,10 +62,10 @@ public class UpdateModelWhereClauseElementGenerator extends
             trimElement.addElement(isNotNullElement);
 
             sb.setLength(0);
+            sb.append("and ");
             sb.append(MyBatis3FormattingUtilities.getEscapedColumnName(introspectedColumn));
             sb.append(" = "); //$NON-NLS-1$
             sb.append(MyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
-            sb.append(',');
 
             isNotNullElement.addElement(new TextElement(sb.toString()));
         }
