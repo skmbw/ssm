@@ -36,7 +36,7 @@ public class UserAction extends BaseAction {
 	 */
 	@RequestMapping("/initial")
 	public String initial(Map<String, Object> map) {
-		List<User> userList = userServiceImpl.queryUserList(null);
+		List<User> userList = userServiceImpl.queryForList(null);
 		// 方法Map/ModelMap参数中的数据会自动推送到视图页面，供jsp等使用
 		map.put("userList", userList);//将userList放入视图中，供jsp使用
 		return "/user/initial";
