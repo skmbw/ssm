@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
 	    userDao.pagedList(params);
 	    
 	    userBean = new UserBean();
-	    userBean.createCriteria().andUserAccountEqualTo("tong@126.com");
+	    userBean.createCriteria().andUserAccountEqualTo("tongku@126.com");
 	    
 	    userDao.count(userBean);
 	    userDao.pagedForList(userBean);
