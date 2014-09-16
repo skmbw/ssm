@@ -3,7 +3,6 @@ package com.vteba.user2.service.impl;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import com.vteba.user2.dao.UserDao;
 import com.vteba.user2.model.User;
@@ -15,7 +14,7 @@ import com.vteba.user2.service.spi.UserService;
  * @author yinlei
  * @date 2014-9-16 13:16:14
  */
-@Named
+//@Named
 public class UserServiceImpl implements UserService {
 	
 	@Inject
