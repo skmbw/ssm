@@ -16,7 +16,7 @@ public class TestCoder {
 		.schema("skmbw")
 		.className("User")
 		.setDb(DB.PostgreSQL)// 可以不使用，只要jdbc url是正确的
-		.keyType(KeyType.Long)
+		.keyType(KeyType.String)
 		.tableDesc("系统用户")
 		.tableName("user")
 		.module("com.vteba.user2")

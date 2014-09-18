@@ -8,7 +8,7 @@ import com.vteba.user2.model.UserBean;
 /**
  * 系统用户相关的业务service接口。
  * @author yinlei
- * @date 2014-9-16 13:16:14
+ * @date 2014-9-18 9:47:51
  */
 public interface UserService {
 
@@ -45,7 +45,7 @@ public interface UserService {
      * @param id 主键id
      * @return 删除的记录条数，1或0
      */
-    int deleteById(Long id);
+    int deleteById(String id);
 
     /**
      * 插入记录，只有非空字段才会插入到数据库。
@@ -87,7 +87,7 @@ public interface UserService {
      * @param id 主键
      * @return 系统用户实体
      */
-    User get(Long id);
+    User get(String id);
 
     /**
      * 根据params所携带条件更新指定字段，适用于复杂条件。

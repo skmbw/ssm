@@ -3,6 +3,7 @@ package com.vteba.user2.service.impl;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.vteba.user2.dao.UserDao;
 import com.vteba.user2.model.User;
@@ -12,9 +13,9 @@ import com.vteba.user2.service.spi.UserService;
 /**
  * 系统用户相关的service业务实现。
  * @author yinlei
- * @date 2014-9-16 13:16:14
+ * @date 2014-9-18 9:47:51
  */
-//@Named
+@Named
 public class UserServiceImpl implements UserService {
 	
 	@Inject
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int deleteById(Long id) {
+	public int deleteById(String id) {
 		return userDao.deleteById(id);
 	}
 
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User get(Long id) {
+	public User get(String id) {
 		return userDao.get(id);
 	}
 

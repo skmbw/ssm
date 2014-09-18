@@ -5,20 +5,22 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vteba.user2.model.User;
 import com.vteba.user2.service.spi.UserService;
+
 import com.vteba.web.action.GenericAction;
 import com.vteba.web.action.JsonBean;
 
 /**
  * 系统用户控制器
  * @author yinlei
- * @date 2014-9-16 13:16:14
+ * @date 2014-9-18 9:47:51
  */
-//@Controller
+@Controller
 @RequestMapping("/user")
 public class UserAction extends GenericAction<User> {
 	@Inject
@@ -55,7 +57,7 @@ public class UserAction extends GenericAction<User> {
      */
     @ResponseBody
     @RequestMapping("/get")
-    public User get(Long id) {
+    public User get(String id) {
         User model = userServiceImpl.get(id);
         return model;
     }
@@ -137,7 +139,7 @@ public class UserAction extends GenericAction<User> {
      */
     @ResponseBody
     @RequestMapping("/delete")
-    public JsonBean delete(Long id) {
+    public JsonBean delete(String id) {
         int result = userServiceImpl.deleteById(id);
         JsonBean bean = new JsonBean();
         if (result == 1) {

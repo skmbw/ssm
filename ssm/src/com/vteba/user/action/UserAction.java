@@ -62,7 +62,7 @@ public class UserAction extends BaseAction {
 	@RequestMapping("/doAdd")
 	public String doAdd(User model) {
 		model.setCreateDate(new Date());
-		model.setId(sequenceGenerator.nextSeqLong());
+		model.setId(sequenceGenerator.nextGUID());
 		userServiceImpl.save(model);
 		return "user/add";
 	}

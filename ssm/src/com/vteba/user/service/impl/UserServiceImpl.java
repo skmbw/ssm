@@ -33,14 +33,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int deleteById(Long id) {
+	public int deleteById(String id) {
 		return userDao.deleteById(id);
 	}
 
 	@Override
 	public int save(User record) {
 	    User user = new User();
-	    user.setId(33L);
+	    user.setId("33");
 	    Date date = new Date();
 	    user.setCreateDate(date);
 	    user.setUserName("尹雷2");
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
 	    
 	    userDao.countBy(user);
 	    
-	    userDao.get(33L);
+	    userDao.get("33");
 	    
 	    User params = new User();
 	    params.setUserName("好好2");
@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User get(Long id) {
+	public User get(String id) {
 		return userDao.get(id);
 	}
 

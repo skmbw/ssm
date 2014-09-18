@@ -4,9 +4,9 @@
   <resultMap id="BaseResultMap" type="com.vteba.user.model.User" >
     <!--
       WARNING - 结果集映射，不含Blob字段。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
-    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="user_account" property="userAccount" jdbcType="VARCHAR" />
     <result column="super_admin" property="superAdmin" jdbcType="VARCHAR" />
@@ -20,7 +20,7 @@
   <sql id="Example_Where_Clause" >
     <!--
       WARNING - Criteria条件查询的where语句。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -53,7 +53,7 @@
   <sql id="model_where_clause" >
     <!--
       WARNING - 根据model条件，查询或更新的where语句。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     <where >
       <trim prefixOverrides="and" >
@@ -90,7 +90,7 @@
   <sql id="update_model_where_clause" >
     <!--
       WARNING - 根据model条件，更新的where语句。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     <where >
       <trim prefixOverrides="and" >
@@ -127,7 +127,7 @@
   <sql id="Update_By_Example_Where_Clause" >
     <!--
       WARNING - Criteria条件查询的where语句。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     <where >
       <foreach collection="params.oredCriteria" item="criteria" separator="or" >
@@ -160,7 +160,7 @@
   <sql id="Base_Column_List" >
     <!--
       WARNING - 该表所有字段。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     id, user_name, user_account, super_admin, telephone, mobile_phone, company, password, 
     create_date, state
@@ -168,7 +168,7 @@
   <select id="queryForList" resultMap="BaseResultMap" parameterType="com.vteba.user.model.UserBean" >
     <!--
       WARNING - 根据Criteria所携带条件查询数据，不含Blob字段。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     select
     <if test="distinct" >
@@ -186,7 +186,7 @@
   <select id="queryList" resultMap="BaseResultMap" parameterType="com.vteba.user.model.User" >
     <!--
       WARNING - 根据params所携带条件查询数据。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     select
     <if test="distinct" >
@@ -204,7 +204,7 @@
   <select id="pagedForList" resultMap="BaseResultMap" parameterType="com.vteba.user.model.UserBean" >
     <!--
       WARNING - 根据Criteria所携带条件分页查询数据。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     select
     <if test="distinct" >
@@ -225,7 +225,7 @@
   <select id="pagedList" resultMap="BaseResultMap" parameterType="com.vteba.user.model.User" >
     <!--
       WARNING - 根据params所携带条件分页查询数据。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     select
     <if test="distinct" >
@@ -243,28 +243,28 @@
       limit ${start}, ${pageSize}
     </if>
   </select>
-  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String" >
     <!--
       WARNING - 根据主键查询数据。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     select 
     <include refid="Base_Column_List" />
     from user
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Long" >
+  <delete id="deleteById" parameterType="java.lang.String" >
     <!--
       WARNING - 根据主键删除记录。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     delete from user
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteBatch" parameterType="com.vteba.user.model.UserBean" >
     <!--
       WARNING - 根据Criteria所携带条件删除记录。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     delete from user
     <if test="_parameter != null" >
@@ -274,7 +274,7 @@
   <delete id="deleteBulks" parameterType="com.vteba.user.model.User" >
     <!--
       WARNING - 根据params所携带条件删除数据。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     delete
     from user
@@ -285,7 +285,7 @@
   <insert id="save" parameterType="com.vteba.user.model.User" >
     <!--
       WARNING - 插入记录，只有非空字段才会插入到数据库。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -322,7 +322,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="userName != null" >
         #{userName,jdbcType=VARCHAR},
@@ -356,7 +356,7 @@
   <select id="count" parameterType="com.vteba.user.model.UserBean" resultType="java.lang.Integer" >
     <!--
       WARNING - 根据Criteria所携带条件进行count计数。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     select count(*) from user
     <if test="_parameter != null" >
@@ -366,7 +366,7 @@
   <select id="countBy" parameterType="com.vteba.user.model.User" resultType="java.lang.Integer" >
     <!--
       WARNING - 根据params所携带条件计数。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     select count(*) from user
     <if test="_parameter != null" >
@@ -376,12 +376,12 @@
   <update id="updateBatch" parameterType="map" >
     <!--
       WARNING - 根据Criteria所携带条件更新指定字段。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     update user
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=BIGINT},
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.userName != null" >
         user_name = #{record.userName,jdbcType=VARCHAR},
@@ -418,12 +418,12 @@
   <update id="updateBulks" parameterType="map" >
     <!--
       WARNING - 根据params所携带条件更新指定字段。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     update user
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=BIGINT},
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.userName != null" >
         user_name = #{record.userName,jdbcType=VARCHAR},
@@ -460,7 +460,7 @@
   <update id="updateById" parameterType="com.vteba.user.model.User" >
     <!--
       WARNING - 根据主键更新指定字段的数据。
-      MyBatis automatically generated, do not modify. 2014-09-15 17:11:13
+      MyBatis automatically generated, do not modify. 2014-09-18 09:48:10
     -->
     update user
     <set >
@@ -492,6 +492,6 @@
         state = #{state,jdbcType=BIT},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

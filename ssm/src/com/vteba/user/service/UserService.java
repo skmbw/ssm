@@ -50,7 +50,7 @@ public interface UserService {
      *
      * @date 2014-09-15 17:11:13
      */
-    int deleteById(Long id);
+    int deleteById(String id);
 
     /**
      * 插入记录，只有非空字段才会插入到数据库。
@@ -98,7 +98,7 @@ public interface UserService {
      *
      * @date 2014-09-15 17:11:13
      */
-    User get(Long id);
+    User get(String id);
 
     /**
      * 根据params所携带条件更新指定字段，适用于复杂条件。
