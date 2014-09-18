@@ -9,7 +9,7 @@ public class UserBean {
      * order by 排序语句
      * 对应数据库表字段 user
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     protected String orderByClause;
 
@@ -17,7 +17,7 @@ public class UserBean {
      * 分页开始记录
      * 对应数据库表字段 user
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     protected int start;
 
@@ -25,7 +25,7 @@ public class UserBean {
      * 分页大小
      * 对应数据库表字段 user
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     protected int pageSize = 10;
 
@@ -33,7 +33,7 @@ public class UserBean {
      * 是否指定 distinct 去除重复
      * 对应数据库表字段 user
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     protected boolean distinct;
 
@@ -41,13 +41,13 @@ public class UserBean {
      * 逻辑or语句
      * 对应数据库表字段 user
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     protected List<Criteria> oredCriteria;
 
     /**
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public UserBean() {
         oredCriteria = new ArrayList<Criteria>();
@@ -56,7 +56,7 @@ public class UserBean {
     /**
      * 设置 order by 排序语句
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
@@ -65,7 +65,7 @@ public class UserBean {
     /**
      * 获得 order by 排序语句
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public String getOrderByClause() {
         return orderByClause;
@@ -74,7 +74,7 @@ public class UserBean {
     /**
      * 设置 start，分页开始记录
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public void setStart(int start) {
         this.start = start;
@@ -83,7 +83,7 @@ public class UserBean {
     /**
      * 获得 start，分页开始记录
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public int getStart() {
         return start;
@@ -92,7 +92,7 @@ public class UserBean {
     /**
      * 设置 pageSize，分页大小
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
@@ -101,7 +101,7 @@ public class UserBean {
     /**
      * 获得 pageSize，分页大小
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public int getPageSize() {
         return pageSize;
@@ -110,7 +110,7 @@ public class UserBean {
     /**
      * 设置是否指定 distinct 去除重复
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
@@ -119,7 +119,7 @@ public class UserBean {
     /**
      * 是否设置了distinct语句，true是，false否。
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public boolean isDistinct() {
         return distinct;
@@ -128,7 +128,7 @@ public class UserBean {
     /**
      * 获得逻辑or语句
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public List<Criteria> getOredCriteria() {
         return oredCriteria;
@@ -137,7 +137,7 @@ public class UserBean {
     /**
      * 添加逻辑or语句
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public void or(Criteria criteria) {
         oredCriteria.add(criteria);
@@ -146,7 +146,7 @@ public class UserBean {
     /**
      * 新建逻辑或or语句
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public Criteria or() {
         Criteria criteria = createCriteriaInternal();
@@ -157,7 +157,7 @@ public class UserBean {
     /**
      * 创建查询条件，如果逻辑或为空，同时将查询条件放入。
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public Criteria createCriteria() {
         Criteria criteria = createCriteriaInternal();
@@ -170,7 +170,7 @@ public class UserBean {
     /**
      * 创建新查询条件。
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     protected Criteria createCriteriaInternal() {
         Criteria criteria = new Criteria();
@@ -180,7 +180,7 @@ public class UserBean {
     /**
      * 清楚逻辑或or语句，并且distinct为false，不去重。
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public void clear() {
         oredCriteria.clear();
@@ -191,7 +191,7 @@ public class UserBean {
     /**
      * 该类对应数据库表 user
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -918,7 +918,7 @@ public class UserBean {
     /**
      * 该类对应数据库表 user
      *
-     * @date do_not_delete_during_merge 2014-09-18 09:46:55
+     * @date do_not_delete_during_merge 2014-09-18 10:12:48
      */
     public static class Criteria extends GeneratedCriteria {
 
@@ -930,7 +930,7 @@ public class UserBean {
     /**
      * 该类对应数据库表 user
      *
-     * @date 2014-09-18 09:46:55
+     * @date 2014-09-18 10:12:48
      */
     public static class Criterion {
         private String condition;
