@@ -30,9 +30,10 @@ public class ByModelCountElementGenerator extends AbstractXmlElementGenerator {
         context.getCommentGenerator().addComment(answer);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("select count(*) from ");
+        sb.append("select count(*) from {{");
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
+        sb.append("}}");
         answer.addElement((new TextElement(sb.toString())));
         answer.addElement(getModelWhereClauseElement());
         

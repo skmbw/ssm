@@ -58,8 +58,9 @@ public class UpdateByPrimaryKeyWithBLOBsElementGenerator extends
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("update "); //$NON-NLS-1$
+        sb.append("update {{");
         sb.append(introspectedTable.getFullyQualifiedTableNameAtRuntime());
+        sb.append("}}");
         answer.addElement(new TextElement(sb.toString()));
 
         // set up for first column

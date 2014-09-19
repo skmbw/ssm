@@ -85,9 +85,10 @@ public class SelectByPrimaryKeyElementGenerator extends
         }
 
         sb.setLength(0);
-        sb.append("from "); //$NON-NLS-1$
+        sb.append("from {{"); //$NON-NLS-1$
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
+        sb.append("}}");
         answer.addElement(new TextElement(sb.toString()));
 
         boolean and = false;
