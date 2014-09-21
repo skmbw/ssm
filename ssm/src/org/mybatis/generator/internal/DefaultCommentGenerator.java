@@ -53,7 +53,7 @@ public class DefaultCommentGenerator implements CommentGenerator {
     public DefaultCommentGenerator() {
         super();
         properties = new Properties();
-        suppressDate = false;
+        suppressDate = true;//yinlei
         suppressAllComments = false;
     }
 
@@ -126,7 +126,7 @@ public class DefaultCommentGenerator implements CommentGenerator {
         StringBuilder sb = new StringBuilder();
         sb.append(" * "); //$NON-NLS-1$
         //sb.append(MergeConstants.NEW_ELEMENT_TAG);
-        sb.append("@date");
+        //sb.append("@date");
         if (markAsDoNotDelete) {
             sb.append(" do_not_delete_during_merge"); //$NON-NLS-1$
         }

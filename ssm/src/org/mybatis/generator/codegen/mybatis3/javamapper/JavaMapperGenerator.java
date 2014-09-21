@@ -3,7 +3,9 @@ package org.mybatis.generator.codegen.mybatis3.javamapper;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.mybatis.generator.api.CommentGenerator;
@@ -67,6 +69,11 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         interfaze.addAnnotation("@DaoMapper");
         interfaze.addImportedType(new FullyQualifiedJavaType("com.vteba.tx.jdbc.mybatis.annotation.DaoMapper"));
         interfaze.setVisibility(JavaVisibility.PUBLIC);
+        interfaze.addJavaDocLine("/**");
+        interfaze.addJavaDocLine(" * 分区表" + introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime() + "的MyBatis Dao Mapper。");
+        interfaze.addJavaDocLine(" * " + "由代码工具自动生成，可以新增方法，但是不要修改自动生成的方法。");
+        interfaze.addJavaDocLine(" * @date " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        interfaze.addJavaDocLine(" */");
         commentGenerator.addJavaFileComment(interfaze);
 
         String rootInterface = introspectedTable
@@ -110,8 +117,7 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         //addUpdateByPrimaryKeyWithoutBLOBsMethod(interfaze);
         
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
-        if (context.getPlugins().clientGenerated(interfaze, null,
-                introspectedTable)) {
+        if (context.getPlugins().clientGenerated(interfaze, null, introspectedTable)) {
             answer.add(interfaze);
         }
         
