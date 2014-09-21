@@ -118,7 +118,7 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
 
         XmlElement includeElement = new XmlElement("include"); //$NON-NLS-1$
         includeElement.addAttribute(new Attribute("refid", //$NON-NLS-1$
-                introspectedTable.getMyBatis3UpdateByExampleWhereClauseId()));
+                introspectedTable.getUpdateByExampleWhereClauseId()));
         ifElement.addElement(includeElement);
 
         return ifElement;
@@ -130,7 +130,7 @@ public abstract class AbstractXmlElementGenerator extends AbstractGenerator {
 
         XmlElement includeElement = new XmlElement("include"); //$NON-NLS-1$
         includeElement.addAttribute(new Attribute("refid", //$NON-NLS-1$
-                introspectedTable.getMyBatis3UpdateByExampleWhereClauseId()));
+                introspectedTable.getUpdateByExampleWhereClauseId()));
         ifElement.addElement(includeElement);
 
         return ifElement;

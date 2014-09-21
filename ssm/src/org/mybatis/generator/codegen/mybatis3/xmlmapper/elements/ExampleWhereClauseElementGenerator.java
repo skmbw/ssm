@@ -43,7 +43,7 @@ public class ExampleWhereClauseElementGenerator extends
 
         if (isForUpdateByExample) {
             answer.addAttribute(new Attribute(
-                            "id", introspectedTable.getMyBatis3UpdateByExampleWhereClauseId()));
+                            "id", introspectedTable.getUpdateByExampleWhereClauseId()));
         } else {
             answer.addAttribute(new Attribute("id", introspectedTable.getExampleWhereClauseId()));
         }

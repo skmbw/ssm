@@ -559,7 +559,7 @@ public abstract class IntrospectedTable {
         setExampleWhereClauseId("Example_Where_Clause"); //$NON-NLS-1$
         setBaseColumnListId("Base_Column_List"); //$NON-NLS-1$
         setBlobColumnListId("Blob_Column_List"); //$NON-NLS-1$
-        setMyBatis3UpdateByExampleWhereClauseId("Update_By_Example_Where_Clause"); //$NON-NLS-1$
+        setUpdateByExampleWhereClauseId("Update_By_Example_Where_Clause"); //$NON-NLS-1$
         setModelWhereClauseId("model_where_clause");// 根据模型查询的where语句
         setUpdateModelWhereClauseId("update_model_where_clause");// 根据模型更新的where语句
         
@@ -590,7 +590,7 @@ public abstract class IntrospectedTable {
                 s);
     }
 
-    public void setMyBatis3UpdateByExampleWhereClauseId(String s) {
+    public void setUpdateByExampleWhereClauseId(String s) {
         internalAttributes
                 .put(
                         InternalAttribute.ATTR_MYBATIS3_UPDATE_BY_EXAMPLE_WHERE_CLAUSE_ID,
@@ -730,7 +730,7 @@ public abstract class IntrospectedTable {
                 .get(InternalAttribute.ATTR_EXAMPLE_WHERE_CLAUSE_ID);
     }
 
-    public String getMyBatis3UpdateByExampleWhereClauseId() {
+    public String getUpdateByExampleWhereClauseId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_MYBATIS3_UPDATE_BY_EXAMPLE_WHERE_CLAUSE_ID);
     }
