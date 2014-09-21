@@ -80,14 +80,14 @@ public class ModelWhereClauseElementGenerator extends
         
         // 排序语句
         XmlElement orderByElement = new XmlElement("if");
-        orderByElement.addAttribute(new Attribute("test", "params.orderBy != null"));
-        orderByElement.addElement(new TextElement("order by ${params.orderBy}"));
+        orderByElement.addAttribute(new Attribute("test", "orderBy != null"));
+        orderByElement.addElement(new TextElement("order by ${orderBy}"));
         answer.addElement(orderByElement);
         
         // 分页数据
         XmlElement ifElement = new XmlElement("if");
-        ifElement.addAttribute(new Attribute("test", "params.start != null"));
-        ifElement.addElement(new TextElement("limit ${params.start}, ${params.pageSize}"));
+        ifElement.addAttribute(new Attribute("test", "start != null"));
+        ifElement.addElement(new TextElement("limit ${start}, ${pageSize}"));
         answer.addElement(ifElement);
         
         if (context.getPlugins()

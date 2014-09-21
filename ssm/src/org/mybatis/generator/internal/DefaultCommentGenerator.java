@@ -122,9 +122,9 @@ public class DefaultCommentGenerator implements CommentGenerator {
      */
     protected void addJavadocTag(JavaElement javaElement,
             boolean markAsDoNotDelete) {
-        javaElement.addJavaDocLine(" *"); //$NON-NLS-1$
+//        javaElement.addJavaDocLine(" *"); //$NON-NLS-1$
         StringBuilder sb = new StringBuilder();
-        sb.append(" * "); //$NON-NLS-1$
+//        sb.append(" * "); //$NON-NLS-1$
         //sb.append(MergeConstants.NEW_ELEMENT_TAG);
         //sb.append("@date");
         if (markAsDoNotDelete) {
@@ -135,7 +135,7 @@ public class DefaultCommentGenerator implements CommentGenerator {
             sb.append(' ');
             sb.append(s);
         }
-        javaElement.addJavaDocLine(sb.toString());
+//        javaElement.addJavaDocLine(sb.toString());
     }
 
     /**
