@@ -38,7 +38,7 @@ public class ByModelDeleteBatchElementGenerator extends AbstractXmlElementGenera
                 .getAliasedFullyQualifiedTableNameAtRuntime());
         sb.append("}}");
         answer.addElement((new TextElement(sb.toString())));
-        answer.addElement(getModelWhereClauseElement());
+        answer.addElement(getUpdateModelWhereClauseElement());
         
         if (context.getPlugins()
                 .sqlMapSelectByExampleWithoutBLOBsElementGenerated(answer,
