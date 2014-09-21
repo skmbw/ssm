@@ -27,9 +27,9 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 /**
- * 
+ * select查询语句生成器
  * @author Jeff Butler
- * 
+ * @author yinlei
  */
 public class SelectByExampleWithoutBLOBsMethodGenerator extends
         AbstractJavaMapperMethodGenerator {
@@ -41,8 +41,9 @@ public class SelectByExampleWithoutBLOBsMethodGenerator extends
     @Override
     public void addInterfaceElements(Interface interfaze) {
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(
-                introspectedTable.getExampleType());
+//        FullyQualifiedJavaType type = new FullyQualifiedJavaType(
+//                introspectedTable.getExampleType());
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType("com.vteba.tx.jdbc.params.QueryBean");
         importedTypes.add(type);
         importedTypes.add(FullyQualifiedJavaType.getNewListInstance());
 

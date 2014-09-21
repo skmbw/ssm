@@ -22,9 +22,9 @@ import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 
 /**
- * 
+ * 根据条件查询
  * @author Jeff Butler
- * 
+ * @author yinlei
  */
 public class SelectByExampleWithoutBLOBsElementGenerator extends
         AbstractXmlElementGenerator {
@@ -35,7 +35,8 @@ public class SelectByExampleWithoutBLOBsElementGenerator extends
 
     @Override
     public void addElements(XmlElement parentElement) {
-        String fqjt = introspectedTable.getExampleType();
+//        String fqjt = introspectedTable.getExampleType();
+    	String fqjt = "com.vteba.tx.jdbc.params.QueryBean";
 
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
         answer.setComments("根据Criteria所携带条件查询数据，不含Blob字段。");
@@ -71,10 +72,10 @@ public class SelectByExampleWithoutBLOBsElementGenerator extends
         answer.addElement((new TextElement(sb.toString())));
         answer.addElement(getExampleIncludeElement());
 
-        ifElement = new XmlElement("if"); //$NON-NLS-1$
-        ifElement.addAttribute(new Attribute("test", "orderByClause != null")); //$NON-NLS-1$ //$NON-NLS-2$
-        ifElement.addElement(new TextElement("order by ${orderByClause}")); //$NON-NLS-1$
-        answer.addElement(ifElement);
+//        ifElement = new XmlElement("if"); //$NON-NLS-1$
+//        ifElement.addAttribute(new Attribute("test", "params.orderByClause != null")); //$NON-NLS-1$ //$NON-NLS-2$
+//        ifElement.addElement(new TextElement("order by ${params.orderByClause}")); //$NON-NLS-1$
+//        answer.addElement(ifElement);
 
         if (context.getPlugins()
                 .sqlMapSelectByExampleWithoutBLOBsElementGenerated(answer,

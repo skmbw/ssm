@@ -41,22 +41,28 @@ public class UpdateByExampleSelectiveMethodGenerator extends
         method.setName(introspectedTable
                 .getUpdateByExampleSelectiveStatementId());
         method.addJavaDocLine("根据params所携带条件更新指定字段，适用于复杂条件。");
-        method.addJavaDocLine("@param record 要更新的数据");
-        method.addJavaDocLine("@param params update的where条件");
-        FullyQualifiedJavaType parameterType =
-            introspectedTable.getRules().calculateAllFieldsClass();
-        method.addParameter(new Parameter(parameterType,
-                "record", "@Param(\"record\")")); //$NON-NLS-1$ //$NON-NLS-2$
-        importedTypes.add(parameterType);
-
-        FullyQualifiedJavaType exampleType = new FullyQualifiedJavaType(
-                introspectedTable.getExampleType());
-        method.addParameter(new Parameter(exampleType,
-                "params", "@Param(\"params\")")); //$NON-NLS-1$ //$NON-NLS-2$
-        importedTypes.add(exampleType);
-
-        importedTypes.add(new FullyQualifiedJavaType(
-                "org.apache.ibatis.annotations.Param")); //$NON-NLS-1$
+        
+		method.addJavaDocLine("@param params update的where条件，以及定位分区表的条件");
+		FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType("com.vteba.tx.jdbc.params.UpdateBean");
+		method.addParameter(new Parameter(parameterType, "params"));
+		importedTypes.add(parameterType);
+        
+//        method.addJavaDocLine("@param record 要更新的数据");
+//        method.addJavaDocLine("@param params update的where条件");
+//        FullyQualifiedJavaType parameterType =
+//            introspectedTable.getRules().calculateAllFieldsClass();
+//        method.addParameter(new Parameter(parameterType,
+//                "record", "@Param(\"record\")"));
+//        importedTypes.add(parameterType);
+//
+//        FullyQualifiedJavaType exampleType = new FullyQualifiedJavaType(
+//                introspectedTable.getExampleType());
+//        method.addParameter(new Parameter(exampleType,
+//                "params", "@Param(\"params\")"));
+//        importedTypes.add(exampleType);
+//
+//        importedTypes.add(new FullyQualifiedJavaType(
+//                "org.apache.ibatis.annotations.Param"));
 
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);

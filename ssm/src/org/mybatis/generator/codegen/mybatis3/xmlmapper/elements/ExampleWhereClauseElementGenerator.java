@@ -23,9 +23,9 @@ import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 
 /**
- * 
+ * 根据criteria查询的where条件
  * @author Jeff Butler
- * 
+ * @author yinlei
  */
 public class ExampleWhereClauseElementGenerator extends
         AbstractXmlElementGenerator {
@@ -39,39 +39,37 @@ public class ExampleWhereClauseElementGenerator extends
 
     @Override
     public void addElements(XmlElement parentElement) {
-        XmlElement answer = new XmlElement("sql"); //$NON-NLS-1$
+        XmlElement answer = new XmlElement("sql");
 
         if (isForUpdateByExample) {
-            answer
-                    .addAttribute(new Attribute(
-                            "id", introspectedTable.getMyBatis3UpdateByExampleWhereClauseId())); //$NON-NLS-1$
-        } else {
             answer.addAttribute(new Attribute(
-                    "id", introspectedTable.getExampleWhereClauseId())); //$NON-NLS-1$
+                            "id", introspectedTable.getMyBatis3UpdateByExampleWhereClauseId()));
+        } else {
+            answer.addAttribute(new Attribute("id", introspectedTable.getExampleWhereClauseId()));
         }
         answer.setComments("Criteria条件查询的where语句。");
         context.getCommentGenerator().addComment(answer);
 
-        XmlElement whereElement = new XmlElement("where"); //$NON-NLS-1$
+        XmlElement whereElement = new XmlElement("where");
         answer.addElement(whereElement);
 
-        XmlElement outerForEachElement = new XmlElement("foreach"); //$NON-NLS-1$
+        XmlElement outerForEachElement = new XmlElement("foreach");
         if (isForUpdateByExample) {
             outerForEachElement.addAttribute(new Attribute(
-                    "collection", "params.oredCriteria")); //$NON-NLS-1$ //$NON-NLS-2$
+                    "collection", "params.oredCriteria"));
         } else {
             outerForEachElement.addAttribute(new Attribute(
-                    "collection", "oredCriteria")); //$NON-NLS-1$ //$NON-NLS-2$
+                    "collection", "params.oredCriteria"));
         }
-        outerForEachElement.addAttribute(new Attribute("item", "criteria")); //$NON-NLS-1$ //$NON-NLS-2$
-        outerForEachElement.addAttribute(new Attribute("separator", "or")); //$NON-NLS-1$ //$NON-NLS-2$
+        outerForEachElement.addAttribute(new Attribute("item", "criteria"));
+        outerForEachElement.addAttribute(new Attribute("separator", "or"));
         whereElement.addElement(outerForEachElement);
 
-        XmlElement ifElement = new XmlElement("if"); //$NON-NLS-1$
-        ifElement.addAttribute(new Attribute("test", "criteria.valid")); //$NON-NLS-1$ //$NON-NLS-2$
+        XmlElement ifElement = new XmlElement("if");
+        ifElement.addAttribute(new Attribute("test", "criteria.valid"));
         outerForEachElement.addElement(ifElement);
 
-        XmlElement trimElement = new XmlElement("trim"); //$NON-NLS-1$
+        XmlElement trimElement = new XmlElement("trim");
         trimElement.addAttribute(new Attribute("prefix", "(")); //$NON-NLS-1$ //$NON-NLS-2$
         trimElement.addAttribute(new Attribute("suffix", ")")); //$NON-NLS-1$ //$NON-NLS-2$
         trimElement.addAttribute(new Attribute("prefixOverrides", "and")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -89,6 +87,18 @@ public class ExampleWhereClauseElementGenerator extends
             }
         }
 
+        // 排序语句
+        XmlElement orderByElement = new XmlElement("if");
+        orderByElement.addAttribute(new Attribute("test", "params.orderBy != null"));
+        orderByElement.addElement(new TextElement("order by ${params.orderBy}"));
+        answer.addElement(orderByElement);
+        
+        // 分页数据
+        ifElement = new XmlElement("if");
+        ifElement.addAttribute(new Attribute("test", "params.start != null"));
+        ifElement.addElement(new TextElement("limit ${params.start}, ${params.pageSize}"));
+        answer.addElement(ifElement);
+        
         if (context.getPlugins()
                 .sqlMapExampleWhereClauseElementGenerated(answer,
                         introspectedTable)) {

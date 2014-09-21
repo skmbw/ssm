@@ -24,7 +24,8 @@ public class ByModelUpdateBatchElementGenerator extends AbstractXmlElementGenera
         answer.addAttribute(new Attribute(
                         "id", introspectedTable.getUpdateBatchStatementId())); //$NON-NLS-1$
 
-        answer.addAttribute(new Attribute("parameterType", "map")); //$NON-NLS-1$ //$NON-NLS-2$
+//        answer.addAttribute(new Attribute("parameterType", "map"));
+        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.UpdateBean"));
 
         context.getCommentGenerator().addComment(answer);
 
@@ -40,19 +41,18 @@ public class ByModelUpdateBatchElementGenerator extends AbstractXmlElementGenera
 
         for (IntrospectedColumn introspectedColumn : introspectedTable
                 .getAllColumns()) {
-            XmlElement isNotNullElement = new XmlElement("if"); //$NON-NLS-1$
+            XmlElement isNotNullElement = new XmlElement("if");
             sb.setLength(0);
-            sb.append(introspectedColumn.getJavaProperty("record.")); //$NON-NLS-1$
-            sb.append(" != null"); //$NON-NLS-1$
-            isNotNullElement.addAttribute(new Attribute("test", sb.toString())); //$NON-NLS-1$
+            sb.append(introspectedColumn.getJavaProperty("record."));
+            sb.append(" != null");
+            isNotNullElement.addAttribute(new Attribute("test", sb.toString()));
             dynamicElement.addElement(isNotNullElement);
 
             sb.setLength(0);
             sb.append(MyBatis3FormattingUtilities
                     .getAliasedEscapedColumnName(introspectedColumn));
-            sb.append(" = "); //$NON-NLS-1$
-            sb.append(MyBatis3FormattingUtilities.getParameterClause(
-                    introspectedColumn, "record.")); //$NON-NLS-1$
+            sb.append(" = ");
+            sb.append(MyBatis3FormattingUtilities.getParameterClause(introspectedColumn, "record."));
             sb.append(',');
 
             isNotNullElement.addElement(new TextElement(sb.toString()));

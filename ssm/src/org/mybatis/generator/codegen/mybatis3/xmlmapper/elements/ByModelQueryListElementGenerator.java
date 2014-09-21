@@ -1,6 +1,5 @@
 package org.mybatis.generator.codegen.mybatis3.xmlmapper.elements;
 
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
@@ -18,8 +17,9 @@ public class ByModelQueryListElementGenerator extends AbstractXmlElementGenerato
 
 	@Override
 	public void addElements(XmlElement parentElement) {
-	    FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
-                    introspectedTable.getBaseRecordType());
+//	    FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
+//                    introspectedTable.getBaseRecordType());
+		String fqjt = "com.vteba.tx.jdbc.params.QueryBean";
 
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
         answer.setComments("根据params所携带条件查询数据。");
@@ -27,7 +27,8 @@ public class ByModelQueryListElementGenerator extends AbstractXmlElementGenerato
                 introspectedTable.getQueryListStatementId()));
         answer.addAttribute(new Attribute(
                 "resultMap", introspectedTable.getBaseResultMapId())); //$NON-NLS-1$
-        answer.addAttribute(new Attribute("parameterType", parameterType.getFullyQualifiedName()));
+//        answer.addAttribute(new Attribute("parameterType", parameterType.getFullyQualifiedName()));
+        answer.addAttribute(new Attribute("parameterType", fqjt));
 
         context.getCommentGenerator().addComment(answer);
 
@@ -50,11 +51,11 @@ public class ByModelQueryListElementGenerator extends AbstractXmlElementGenerato
         answer.addElement((new TextElement(sb.toString())));
         answer.addElement(getModelWhereClauseElement());
 
-        // 排序语句
-        ifElement = new XmlElement("if"); //$NON-NLS-1$
-        ifElement.addAttribute(new Attribute("test", "orderBy != null")); //$NON-NLS-1$ //$NON-NLS-2$
-        ifElement.addElement(new TextElement("order by ${orderBy}")); //$NON-NLS-1$
-        answer.addElement(ifElement);
+//        // 排序语句
+//        ifElement = new XmlElement("if"); //$NON-NLS-1$
+//        ifElement.addAttribute(new Attribute("test", "params.orderBy != null")); //$NON-NLS-1$ //$NON-NLS-2$
+//        ifElement.addElement(new TextElement("order by ${params.orderBy}")); //$NON-NLS-1$
+//        answer.addElement(ifElement);
 
         if (context.getPlugins()
                 .sqlMapSelectByExampleWithoutBLOBsElementGenerated(answer,

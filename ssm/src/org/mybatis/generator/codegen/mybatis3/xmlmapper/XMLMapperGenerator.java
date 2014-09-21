@@ -53,9 +53,9 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateByPrimary
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.UpdateModelWhereClauseElementGenerator;
 
 /**
- * 
+ * xml映射文件生成器
  * @author Jeff Butler
- * 
+ * @author 尹雷
  */
 public class XMLMapperGenerator extends AbstractXmlGenerator {
 
@@ -66,30 +66,34 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     protected XmlElement getSqlMapElement() {
         FullyQualifiedTable table = introspectedTable.getFullyQualifiedTable();
         progressCallback.startTask(getString(
-                "Progress.12", table.toString())); //$NON-NLS-1$
-        XmlElement answer = new XmlElement("mapper"); //$NON-NLS-1$
+                "Progress.12", table.toString()));
+        XmlElement answer = new XmlElement("mapper");
         String namespace = introspectedTable.getMyBatis3SqlMapNamespace();
-        answer.addAttribute(new Attribute("namespace", //$NON-NLS-1$
-                namespace));
+        answer.addAttribute(new Attribute("namespace", namespace));
 
         context.getCommentGenerator().addRootComment(answer);
 
         addResultMapWithoutBLOBsElement(answer);
         addResultMapWithBLOBsElement(answer);
-        addExampleWhereClauseElement(answer);
-        addModelWhereClauseElement(answer);
-        addUpdateModelWhereClauseElement(answer);
-        addMyBatis3UpdateByExampleWhereClauseElement(answer);
+        
         addBaseColumnListElement(answer);
         addBlobColumnListElement(answer);
+        
+        addExampleWhereClauseElement(answer);
+        addMyBatis3UpdateByExampleWhereClauseElement(answer);
+        
+        addModelWhereClauseElement(answer);
+        addUpdateModelWhereClauseElement(answer);
+        
         addSelectByExampleWithBLOBsElement(answer);
         addSelectByExampleWithoutBLOBsElement(answer);
-        addQueryListElement(answer);
         
+        addQueryListElement(answer);
         addPagedQueryListElement(answer);// 分页查询
         addQueryPagedListElement(answer);
         
         addSelectByPrimaryKeyElement(answer);
+        
         addDeleteByPrimaryKeyElement(answer);
         addDeleteByExampleElement(answer);
         addDeleteBatchElement(answer);
@@ -125,18 +129,15 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
 
     protected void addExampleWhereClauseElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateSQLExampleWhereClause()) {
-            AbstractXmlElementGenerator elementGenerator = new ExampleWhereClauseElementGenerator(
-                    false);
+            AbstractXmlElementGenerator elementGenerator = new ExampleWhereClauseElementGenerator(false);
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }
 
     protected void addMyBatis3UpdateByExampleWhereClauseElement(
             XmlElement parentElement) {
-        if (introspectedTable.getRules()
-                .generateMyBatis3UpdateByExampleWhereClause()) {
-            AbstractXmlElementGenerator elementGenerator = new ExampleWhereClauseElementGenerator(
-                    true);
+        if (introspectedTable.getRules().generateMyBatis3UpdateByExampleWhereClause()) {
+            AbstractXmlElementGenerator elementGenerator = new ExampleWhereClauseElementGenerator(true);
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }

@@ -25,15 +25,16 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends
         answer.addAttribute(new Attribute(
                         "id", introspectedTable.getUpdateByPrimaryKeySelectiveStatementId()));
 
-        String parameterType;
-
-        if (introspectedTable.getRules().generateRecordWithBLOBsClass()) {
-            parameterType = introspectedTable.getRecordWithBLOBsType();
-        } else {
-            parameterType = introspectedTable.getBaseRecordType();
-        }
-
-        answer.addAttribute(new Attribute("parameterType", parameterType));
+//        String parameterType;
+//
+//        if (introspectedTable.getRules().generateRecordWithBLOBsClass()) {
+//            parameterType = introspectedTable.getRecordWithBLOBsType();
+//        } else {
+//            parameterType = introspectedTable.getBaseRecordType();
+//        }
+//
+//        answer.addAttribute(new Attribute("parameterType", parameterType));
+        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.UpdateBean"));
 
         context.getCommentGenerator().addComment(answer);
 
@@ -51,7 +52,7 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends
                 .getNonPrimaryKeyColumns()) {
             XmlElement isNotNullElement = new XmlElement("if");
             sb.setLength(0);
-            sb.append(introspectedColumn.getJavaProperty());
+            sb.append(introspectedColumn.getJavaProperty("record."));
             sb.append(" != null");
             isNotNullElement.addAttribute(new Attribute("test", sb.toString()));
             dynamicElement.addElement(isNotNullElement);
@@ -61,7 +62,7 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends
                     .getEscapedColumnName(introspectedColumn));
             sb.append(" = ");
             sb.append(MyBatis3FormattingUtilities
-                    .getParameterClause(introspectedColumn));
+                    .getParameterClause(introspectedColumn, "record."));
             sb.append(',');
 
             isNotNullElement.addElement(new TextElement(sb.toString()));

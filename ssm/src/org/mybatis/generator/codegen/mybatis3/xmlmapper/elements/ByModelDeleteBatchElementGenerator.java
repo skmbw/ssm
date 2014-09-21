@@ -1,6 +1,5 @@
 package org.mybatis.generator.codegen.mybatis3.xmlmapper.elements;
 
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
@@ -18,16 +17,18 @@ public class ByModelDeleteBatchElementGenerator extends AbstractXmlElementGenera
 
 	@Override
 	public void addElements(XmlElement parentElement) {
-	    FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
-                    introspectedTable.getBaseRecordType());
+//	    FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
+//                    introspectedTable.getBaseRecordType());
 
         XmlElement answer = new XmlElement("delete"); //$NON-NLS-1$
         answer.setComments("根据params所携带条件删除数据。");
         answer.addAttribute(new Attribute("id", //$NON-NLS-1$
                 introspectedTable.getDeleteBatchStatementId()));
 //        answer.addAttribute(new Attribute(
-//                "resultMap", introspectedTable.getBaseResultMapId())); //$NON-NLS-1$
-        answer.addAttribute(new Attribute("parameterType", parameterType.getFullyQualifiedName()));
+//                "resultMap", introspectedTable.getBaseResultMapId()));
+        
+//        answer.addAttribute(new Attribute("parameterType", parameterType.getFullyQualifiedName()));
+        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.DeleteBean"));
 
         context.getCommentGenerator().addComment(answer);
 

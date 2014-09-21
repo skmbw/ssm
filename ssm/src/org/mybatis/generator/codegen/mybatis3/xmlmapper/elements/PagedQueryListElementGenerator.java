@@ -17,7 +17,8 @@ public class PagedQueryListElementGenerator extends AbstractXmlElementGenerator 
 
 	@Override
 	public void addElements(XmlElement parentElement) {
-		String fqjt = introspectedTable.getExampleType();
+//		String fqjt = introspectedTable.getExampleType();
+		String fqjt = "com.vteba.tx.jdbc.params.QueryBean";
 
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
         answer.setComments("根据Criteria所携带条件分页查询数据。");
@@ -25,7 +26,7 @@ public class PagedQueryListElementGenerator extends AbstractXmlElementGenerator 
                 introspectedTable.getPagedQueryListStatementId()));
         answer.addAttribute(new Attribute(
                 "resultMap", introspectedTable.getBaseResultMapId())); //$NON-NLS-1$
-        answer.addAttribute(new Attribute("parameterType", fqjt)); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("parameterType", fqjt));
 
         context.getCommentGenerator().addComment(answer);
 
@@ -45,20 +46,19 @@ public class PagedQueryListElementGenerator extends AbstractXmlElementGenerator 
         answer.addElement((new TextElement(sb.toString())));
         answer.addElement(getExampleIncludeElement());
 
-        ifElement = new XmlElement("if"); //$NON-NLS-1$
-        ifElement.addAttribute(new Attribute("test", "orderByClause != null")); //$NON-NLS-1$ //$NON-NLS-2$
-        ifElement.addElement(new TextElement("order by ${orderByClause}")); //$NON-NLS-1$
-        answer.addElement(ifElement);
+//        ifElement = new XmlElement("if"); //$NON-NLS-1$
+//        ifElement.addAttribute(new Attribute("test", "orderByClause != null")); //$NON-NLS-1$ //$NON-NLS-2$
+//        ifElement.addElement(new TextElement("order by ${orderByClause}")); //$NON-NLS-1$
+//        answer.addElement(ifElement);
 
-        // 分页数据
-        ifElement = new XmlElement("if");
-        ifElement.addAttribute(new Attribute("test", "start != null"));
-        ifElement.addElement(new TextElement("limit ${start}, ${pageSize}"));
-        answer.addElement(ifElement);
+//        // 分页数据
+//        ifElement = new XmlElement("if");
+//        ifElement.addAttribute(new Attribute("test", "params.start != null"));
+//        ifElement.addElement(new TextElement("limit ${params.start}, ${params.pageSize}"));
+//        answer.addElement(ifElement);
         
         if (context.getPlugins()
-                .sqlMapSelectByExampleWithoutBLOBsElementGenerated(answer,
-                        introspectedTable)) {
+                .sqlMapSelectByExampleWithoutBLOBsElementGenerated(answer, introspectedTable)) {
             parentElement.addElement(answer);
         }
 		

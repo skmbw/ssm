@@ -35,9 +35,9 @@ public class UpdateModelWhereClauseElementGenerator extends
 
     @Override
     public void addElements(XmlElement parentElement) {
-        XmlElement answer = new XmlElement("sql"); //$NON-NLS-1$
+        XmlElement answer = new XmlElement("sql");
 
-        answer.addAttribute(new Attribute("id", introspectedTable.getUpdateModelWhereClauseId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute("id", introspectedTable.getUpdateModelWhereClauseId()));
         
         answer.setComments("根据model条件，更新的where语句。");
         context.getCommentGenerator().addComment(answer);
@@ -54,11 +54,11 @@ public class UpdateModelWhereClauseElementGenerator extends
         StringBuilder sb = new StringBuilder();
         for (IntrospectedColumn introspectedColumn : introspectedTable
                 .getNonPrimaryKeyColumns()) {
-            XmlElement isNotNullElement = new XmlElement("if"); //$NON-NLS-1$
+            XmlElement isNotNullElement = new XmlElement("if");
             sb.setLength(0);
             sb.append(introspectedColumn.getJavaProperty("params."));
             sb.append(" != null"); //$NON-NLS-1$
-            isNotNullElement.addAttribute(new Attribute("test", sb.toString())); //$NON-NLS-1$
+            isNotNullElement.addAttribute(new Attribute("test", sb.toString()));
             trimElement.addElement(isNotNullElement);
 
             sb.setLength(0);
@@ -69,6 +69,18 @@ public class UpdateModelWhereClauseElementGenerator extends
 
             isNotNullElement.addElement(new TextElement(sb.toString()));
         }
+        
+        // 排序语句
+        XmlElement orderByElement = new XmlElement("if");
+        orderByElement.addAttribute(new Attribute("test", "params.orderBy != null"));
+        orderByElement.addElement(new TextElement("order by ${params.orderBy}"));
+        answer.addElement(orderByElement);
+        
+        // 分页数据
+        XmlElement ifElement = new XmlElement("if");
+        ifElement.addAttribute(new Attribute("test", "params.start != null"));
+        ifElement.addElement(new TextElement("limit ${params.start}, ${params.pageSize}"));
+        answer.addElement(ifElement);
         
         if (context.getPlugins()
                 .sqlMapExampleWhereClauseElementGenerated(answer, introspectedTable)) {

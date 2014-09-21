@@ -25,9 +25,9 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 /**
- * 
+ * 根据criteria删除记录
  * @author Jeff Butler
- * 
+ * @author 尹雷
  */
 public class DeleteByExampleMethodGenerator extends
         AbstractJavaMapperMethodGenerator {
@@ -39,8 +39,9 @@ public class DeleteByExampleMethodGenerator extends
     @Override
     public void addInterfaceElements(Interface interfaze) {
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(
-                introspectedTable.getExampleType());
+//        FullyQualifiedJavaType type = new FullyQualifiedJavaType(
+//                introspectedTable.getExampleType());
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType("com.vteba.tx.jdbc.params.DeleteBean");
         importedTypes.add(type);
 
         Method method = new Method();

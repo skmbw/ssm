@@ -76,7 +76,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         Field field = new Field();
         field.setVisibility(JavaVisibility.PROTECTED);
         field.setType(FullyQualifiedJavaType.getStringInstance());
-        field.setName("orderByClause"); //$NON-NLS-1$
+        field.setName("orderBy"); //$NON-NLS-1$
         field.addJavaDocLine("order by 排序语句");
         commentGenerator.addFieldComment(field, introspectedTable);
         topLevelClass.addField(field);
@@ -84,10 +84,10 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         method = new Method();
         method.addJavaDocLine("设置 order by 排序语句");
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.setName("setOrderByClause"); //$NON-NLS-1$
+        method.setName("setOrderBy"); //$NON-NLS-1$
         method.addParameter(new Parameter(FullyQualifiedJavaType
-                .getStringInstance(), "orderByClause")); //$NON-NLS-1$
-        method.addBodyLine("this.orderByClause = orderByClause;"); //$NON-NLS-1$
+                .getStringInstance(), "orderBy")); //$NON-NLS-1$
+        method.addBodyLine("this.orderBy = orderBy;"); //$NON-NLS-1$
         commentGenerator.addGeneralMethodComment(method, introspectedTable);
         topLevelClass.addMethod(method);
 
@@ -95,8 +95,8 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         method.addJavaDocLine("获得 order by 排序语句");
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getStringInstance());
-        method.setName("getOrderByClause"); //$NON-NLS-1$
-        method.addBodyLine("return orderByClause;"); //$NON-NLS-1$
+        method.setName("getOrderBy"); //$NON-NLS-1$
+        method.addBodyLine("return orderBy;"); //$NON-NLS-1$
         commentGenerator.addGeneralMethodComment(method, introspectedTable);
         topLevelClass.addMethod(method);
         
@@ -256,7 +256,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setName("clear"); //$NON-NLS-1$
         method.addBodyLine("oredCriteria.clear();"); //$NON-NLS-1$
-        method.addBodyLine("orderByClause = null;"); //$NON-NLS-1$
+        method.addBodyLine("orderBy = null;"); //$NON-NLS-1$
         method.addBodyLine("distinct = false;"); //$NON-NLS-1$
         commentGenerator.addGeneralMethodComment(method, introspectedTable);
         topLevelClass.addMethod(method);

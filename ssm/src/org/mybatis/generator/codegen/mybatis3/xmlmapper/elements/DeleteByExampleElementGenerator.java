@@ -20,9 +20,9 @@ import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 
 /**
- * 
+ * 根据条件删除
  * @author Jeff Butler
- * 
+ * @author yinlei
  */
 public class DeleteByExampleElementGenerator extends
         AbstractXmlElementGenerator {
@@ -35,11 +35,12 @@ public class DeleteByExampleElementGenerator extends
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("delete"); //$NON-NLS-1$
 
-        String fqjt = introspectedTable.getExampleType();
+//        String fqjt = introspectedTable.getExampleType();
 
         answer.addAttribute(new Attribute(
-                "id", introspectedTable.getDeleteByExampleStatementId())); //$NON-NLS-1$
-        answer.addAttribute(new Attribute("parameterType", fqjt)); //$NON-NLS-1$
+                "id", introspectedTable.getDeleteByExampleStatementId()));
+//        answer.addAttribute(new Attribute("parameterType", fqjt));
+        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.DeleteBean"));
         answer.setComments("根据Criteria所携带条件删除记录。");
         context.getCommentGenerator().addComment(answer);
 

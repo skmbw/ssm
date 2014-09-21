@@ -22,9 +22,9 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 
 /**
- * 
+ * 根据查询条件Bean更新非空字段
  * @author Jeff Butler
- * 
+ * @author yinlei
  */
 public class UpdateByExampleSelectiveElementGenerator extends
         AbstractXmlElementGenerator {
@@ -37,12 +37,11 @@ public class UpdateByExampleSelectiveElementGenerator extends
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("update"); //$NON-NLS-1$
         answer.setComments("根据Criteria所携带条件更新指定字段。");
-        answer
-                .addAttribute(new Attribute(
-                        "id", introspectedTable.getUpdateByExampleSelectiveStatementId())); //$NON-NLS-1$
+        answer.addAttribute(new Attribute(
+                        "id", introspectedTable.getUpdateByExampleSelectiveStatementId()));
 
-        answer.addAttribute(new Attribute("parameterType", "map")); //$NON-NLS-1$ //$NON-NLS-2$
-
+//        answer.addAttribute(new Attribute("parameterType", "map"));
+        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.UpdateBean"));
         context.getCommentGenerator().addComment(answer);
 
         StringBuilder sb = new StringBuilder();

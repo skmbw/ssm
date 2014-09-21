@@ -40,8 +40,9 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.PropertyRegistry;
 
 /**
+ * 代码工具的注释生成
  * @author Jeff Butler
- * 
+ * @author 尹雷
  */
 public class DefaultCommentGenerator implements CommentGenerator {
 
@@ -86,10 +87,10 @@ public class DefaultCommentGenerator implements CommentGenerator {
 //            sb.append(s);
 //            sb.append('.');
 //            xmlElement.addElement(new TextElement(sb.toString()));
-        	String comment = "  MyBatis automatically generated, do not modify. " + s;
+        	String comment = "  MyBatis代码工具自动生成，不要修改！ " + s;
         	xmlElement.addElement(new TextElement(comment));
         } else {
-        	xmlElement.addElement(new TextElement("  MyBatis automatically generated, do not modify."));
+        	xmlElement.addElement(new TextElement("  MyBatis代码工具自动生成，不要修改！"));
         }
         //xmlElement.addElement(new TextElement("  " + xmlElement.getComments()));
         xmlElement.addElement(new TextElement("-->")); //$NON-NLS-1$
