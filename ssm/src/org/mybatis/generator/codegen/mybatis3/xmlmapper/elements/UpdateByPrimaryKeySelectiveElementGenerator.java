@@ -83,7 +83,7 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends
                     .getEscapedColumnName(introspectedColumn));
             sb.append(" = ");
             sb.append(MyBatis3FormattingUtilities
-                    .getParameterClause(introspectedColumn));
+                    .getParameterClause(introspectedColumn, "record."));
             answer.addElement(new TextElement(sb.toString()));
         }
 
