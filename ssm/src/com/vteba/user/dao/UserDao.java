@@ -1,10 +1,14 @@
 package com.vteba.user.dao;
 
+import com.vteba.tx.jdbc.mybatis.annotation.DaoMapper;
 import com.vteba.user.model.User;
 import com.vteba.user.model.UserBean;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+@DaoMapper
 public interface UserDao {
     /**
      * 根据params所携带条件进行count计数。
