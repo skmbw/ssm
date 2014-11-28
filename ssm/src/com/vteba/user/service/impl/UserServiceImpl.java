@@ -1,11 +1,13 @@
 package com.vteba.user.service.impl;
 
-import java.util.Date;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.vteba.sequence.SequenceGenerator;
 import com.vteba.user.dao.UserDao;
 import com.vteba.user.model.User;
 import com.vteba.user.model.UserBean;
@@ -21,6 +23,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired//将UserDao的实现注入进来，也可以使用setter方法注入
 	private UserDao userDao;
+	
+	@Inject
+	private SequenceGenerator sequenceGenerator;
 
 	@Override
 	public int count(UserBean userBean) {
@@ -39,27 +44,33 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int save(User record) {
-	    User user = new User();
-	    user.setId("33");
-	    Date date = new Date();
-	    user.setCreateDate(date);
-	    user.setUserName("尹雷2");
-	    userDao.updateById(user);
-	    
-	    User params = new User();
-	    params.setUserName("尹雷2");
-	    //params.setCreateDate(date);
-	    params.setState(true);
-	    user.setId(null);
-	    userDao.updateBulks(user, params);
-	    
-	    UserBean userBean = new UserBean();
-	    userBean.createCriteria().andUserAccountEqualTo("yinlei@126.com");
-	    userDao.updateBatch(user, userBean);
-	    
-	    userDao.deleteBatch(userBean);
-	    userDao.deleteBulks(params);
-	    
+//	    User user = new User();
+//	    user.setId("33");
+//	    Date date = new Date();
+//	    user.setCreateDate(date);
+//	    user.setUserName("尹雷2");
+//	    userDao.updateById(user);
+//	    
+//	    User params = new User();
+//	    params.setUserName("尹雷2");
+//	    //params.setCreateDate(date);
+//	    params.setState(true);
+//	    user.setId(null);
+//	    userDao.updateBulks(user, params);
+//	    
+//	    UserBean userBean = new UserBean();
+//	    userBean.createCriteria().andUserAccountEqualTo("yinlei@126.com");
+//	    userDao.updateBatch(user, userBean);
+//	    
+//	    userDao.deleteBatch(userBean);
+//	    userDao.deleteBulks(params);
+	    long d = System.currentTimeMillis();
+		for (int i = 0; i < 100; i++) {
+			record.setId(sequenceGenerator.nextGUID());
+			userDao.save(record);
+		}
+		System.out.println(System.currentTimeMillis() - d);
+		record.setId(sequenceGenerator.nextGUID());
 		return userDao.save(record);
 	}
 

@@ -1,6 +1,5 @@
 package com.vteba.sequence;
 
-import java.math.BigInteger;
 import java.util.Random;
 
 import org.springframework.stereotype.Component;
@@ -55,6 +54,8 @@ public class SequenceGenerator {
      * date 2012-7-5 下午9:35:37
      */
     public String nextGUID(){
-        return (new BigInteger(165, RANDOM)).toString(36).toUpperCase();
+        //return (new BigInteger(165, RANDOM)).toString(18);
+    	//return UUID.randomUUID().toString();
+    	return ObjectId.get().toHexString();
     }
 }
