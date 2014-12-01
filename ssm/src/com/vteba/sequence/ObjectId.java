@@ -240,7 +240,8 @@ public class ObjectId implements Comparable<ObjectId> , java.io.Serializable {
         final StringBuilder buf = new StringBuilder(24);
 
         for (final byte b : toByteArray()) {
-            buf.append(String.format("%02x", b & 0xff));
+//            buf.append(String.format("%02x", b & 0xff));
+        	buf.append(Integer.toHexString(b & 0xff));
         }
 
         return buf.toString();
