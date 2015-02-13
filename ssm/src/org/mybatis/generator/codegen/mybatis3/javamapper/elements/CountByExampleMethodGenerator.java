@@ -38,9 +38,9 @@ public class CountByExampleMethodGenerator extends
 
     @Override
     public void addInterfaceElements(Interface interfaze) {
-//        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(
-//                introspectedTable.getExampleType());
-    	FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("com.vteba.tx.jdbc.params.QueryBean");
+        FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType(
+                introspectedTable.getExampleType());
+//    	FullyQualifiedJavaType fqjt = new FullyQualifiedJavaType("com.vteba.tx.jdbc.params.QueryBean");
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
         importedTypes.add(fqjt);
 

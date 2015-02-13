@@ -238,8 +238,8 @@ public class MyBatisGenerator {
         // now save the files
         callback.saveStarted(generatedXmlFiles.size()
                 + generatedJavaFiles.size());
-        String projectPath = configuration.getContexts().get(0).getProperties().getProperty("projectPath");
-    	String defaultPackage = configuration.getContexts().get(0).getProperties().getProperty("defaultPackage");
+//        String projectPath = configuration.getContexts().get(0).getProperties().getProperty("projectPath");
+//    	String defaultPackage = configuration.getContexts().get(0).getProperties().getProperty("defaultPackage");
         for (GeneratedXmlFile gxf : generatedXmlFiles) {
             projects.add(gxf.getTargetProject());
 
@@ -247,8 +247,10 @@ public class MyBatisGenerator {
             String source;
             try {
             	
-                File directory = shellCallback.getDirectory(projectPath + gxf
-                        .getTargetProject(), defaultPackage + gxf.getTargetPackage());
+//                File directory = shellCallback.getDirectory(projectPath + gxf
+//                        .getTargetProject(), defaultPackage + gxf.getTargetPackage());
+                File directory = shellCallback.getDirectory(gxf
+                        .getTargetProject(), gxf.getTargetPackage());
                 targetFile = new File(directory, gxf.getFileName());
                 if (targetFile.exists()) {
                 	if (shellCallback.isOverwriteEnabled()) {// xml也是有限重写，yinlei
@@ -285,8 +287,10 @@ public class MyBatisGenerator {
             File targetFile;
             String source;
             try {
-                File directory = shellCallback.getDirectory(projectPath + gjf
-                        .getTargetProject(), defaultPackage + gjf.getTargetPackage());
+//                File directory = shellCallback.getDirectory(projectPath + gjf
+//                        .getTargetProject(), defaultPackage + gjf.getTargetPackage());
+                File directory = shellCallback.getDirectory(gjf
+                        .getTargetProject(), gjf.getTargetPackage());
                 targetFile = new File(directory, gjf.getFileName());
                 if (targetFile.exists()) {
                     if (shellCallback.isMergeSupported()) {

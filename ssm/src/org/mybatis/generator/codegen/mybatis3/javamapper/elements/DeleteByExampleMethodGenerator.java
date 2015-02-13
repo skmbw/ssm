@@ -39,9 +39,9 @@ public class DeleteByExampleMethodGenerator extends
     @Override
     public void addInterfaceElements(Interface interfaze) {
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
-//        FullyQualifiedJavaType type = new FullyQualifiedJavaType(
-//                introspectedTable.getExampleType());
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType("com.vteba.tx.jdbc.params.DeleteBean");
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType(
+                introspectedTable.getExampleType());
+//        FullyQualifiedJavaType type = new FullyQualifiedJavaType("com.vteba.tx.jdbc.params.DeleteBean");
         importedTypes.add(type);
 
         Method method = new Method();

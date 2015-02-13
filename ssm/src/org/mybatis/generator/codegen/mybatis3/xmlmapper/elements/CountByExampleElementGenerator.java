@@ -34,7 +34,7 @@ public class CountByExampleElementGenerator extends AbstractXmlElementGenerator 
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
 
-        String fqjt = "com.vteba.tx.jdbc.params.QueryBean";//introspectedTable.getExampleType();
+        String fqjt = introspectedTable.getExampleType();//"com.vteba.tx.jdbc.params.QueryBean";//
 
         answer.addAttribute(new Attribute(
                 "id", introspectedTable.getCountByExampleStatementId())); //$NON-NLS-1$
@@ -44,10 +44,10 @@ public class CountByExampleElementGenerator extends AbstractXmlElementGenerator 
         context.getCommentGenerator().addComment(answer);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("select count(*) from {{"); //$NON-NLS-1$
+        sb.append("select count(*) from "); //$NON-NLS-1$
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
-        sb.append("}}");
+//        sb.append("}}");
         answer.addElement(new TextElement(sb.toString()));
         answer.addElement(getExampleIncludeElement());
 

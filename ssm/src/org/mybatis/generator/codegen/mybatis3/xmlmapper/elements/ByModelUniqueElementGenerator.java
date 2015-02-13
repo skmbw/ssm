@@ -10,9 +10,9 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
  * @author yinlei
  * 2013-12-14
  */
-public class ByModelQueryListElementGenerator extends AbstractXmlElementGenerator {
+public class ByModelUniqueElementGenerator extends AbstractXmlElementGenerator {
 
-	public ByModelQueryListElementGenerator() {
+	public ByModelUniqueElementGenerator() {
 		
 	}
 
@@ -20,16 +20,14 @@ public class ByModelQueryListElementGenerator extends AbstractXmlElementGenerato
 	public void addElements(XmlElement parentElement) {
 	    FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
                     introspectedTable.getBaseRecordType());
-//		String fqjt = "com.vteba.tx.jdbc.params.QueryBean";
 
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
-        answer.setComments("根据params所携带条件查询数据。");
+        answer.setComments("根据params所携带条件查询唯一记录。");
         answer.addAttribute(new Attribute("id", //$NON-NLS-1$
-                introspectedTable.getQueryListStatementId()));
+                introspectedTable.getUniqueStatementId()));
         answer.addAttribute(new Attribute(
                 "resultMap", introspectedTable.getBaseResultMapId())); //$NON-NLS-1$
         answer.addAttribute(new Attribute("parameterType", parameterType.getFullyQualifiedName()));
-//        answer.addAttribute(new Attribute("parameterType", fqjt));
 
         context.getCommentGenerator().addComment(answer);
 
@@ -48,15 +46,8 @@ public class ByModelQueryListElementGenerator extends AbstractXmlElementGenerato
         sb.append("from ");
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
-//        sb.append("}}");
         answer.addElement((new TextElement(sb.toString())));
         answer.addElement(getModelWhereClauseElement());
-
-//        // 排序语句
-//        ifElement = new XmlElement("if"); //$NON-NLS-1$
-//        ifElement.addAttribute(new Attribute("test", "params.orderBy != null")); //$NON-NLS-1$ //$NON-NLS-2$
-//        ifElement.addElement(new TextElement("order by ${params.orderBy}")); //$NON-NLS-1$
-//        answer.addElement(ifElement);
 
         if (context.getPlugins()
                 .sqlMapSelectByExampleWithoutBLOBsElementGenerated(answer,

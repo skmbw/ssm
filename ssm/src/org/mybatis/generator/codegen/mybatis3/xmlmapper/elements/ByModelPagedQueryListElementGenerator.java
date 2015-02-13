@@ -1,5 +1,6 @@
 package org.mybatis.generator.codegen.mybatis3.xmlmapper.elements;
 
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
@@ -17,8 +18,8 @@ public class ByModelPagedQueryListElementGenerator extends AbstractXmlElementGen
 
 	@Override
 	public void addElements(XmlElement parentElement) {
-//	    FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
-//                    introspectedTable.getBaseRecordType());
+	    FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(
+                    introspectedTable.getBaseRecordType());
 
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
         answer.setComments("根据params所携带条件分页查询数据。");
@@ -26,8 +27,8 @@ public class ByModelPagedQueryListElementGenerator extends AbstractXmlElementGen
                 introspectedTable.getQueryPagedListStatementId()));
         answer.addAttribute(new Attribute(
                 "resultMap", introspectedTable.getBaseResultMapId())); //$NON-NLS-1$
-//        answer.addAttribute(new Attribute("parameterType", parameterType.getFullyQualifiedName()));
-        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.QueryBean"));
+        answer.addAttribute(new Attribute("parameterType", parameterType.getFullyQualifiedName()));
+//        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.QueryBean"));
 
         context.getCommentGenerator().addComment(answer);
 
@@ -43,10 +44,10 @@ public class ByModelPagedQueryListElementGenerator extends AbstractXmlElementGen
         answer.addElement(getBaseColumnListElement());
 
         sb.setLength(0);
-        sb.append("from {{"); //$NON-NLS-1$
+        sb.append("from "); //$NON-NLS-1$
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
-        sb.append("}}");
+//        sb.append("}}");
         answer.addElement((new TextElement(sb.toString())));
         answer.addElement(getModelWhereClauseElement());
 

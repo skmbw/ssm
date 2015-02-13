@@ -27,14 +27,14 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 /**
- * 分页查询方法产生器
+ * 根据model的唯一记录方法产生器
  * @author yinlei
  * @since 2013-12-15 9:45
  */
-public class PagedQueryListMethodGenerator extends
+public class ByModelUniqueMethodGenerator extends
         AbstractJavaMapperMethodGenerator {
 
-    public PagedQueryListMethodGenerator() {
+    public ByModelUniqueMethodGenerator() {
         super();
     }
 
@@ -42,17 +42,16 @@ public class PagedQueryListMethodGenerator extends
     public void addInterfaceElements(Interface interfaze) {
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
         FullyQualifiedJavaType type = new FullyQualifiedJavaType(
-                introspectedTable.getExampleType());
-//        FullyQualifiedJavaType type = new FullyQualifiedJavaType("com.vteba.tx.jdbc.params.QueryBean");
+                introspectedTable.getBaseRecordType());
         importedTypes.add(type);
         importedTypes.add(FullyQualifiedJavaType.getNewListInstance());
 
         Method method = new Method();
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.addJavaDocLine("根据params所携带条件分页查询数据，适用于复杂查询。");
+        method.addJavaDocLine("根据params所携带条件查询唯一记录，条件是等于，且是and关系。");
         method.addJavaDocLine("@param params 查询条件");
-        FullyQualifiedJavaType returnType = FullyQualifiedJavaType
-                .getNewListInstance();
+        FullyQualifiedJavaType returnType = introspectedTable.getRules()
+                .calculateAllFieldsClass();
         FullyQualifiedJavaType listType;
         if (introspectedTable.getRules().generateBaseRecordClass()) {
             listType = new FullyQualifiedJavaType(introspectedTable
@@ -65,10 +64,10 @@ public class PagedQueryListMethodGenerator extends
         }
 
         importedTypes.add(listType);
-        returnType.addTypeArgument(listType);
+//        returnType.addTypeArgument(listType);
         method.setReturnType(returnType);
 
-        method.setName(introspectedTable.getPagedQueryListStatementId());
+        method.setName(introspectedTable.getUniqueStatementId());
         method.addParameter(new Parameter(type, "params")); //$NON-NLS-1$
 
         context.getCommentGenerator().addGeneralMethodComment(method,

@@ -99,6 +99,7 @@ public abstract class IntrospectedTable {
         ATTR_QUERY_PAGED_LIST_STATEMENT_ID,
         ATTR_MYBATIS3_MODEL_WHERE_CLAUSE_ID,
         ATTR_QUERY_LIST_STATEMENT_ID,
+        ATTR_UNIQUE_STATEMENT_ID,
         ATTR_UPDATE_BATCH_STATEMENT_ID,
         ATTR_DELETE_BATCH_STATEMENT_ID,
         ATTR_UPDATE_MODEL_WHERE_CLAUSE_ID
@@ -510,6 +511,34 @@ public abstract class IntrospectedTable {
     }
 
     /**
+     * 下划线风格转换为驼峰命名法
+     * @param s 待转换字符串
+     * @return 转换后字符
+     * @author yinlei
+     * date 2013-6-15 下午11:23:52
+     */
+    public String toCamelCase(String s) {
+        if (s == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder(s.length());
+        boolean upperCase = false;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c == '_') {
+                upperCase = true;
+            } else if (upperCase) {
+                sb.append(Character.toUpperCase(c));
+                upperCase = false;
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+    
+    /**
      * 
      */
     protected void calculateXmlAttributes() {
@@ -543,6 +572,8 @@ public abstract class IntrospectedTable {
         
         setSelectByPrimaryKeyStatementId("get"); //根据id查询实体
         
+        setUniqueStatementId("unique");
+        
         setUpdateByExampleStatementId("updateAllBatch"); //$NON-NLS-1$,yinlei
         
         setUpdateByExampleSelectiveStatementId("updateBatch"); //根据Criteria更新
@@ -554,7 +585,9 @@ public abstract class IntrospectedTable {
         setUpdateByPrimaryKeySelectiveStatementId("updateById"); //根据id更新
         
         setUpdateByPrimaryKeyWithBLOBsStatementId("updateByPrimaryKeyWithBLOBs"); //$NON-NLS-1$
-        setBaseResultMapId("BaseResultMap"); //$NON-NLS-1$
+        String tableName = getTableConfiguration().getTableName();
+        tableName = toCamelCase(tableName);
+        setBaseResultMapId(tableName + "ResultMap"); //$NON-NLS-1$
         setResultMapWithBLOBsId("ResultMapWithBLOBs"); //$NON-NLS-1$
         setExampleWhereClauseId("Example_Where_Clause"); //$NON-NLS-1$
         setBaseColumnListId("Base_Column_List"); //$NON-NLS-1$
@@ -654,6 +687,11 @@ public abstract class IntrospectedTable {
                 InternalAttribute.ATTR_UPDATE_BY_EXAMPLE_STATEMENT_ID, s);
     }
 
+    public void setUniqueStatementId(String s) {
+        internalAttributes.put(
+                InternalAttribute.ATTR_UNIQUE_STATEMENT_ID, s);
+    }
+    
     public void setSelectByPrimaryKeyStatementId(String s) {
         internalAttributes.put(
                 InternalAttribute.ATTR_SELECT_BY_PRIMARY_KEY_STATEMENT_ID, s);
@@ -813,6 +851,11 @@ public abstract class IntrospectedTable {
     public String getQueryListStatementId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_QUERY_LIST_STATEMENT_ID);
+    }
+    
+    public String getUniqueStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_UNIQUE_STATEMENT_ID);
     }
     
     public String getUpdateBatchStatementId() {

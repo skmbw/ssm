@@ -30,6 +30,7 @@ import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelCountEle
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelDeleteBatchElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelPagedQueryListElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelQueryListElementGenerator;
+import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelUniqueElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.ByModelUpdateBatchElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.CountByExampleElementGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.DeleteByExampleElementGenerator;
@@ -93,6 +94,7 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addQueryPagedListElement(answer);
         
         addSelectByPrimaryKeyElement(answer);
+        addUniqueElement(answer);
         
         addDeleteByPrimaryKeyElement(answer);
         addDeleteByExampleElement(answer);
@@ -109,7 +111,6 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
         addUpdateByPrimaryKeySelectiveElement(answer);
         //addUpdateByPrimaryKeyWithBLOBsElement(answer);
         //addUpdateByPrimaryKeyWithoutBLOBsElement(answer);
-        
         return answer;
     }
 
@@ -211,6 +212,13 @@ public class XMLMapperGenerator extends AbstractXmlGenerator {
     protected void addQueryListElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateQueryList()) {
             AbstractXmlElementGenerator elementGenerator = new ByModelQueryListElementGenerator();
+            initializeAndExecuteGenerator(elementGenerator, parentElement);
+        }
+    }
+    
+    protected void addUniqueElement(XmlElement parentElement) {
+        if (introspectedTable.getRules().generateUnique()) {
+            AbstractXmlElementGenerator elementGenerator = new ByModelUniqueElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);
         }
     }

@@ -39,32 +39,32 @@ public class UpdateByPrimaryKeySelectiveMethodGenerator extends
     @Override
     public void addInterfaceElements(Interface interfaze) {
         Set<FullyQualifiedJavaType> importedTypes = new TreeSet<FullyQualifiedJavaType>();
-//        FullyQualifiedJavaType parameterType;
-//
-//        if (introspectedTable.getRules().generateRecordWithBLOBsClass()) {
-//            parameterType = new FullyQualifiedJavaType(introspectedTable
-//                    .getRecordWithBLOBsType());
-//        } else {
-//            parameterType = new FullyQualifiedJavaType(introspectedTable
-//                    .getBaseRecordType());
-//        }
-//
-//        importedTypes.add(parameterType);
+        FullyQualifiedJavaType parameterType;
+
+        if (introspectedTable.getRules().generateRecordWithBLOBsClass()) {
+            parameterType = new FullyQualifiedJavaType(introspectedTable
+                    .getRecordWithBLOBsType());
+        } else {
+            parameterType = new FullyQualifiedJavaType(introspectedTable
+                    .getBaseRecordType());
+        }
+
+        importedTypes.add(parameterType);
 
         Method method = new Method();
         method.addJavaDocLine("根据主键更新指定字段的数据。");
         
-        method.addJavaDocLine("@param params update的where条件，以及定位分区表的条件");
-		FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType("com.vteba.tx.jdbc.params.UpdateBean");
-		method.addParameter(new Parameter(parameterType, "params"));
-		importedTypes.add(parameterType);
+//        method.addJavaDocLine("@param params update的where条件，以及定位分区表的条件");
+//		FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType("com.vteba.tx.jdbc.params.UpdateBean");
+//		method.addParameter(new Parameter(parameterType, "params"));
+//		importedTypes.add(parameterType);
         
-//        method.addJavaDocLine("@param record 要更新的数据，含有Id");
+        method.addJavaDocLine("@param record 要更新的数据，含有Id");
         method.setVisibility(JavaVisibility.PUBLIC);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         method.setName(introspectedTable
                 .getUpdateByPrimaryKeySelectiveStatementId());
-//        method.addParameter(new Parameter(parameterType, "record"));
+        method.addParameter(new Parameter(parameterType, "record"));
 
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);

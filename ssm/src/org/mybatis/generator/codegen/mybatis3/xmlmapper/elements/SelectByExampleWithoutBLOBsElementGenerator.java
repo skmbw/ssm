@@ -35,8 +35,8 @@ public class SelectByExampleWithoutBLOBsElementGenerator extends
 
     @Override
     public void addElements(XmlElement parentElement) {
-//        String fqjt = introspectedTable.getExampleType();
-    	String fqjt = "com.vteba.tx.jdbc.params.QueryBean";
+        String fqjt = introspectedTable.getExampleType();
+//    	String fqjt = "com.vteba.tx.jdbc.params.QueryBean";
 
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
         answer.setComments("根据Criteria所携带条件查询数据，不含Blob字段。");
@@ -65,10 +65,10 @@ public class SelectByExampleWithoutBLOBsElementGenerator extends
         answer.addElement(getBaseColumnListElement());
 
         sb.setLength(0);
-        sb.append("from {{"); //$NON-NLS-1$
+        sb.append("from "); //$NON-NLS-1$
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
-        sb.append("}}");
+//        sb.append("}}");
         answer.addElement((new TextElement(sb.toString())));
         answer.addElement(getExampleIncludeElement());
 

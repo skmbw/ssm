@@ -29,6 +29,9 @@ public class FullyQualifiedJavaType implements
         Comparable<FullyQualifiedJavaType> {
     private static final String JAVA_LANG = "java.lang"; //$NON-NLS-1$
     private static FullyQualifiedJavaType intInstance = null;
+//    private static FullyQualifiedJavaType integerInstance = null;
+//    private static FullyQualifiedJavaType longPrimitiveInstance = null;
+//    private static FullyQualifiedJavaType longInstance = null;
     private static FullyQualifiedJavaType stringInstance = null;
     private static FullyQualifiedJavaType booleanPrimitiveInstance = null;
     private static FullyQualifiedJavaType objectInstance = null;
@@ -252,6 +255,30 @@ public class FullyQualifiedJavaType implements
         return intInstance;
     }
 
+//    public static final FullyQualifiedJavaType getIntegerInstance() {
+//        if (integerInstance == null) {
+//        	integerInstance = new FullyQualifiedJavaType("Integer");
+//        }
+//
+//        return integerInstance;
+//    }
+//    
+//    public static final FullyQualifiedJavaType getLongPrimitiveInstance() {
+//        if (longPrimitiveInstance == null) {
+//        	longPrimitiveInstance = new FullyQualifiedJavaType("long");
+//        }
+//
+//        return longPrimitiveInstance;
+//    }
+//    
+//    public static final FullyQualifiedJavaType getLongInstance() {
+//        if (longInstance == null) {
+//        	longInstance = new FullyQualifiedJavaType("Long");
+//        }
+//
+//        return longInstance;
+//    }
+    
     public static final FullyQualifiedJavaType getNewMapInstance() {
         // always return a new instance because the type may be parameterized
         return new FullyQualifiedJavaType("java.util.Map"); //$NON-NLS-1$

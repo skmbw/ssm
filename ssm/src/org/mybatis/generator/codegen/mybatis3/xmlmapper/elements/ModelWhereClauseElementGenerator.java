@@ -64,7 +64,8 @@ public class ModelWhereClauseElementGenerator extends
                 .getNonPrimaryKeyColumns()) {
             XmlElement isNotNullElement = new XmlElement("if");
             sb.setLength(0);
-            sb.append(introspectedColumn.getJavaProperty("params."));
+//            sb.append(introspectedColumn.getJavaProperty("params."));
+            sb.append(introspectedColumn.getJavaProperty());
             sb.append(" != null"); //$NON-NLS-1$
             isNotNullElement.addAttribute(new Attribute("test", sb.toString())); //$NON-NLS-1$
             trimElement.addElement(isNotNullElement);
@@ -73,7 +74,7 @@ public class ModelWhereClauseElementGenerator extends
             sb.append("and ");
             sb.append(MyBatis3FormattingUtilities.getEscapedColumnName(introspectedColumn));
             sb.append(" = "); //$NON-NLS-1$
-            sb.append(MyBatis3FormattingUtilities.getParameterClause(introspectedColumn, "params."));
+            sb.append(MyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
 
             isNotNullElement.addElement(new TextElement(sb.toString()));
         }

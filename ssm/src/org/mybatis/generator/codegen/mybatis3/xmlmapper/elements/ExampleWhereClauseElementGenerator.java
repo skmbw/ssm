@@ -59,7 +59,7 @@ public class ExampleWhereClauseElementGenerator extends
                     "collection", "params.oredCriteria"));
         } else {
             outerForEachElement.addAttribute(new Attribute(
-                    "collection", "params.oredCriteria"));
+                    "collection", "oredCriteria"));
         }
         outerForEachElement.addAttribute(new Attribute("item", "criteria"));
         outerForEachElement.addAttribute(new Attribute("separator", "or"));

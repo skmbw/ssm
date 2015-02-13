@@ -60,6 +60,8 @@ public class TableConfiguration extends PropertyHolder {
     
     private boolean queryListStatementEnabled;
     
+    private boolean uniqueStatementEnabled;
+    
     private boolean updateBatchStatementEnabled;
     
     private boolean deleteBatchStatementEnabled;
@@ -120,6 +122,8 @@ public class TableConfiguration extends PropertyHolder {
         updateModelWhereClauseStatementEnabled = true;
         
         countByStatementEnabled = true;
+        
+        uniqueStatementEnabled = true;
     }
     
     public boolean isCountByStatementEnabled() {
@@ -140,6 +144,10 @@ public class TableConfiguration extends PropertyHolder {
 
     public boolean isQueryListStatementEnabled() {
         return queryListStatementEnabled;
+    }
+    
+    public boolean isUniqueStatementEnabled() {
+        return uniqueStatementEnabled;
     }
     
     public void setQueryListStatementEnabled(boolean queryListStatementEnabled) {

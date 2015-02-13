@@ -211,4 +211,9 @@ public class RulesDelegate implements Rules {
     public boolean generateCountBy() {
         return rules.generateCountBy();
     }
+
+	@Override
+	public boolean generateUnique() {
+		return rules.generateUnique();
+	}
 }

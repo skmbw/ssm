@@ -20,6 +20,7 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelCountMe
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelDeleteBatchMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelPagedQueryListMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelQueryListMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelUniqueMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.ByModelUpdateBatchMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.CountByExampleMethodGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.DeleteByExampleMethodGenerator;
@@ -106,6 +107,7 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         addQueryPageListMethod(interfaze);// 根据model的分页查询
         
         addSelectByPrimaryKeyMethod(interfaze);
+        addUniqueMethod(interfaze);
         
         addUpdateByExampleSelectiveMethod(interfaze);
         addUpdateBatchMethod(interfaze);// 根据model批量更新
@@ -115,6 +117,8 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         addUpdateByPrimaryKeySelectiveMethod(interfaze);
         //addUpdateByPrimaryKeyWithBLOBsMethod(interfaze);
         //addUpdateByPrimaryKeyWithoutBLOBsMethod(interfaze);
+        
+        
         
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
         if (context.getPlugins().clientGenerated(interfaze, null, introspectedTable)) {
@@ -202,6 +206,13 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
     protected void addQueryListMethod(Interface interfaze) {
         if (introspectedTable.getRules().generateQueryPagedList()) {
             AbstractJavaMapperMethodGenerator methodGenerator = new ByModelQueryListMethodGenerator();
+            initializeAndExecuteGenerator(methodGenerator, interfaze);
+        }
+    }
+    
+    protected void addUniqueMethod(Interface interfaze) {
+        if (introspectedTable.getRules().generateUnique()) {
+            AbstractJavaMapperMethodGenerator methodGenerator = new ByModelUniqueMethodGenerator();
             initializeAndExecuteGenerator(methodGenerator, interfaze);
         }
     }

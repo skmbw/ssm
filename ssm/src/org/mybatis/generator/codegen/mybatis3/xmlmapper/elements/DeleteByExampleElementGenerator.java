@@ -35,20 +35,20 @@ public class DeleteByExampleElementGenerator extends
     public void addElements(XmlElement parentElement) {
         XmlElement answer = new XmlElement("delete"); //$NON-NLS-1$
 
-//        String fqjt = introspectedTable.getExampleType();
+        String fqjt = introspectedTable.getExampleType();
 
         answer.addAttribute(new Attribute(
                 "id", introspectedTable.getDeleteByExampleStatementId()));
-//        answer.addAttribute(new Attribute("parameterType", fqjt));
-        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.DeleteBean"));
+        answer.addAttribute(new Attribute("parameterType", fqjt));
+//        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.DeleteBean"));
         answer.setComments("根据Criteria所携带条件删除记录。");
         context.getCommentGenerator().addComment(answer);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("delete from {{"); //$NON-NLS-1$
+        sb.append("delete from "); //$NON-NLS-1$
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
-        sb.append("}}");
+//        sb.append("}}");
         answer.addElement(new TextElement(sb.toString()));
         answer.addElement(getDeleteExampleIncludeElement());
 

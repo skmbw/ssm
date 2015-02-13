@@ -61,9 +61,9 @@ public class DeleteByPrimaryKeyElementGenerator extends
         context.getCommentGenerator().addComment(answer);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("delete from {{");
+        sb.append("delete from ");
         sb.append(introspectedTable.getFullyQualifiedTableNameAtRuntime());
-        sb.append("}}");
+//        sb.append("}}");
         answer.addElement(new TextElement(sb.toString()));
 
         boolean and = false;

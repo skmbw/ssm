@@ -365,6 +365,14 @@ public abstract class BaseRules implements Rules {
         return rc;
     }
     
+    public boolean generateUnique() {
+        if (isModelOnly) {
+            return false;
+        }
+        boolean rc = tableConfiguration.isUniqueStatementEnabled();
+        return rc;
+    }
+    
     public boolean generateUpdateBatch() {
         if (isModelOnly) {
             return false;

@@ -68,9 +68,9 @@ public class InsertSelectiveElementGenerator extends
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("insert into {{"); //$NON-NLS-1$
+        sb.append("insert into "); //$NON-NLS-1$
         sb.append(introspectedTable.getFullyQualifiedTableNameAtRuntime());
-        sb.append("}}");
+//        sb.append("}}");
         answer.addElement(new TextElement(sb.toString()));
 
         XmlElement insertTrimElement = new XmlElement("trim"); //$NON-NLS-1$

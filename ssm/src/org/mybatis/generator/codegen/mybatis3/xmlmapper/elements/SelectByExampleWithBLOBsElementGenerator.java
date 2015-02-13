@@ -35,8 +35,8 @@ public class SelectByExampleWithBLOBsElementGenerator extends
 
     @Override
     public void addElements(XmlElement parentElement) {
-//        String fqjt = introspectedTable.getExampleType();
-    	String fqjt = "com.vteba.tx.jdbc.params.QueryBean";
+        String fqjt = introspectedTable.getExampleType();
+//    	String fqjt = "com.vteba.tx.jdbc.params.QueryBean";
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
         answer
                 .addAttribute(new Attribute(
@@ -67,10 +67,10 @@ public class SelectByExampleWithBLOBsElementGenerator extends
         answer.addElement(getBlobColumnListElement());
 
         sb.setLength(0);
-        sb.append("from {{"); //$NON-NLS-1$
+        sb.append("from "); //$NON-NLS-1$
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
-        sb.append("}}");
+//        sb.append("}}");
         answer.addElement(new TextElement(sb.toString()));
         answer.addElement(getExampleIncludeElement());
 

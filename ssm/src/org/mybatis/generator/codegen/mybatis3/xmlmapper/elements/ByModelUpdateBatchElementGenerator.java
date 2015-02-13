@@ -24,16 +24,16 @@ public class ByModelUpdateBatchElementGenerator extends AbstractXmlElementGenera
         answer.addAttribute(new Attribute(
                         "id", introspectedTable.getUpdateBatchStatementId())); //$NON-NLS-1$
 
-//        answer.addAttribute(new Attribute("parameterType", "map"));
-        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.UpdateBean"));
+        answer.addAttribute(new Attribute("parameterType", "map"));
+//        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.UpdateBean"));
 
         context.getCommentGenerator().addComment(answer);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("update {{"); //$NON-NLS-1$
+        sb.append("update "); //$NON-NLS-1$
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
-        sb.append("}}");
+//        sb.append("}}");
         answer.addElement(new TextElement(sb.toString()));
 
         XmlElement dynamicElement = new XmlElement("set"); //$NON-NLS-1$

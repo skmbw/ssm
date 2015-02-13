@@ -223,6 +223,8 @@ public interface Rules {
     boolean generateCountByExample();
     
     boolean generateCountBy();
+    
+    boolean generateUnique();
 
     boolean generateUpdateByExampleSelective();
 

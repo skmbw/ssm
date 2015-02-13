@@ -17,8 +17,8 @@ public class PagedQueryListElementGenerator extends AbstractXmlElementGenerator 
 
 	@Override
 	public void addElements(XmlElement parentElement) {
-//		String fqjt = introspectedTable.getExampleType();
-		String fqjt = "com.vteba.tx.jdbc.params.QueryBean";
+		String fqjt = introspectedTable.getExampleType();
+//		String fqjt = "com.vteba.tx.jdbc.params.QueryBean";
 
         XmlElement answer = new XmlElement("select"); //$NON-NLS-1$
         answer.setComments("根据Criteria所携带条件分页查询数据。");
@@ -39,10 +39,10 @@ public class PagedQueryListElementGenerator extends AbstractXmlElementGenerator 
         StringBuilder sb = new StringBuilder();
         answer.addElement(getBaseColumnListElement());
 
-        sb.append("from {{"); //$NON-NLS-1$
+        sb.append("from "); //$NON-NLS-1$
         sb.append(introspectedTable
                 .getAliasedFullyQualifiedTableNameAtRuntime());
-        sb.append("}}");
+//        sb.append("}}");
         answer.addElement((new TextElement(sb.toString())));
         answer.addElement(getExampleIncludeElement());
 

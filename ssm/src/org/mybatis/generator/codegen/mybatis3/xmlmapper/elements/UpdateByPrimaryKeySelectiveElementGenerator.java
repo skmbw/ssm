@@ -25,24 +25,24 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends
         answer.addAttribute(new Attribute(
                         "id", introspectedTable.getUpdateByPrimaryKeySelectiveStatementId()));
 
-//        String parameterType;
-//
-//        if (introspectedTable.getRules().generateRecordWithBLOBsClass()) {
-//            parameterType = introspectedTable.getRecordWithBLOBsType();
-//        } else {
-//            parameterType = introspectedTable.getBaseRecordType();
-//        }
-//
-//        answer.addAttribute(new Attribute("parameterType", parameterType));
-        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.UpdateBean"));
+        String parameterType;
+
+        if (introspectedTable.getRules().generateRecordWithBLOBsClass()) {
+            parameterType = introspectedTable.getRecordWithBLOBsType();
+        } else {
+            parameterType = introspectedTable.getBaseRecordType();
+        }
+
+        answer.addAttribute(new Attribute("parameterType", parameterType));
+//        answer.addAttribute(new Attribute("parameterType", "com.vteba.tx.jdbc.params.UpdateBean"));
 
         context.getCommentGenerator().addComment(answer);
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("update {{");
+        sb.append("update ");
         sb.append(introspectedTable.getFullyQualifiedTableNameAtRuntime());
-        sb.append("}}");
+//        sb.append("}}");
         answer.addElement(new TextElement(sb.toString()));
 
         XmlElement dynamicElement = new XmlElement("set");
@@ -52,7 +52,8 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends
                 .getNonPrimaryKeyColumns()) {
             XmlElement isNotNullElement = new XmlElement("if");
             sb.setLength(0);
-            sb.append(introspectedColumn.getJavaProperty("record."));
+            //sb.append(introspectedColumn.getJavaProperty("record."));
+            sb.append(introspectedColumn.getJavaProperty());
             sb.append(" != null");
             isNotNullElement.addAttribute(new Attribute("test", sb.toString()));
             dynamicElement.addElement(isNotNullElement);
@@ -61,8 +62,8 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends
             sb.append(MyBatis3FormattingUtilities
                     .getEscapedColumnName(introspectedColumn));
             sb.append(" = ");
-            sb.append(MyBatis3FormattingUtilities
-                    .getParameterClause(introspectedColumn, "record."));
+            sb.append(MyBatis3FormattingUtilities.getParameterClause(introspectedColumn));
+                    //.getParameterClause(introspectedColumn, "record."));
             sb.append(',');
 
             isNotNullElement.addElement(new TextElement(sb.toString()));
@@ -83,7 +84,8 @@ public class UpdateByPrimaryKeySelectiveElementGenerator extends
                     .getEscapedColumnName(introspectedColumn));
             sb.append(" = ");
             sb.append(MyBatis3FormattingUtilities
-                    .getParameterClause(introspectedColumn, "record."));
+                    .getParameterClause(introspectedColumn));
+//            .getParameterClause(introspectedColumn, "record."));
             answer.addElement(new TextElement(sb.toString()));
         }
 
