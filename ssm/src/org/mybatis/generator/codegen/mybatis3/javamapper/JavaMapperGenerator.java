@@ -71,7 +71,7 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         interfaze.addImportedType(new FullyQualifiedJavaType("com.vteba.tx.jdbc.mybatis.annotation.DaoMapper"));
         interfaze.setVisibility(JavaVisibility.PUBLIC);
         interfaze.addJavaDocLine("/**");
-        interfaze.addJavaDocLine(" * 分区表" + introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime() + "的MyBatis Dao Mapper。");
+        interfaze.addJavaDocLine(" * 表" + introspectedTable.getAliasedFullyQualifiedTableNameAtRuntime() + "的MyBatis Dao Mapper。");
         interfaze.addJavaDocLine(" * " + "由代码工具自动生成，可以新增方法，但是不要修改自动生成的方法。");
         interfaze.addJavaDocLine(" * @date " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         interfaze.addJavaDocLine(" */");
