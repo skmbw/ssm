@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.vteba.sequence.SequenceGenerator;
 import com.vteba.user.model.User;
 import com.vteba.user.service.UserService;
+import com.vteba.user3.dao.User201410mDao;
+import com.vteba.user3.model.User201410m;
+import com.vteba.user3.model.User201410mBean;
+import com.vteba.utils.id.ObjectId;
 import com.vteba.web.action.BaseAction;
 
 /**
@@ -28,6 +32,8 @@ public class UserAction extends BaseAction {
 	
 	@Autowired
 	private SequenceGenerator sequenceGenerator;
+	@Autowired
+	private User201410mDao user201410mDao;
 	
 	/**
 	 * 初始化页面信息
@@ -36,6 +42,54 @@ public class UserAction extends BaseAction {
 	 */
 	@RequestMapping("/initial")
 	public String initial(Map<String, Object> map) {
+		User201410m record = new User201410m();
+		record.setCompany("yinlei4");
+		record.setMobilePhone("12121");
+		record.setState(true);
+		record.setCreateDate(new Date());
+		String uuid = ObjectId.get().toString();
+		record.setId(uuid);
+		user201410mDao.save(record);
+		
+		User201410m record2 = new User201410m();
+		record2.setCompany("yinlei");
+		record2.setMobilePhone("12121");
+		record2.setState(true);
+		int countBy = user201410mDao.countBy(record2);
+		System.out.println(countBy);
+		
+		User201410mBean params = new User201410mBean();
+		params.createCriteria().andCompanyEqualTo("yinlei3")
+		.andStateEqualTo(true);
+		user201410mDao.count(params);
+		
+		user201410mDao.get(uuid);
+		
+		User201410m record3 = new User201410m();
+		record3.setCompany("yinlei4");
+		record3.setMobilePhone("12121");
+		record3.setState(true);
+		record3 = user201410mDao.unique(record3);
+		
+		user201410mDao.pagedList(record2);
+		
+		user201410mDao.pagedForList(params);
+		
+		user201410mDao.queryForList(params);
+		
+		user201410mDao.queryList(record2);
+		
+		record.setCompany("IBN");
+		user201410mDao.updateById(record);
+		
+		user201410mDao.updateBulks(record2, record2);
+		
+		user201410mDao.updateBatch(record2, params);
+		
+		user201410mDao.deleteBulks(record);
+		
+		user201410mDao.deleteBatch(params);
+		
 		List<User> userList = userServiceImpl.queryForList(null);
 		// 方法Map/ModelMap参数中的数据会自动推送到视图页面，供jsp等使用
 		map.put("userList", userList);//将userList放入视图中，供jsp使用
