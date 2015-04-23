@@ -44,57 +44,31 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int save(User record) {
-//	    User user = new User();
-//	    user.setId("33");
-//	    Date date = new Date();
-//	    user.setCreateDate(date);
-//	    user.setUserName("尹雷2");
-//	    userDao.updateById(user);
-//	    
-//	    User params = new User();
-//	    params.setUserName("尹雷2");
-//	    //params.setCreateDate(date);
-//	    params.setState(true);
-//	    user.setId(null);
-//	    userDao.updateBulks(user, params);
-//	    
-//	    UserBean userBean = new UserBean();
-//	    userBean.createCriteria().andUserAccountEqualTo("yinlei@126.com");
-//	    userDao.updateBatch(user, userBean);
-//	    
-//	    userDao.deleteBatch(userBean);
-//	    userDao.deleteBulks(params);
-	    long d = System.currentTimeMillis();
-		for (int i = 0; i < 100; i++) {
-			record.setId(sequenceGenerator.nextGUID());
-			userDao.save(record);
-		}
-		System.out.println(System.currentTimeMillis() - d);
 		record.setId(sequenceGenerator.nextGUID());
 		return userDao.save(record);
 	}
 
 	@Override
 	public List<User> queryForList(UserBean userBean) {
-	    User user = new User();
-	    user.setUserName("尹雷");
-	    user.setUserAccount("tong@126.com");
-	    userDao.queryList(user);
-	    
-	    userDao.countBy(user);
-	    
-	    userDao.get("33");
-	    
-	    User params = new User();
-	    params.setUserName("好好2");
-	    params.setStart(0);
-	    userDao.pagedList(params);
-	    
-	    userBean = new UserBean();
-	    userBean.createCriteria().andUserAccountEqualTo("tongku@126.com");
-	    
-	    userDao.count(userBean);
-	    userDao.pagedForList(userBean);
+//	    User user = new User();
+//	    user.setUserName("尹雷");
+//	    user.setUserAccount("tong@126.com");
+//	    userDao.queryList(user);
+//	    
+//	    userDao.countBy(user);
+//	    
+//	    userDao.get("33");
+//	    
+//	    User params = new User();
+//	    params.setUserName("好好2");
+//	    params.setStart(0);
+//	    userDao.pagedList(params);
+//	    
+//	    userBean = new UserBean();
+//	    userBean.createCriteria().andUserAccountEqualTo("tongku@126.com");
+//	    
+//	    userDao.count(userBean);
+//	    userDao.pagedForList(userBean);
 	    
 		return userDao.queryForList(userBean);
 	}

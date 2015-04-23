@@ -51,13 +51,13 @@
 </tr>
 <tr>
 <td>状态</td>
-<td><c:if test="${model.state == 1}">正常</c:if><c:if test="${model.state == 0}">禁用</c:if></td>
+<td><c:if test="${model.state == true}">正常</c:if><c:if test="${model.state == false}">禁用</c:if></td>
 </tr>
 </table>
 
 </div>
 <div class="row">
-<a class="btn btn-success" href="${ctx}/user/initial.htm">返回列表页</a>
+<a class="btn btn-success" href="${ctx}/user/initial">返回列表页</a>
 </div>
 </div>
 

@@ -16,7 +16,7 @@
 <div class="container">
 
 <div class="row" style="margin-top:20px;">
-<form class="form-horizontal" role="form" action="${ctx}/user/doAdd.htm" method="post">
+<form class="form-horizontal" role="form" action="${ctx}/user/doAdd" method="post">
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
     <div class="col-sm-10">
@@ -73,7 +73,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary">添加用户</button> <a href="${ctx}/user/initial.htm" class="btn btn-info">返回列表页</a>
+      <button type="submit" class="btn btn-primary">添加用户</button> <a href="${ctx}/user/initial" class="btn btn-info">返回列表页</a>
     </div>
   </div>
 </form>

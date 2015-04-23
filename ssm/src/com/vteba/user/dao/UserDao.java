@@ -1,12 +1,12 @@
 package com.vteba.user.dao;
 
-import com.vteba.tx.jdbc.mybatis.annotation.DaoMapper;
-import com.vteba.user.model.User;
-import com.vteba.user.model.UserBean;
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+
+import com.vteba.tm.jdbc.mybatis.annotation.DaoMapper;
+import com.vteba.user.model.User;
+import com.vteba.user.model.UserBean;
 
 @DaoMapper
 public interface UserDao {

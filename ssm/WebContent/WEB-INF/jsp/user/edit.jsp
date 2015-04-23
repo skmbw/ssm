@@ -17,9 +17,9 @@
 <div class="container">
 
 <div class="row" style="margin-top:20px;">
-<form class="form-horizontal" role="form" id="editForm" action="${ctx}/user/update.htm" method="post">
+<form class="form-horizontal" role="form" id="editForm" action="${ctx}/user/update" method="post">
 	<input type="hidden" name="id" value="${model.id}">
-<input type="hidden" name="createDate" value='<fmt:formatDate value="${model.createTimes}" pattern="yyyy-MM-dd HH:mm:ss"/>'>
+<input type="hidden" name="createDate" value='${model.createDate}'>
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
     <div class="col-sm-10">
@@ -69,14 +69,14 @@
     <label for="inputAccoun9" class="col-sm-2 control-label">用户状态</label>
     <div class="col-sm-10">
       <select name="state" class="form-control">
-		<option value="1" <c:if test="${model.state == 1}">selected="selected"</c:if>>正常</option>	
-		<option value="0" <c:if test="${model.state == 0}">selected="selected"</c:if>>禁用</option>
+		<option value="1" <c:if test="${model.state == true}">selected="selected"</c:if>>正常</option>	
+		<option value="0" <c:if test="${model.state == false}">selected="selected"</c:if>>禁用</option>
 	</select>
     </div>
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary">修改用户</button> <a href="${ctx}/user/initial.htm" class="btn btn-info">返回列表页</a>
+      <button type="submit" class="btn btn-primary">修改用户</button> <a href="${ctx}/user/initial" class="btn btn-info">返回列表页</a>
     </div>
   </div>
 </form>

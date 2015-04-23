@@ -78,15 +78,12 @@
         <level value="INFO"/>
 <!--            <appender-ref ref="R"/> -->
     </logger>
-    <!-- 
-    <logger name="com.atomikos" additivity="true">
-        <level value="WARN"/>
-        <appender-ref ref="console"/>
+    <logger name="org.springframework.web" additivity="true">
+        <level value="DEBUG"/>
     </logger>
-    <logger name="bitronix.tm" additivity="true">
-        <level value="INFO"/>
-        <appender-ref ref="console"/>
-    </logger> -->
+    <logger name="org.springframework.mvc" additivity="true">
+        <level value="DEBUG"/>
+    </logger>
     <logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="true">
         <level value="INFO"/>
 <!--            <appender-ref ref="console"/> -->

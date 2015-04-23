@@ -21,7 +21,7 @@
 			$.ajax({
 	            type:"post",
 	            dataType:"text",
-	            url: '${ctx}/user/delete.htm?id=' + id,
+	            url: '${ctx}/user/delete?id=' + id,
 	            success: function(msg){
 	            	//$('#myModal').modal('show');
 	            	window.location.reload();
@@ -34,7 +34,7 @@
 	}
 	$(document).ready(function(){
 		$('#add_user').click(function(){
-			window.location.href="${ctx}/user/add.htm";
+			window.location.href="${ctx}/user/add";
 		});
 	});
 </script>
@@ -63,7 +63,7 @@
 <td>${user.telephone}</td>
 <td><fmt:formatDate value="${user.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 <td>${user.superAdmin}</td>
-<td><a href="${ctx}/user/detail.htm?id=${user.id}">详情</a> <a href="${ctx}/user/edit.htm?id=${user.id}">编辑</a> <a href="javascript:void(0);" onclick="javascript:deleteUser('${user.id}');">删除</a></td>
+<td><a href="${ctx}/user/detail?id=${user.id}">详情</a> <a href="${ctx}/user/edit?id=${user.id}">编辑</a> <a href="javascript:void(0);" onclick="javascript:deleteUser('${user.id}');">删除</a></td>
 </tr>
 
 </c:forEach>
